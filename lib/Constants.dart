@@ -160,3 +160,21 @@ var textButtonRoundedStyle = TextButton.styleFrom(
 );
 
 var textStyleLog = TextStyle(color: Colors.black, fontSize: 16, fontFamily: fontKarlaRegular,fontWeight: FontWeight.bold);
+  getCustomTextProperties(
+Color color, double fontSize, String fontName, int i) {
+var dd;
+if (i == 1) {
+dd = FontWeight.w700;
+} else {
+dd = FontWeight.w400;
+}
+return new TextStyle(
+// set color of text
+color: color,
+// set the font family as defined in pubspec.yaml
+fontFamily: fontName,
+// set the font weight
+fontWeight: dd,
+// set the font size
+fontSize: fontSize);
+}

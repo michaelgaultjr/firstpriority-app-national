@@ -3,8 +3,6 @@ import 'package:first_priority_app/screens/sign_up/profile/components/top_profil
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../compotents/middle_sign_up.dart';
-import '../compotents/top_sign_up.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override

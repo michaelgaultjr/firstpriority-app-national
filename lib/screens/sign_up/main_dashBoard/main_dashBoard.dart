@@ -21,7 +21,7 @@ class _MainDashBoard extends State<MainDashBoard> {
     HomeScreen(),
     EventsScreen(),
     ResourcesScreen(),
-    ChurchesScreen(),
+    // ChurchesScreen(),
     DevotionalsScreen(),
     ProfileScreen(),
   ];
@@ -43,8 +43,8 @@ class _MainDashBoard extends State<MainDashBoard> {
                 title: Text('Events')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.book, size: 30), title: Text('Resources')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home, size: 30), title: Text('Churches')),
+            // BottomNavigationBarItem(
+            //     icon: Icon(Icons.home, size: 30), title: Text('Churches')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite_border, size: 30),
                 title: Text('Devotionals')),
