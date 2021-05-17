@@ -35,22 +35,22 @@ class Bootom_SignUp extends StatelessWidget {
             ),
             Text(
               ' I agree with our ',
-              style: getCustomTextProperties(Colors.grey,12,"Schyler",0),
+              style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
             ),
             SizedBox(width: 2.0),
             Text(
               'Terms',
-              style: getCustomTextProperties(Colors.indigo,14,"Schyler",1),
+              style: getCustomTextProperties(colorDarkBlue1, 14, "Schyler", 1),
             ),
             SizedBox(width: 2.0),
             Text(
               'and',
-              style:  getCustomTextProperties(Colors.grey,12,"Schyler",0),
+              style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
             ),
             SizedBox(width: 2.0),
             Text(
               'Conditions',
-              style: getCustomTextProperties(Colors.indigo,14,"Schyler",1),
+              style: getCustomTextProperties(colorDarkBlue1, 14, "Schyler", 1),
             ),
           ],
         )),
@@ -58,13 +58,12 @@ class Bootom_SignUp extends StatelessWidget {
           height: 8,
         ),
         Container(
-
           margin: EdgeInsets.only(top: 8),
           height: 40,
           child: Material(
             borderRadius: BorderRadius.circular(6.0),
             shadowColor: Colors.blue,
-            color: Colors.indigo,
+            color: colorDarkBlue1,
             elevation: 2.0,
             child: GestureDetector(
               onTap: () {
@@ -73,7 +72,8 @@ class Bootom_SignUp extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Create account',
-                  style: getCustomTextProperties(Colors.white,16,"Schyler",1),
+                  style:
+                      getCustomTextProperties(Colors.white, 16, "Schyler", 1),
                 ),
               ),
             ),
@@ -83,13 +83,13 @@ class Bootom_SignUp extends StatelessWidget {
           height: 15,
         ),
         Container(
-            margin: EdgeInsets.only(bottom: 20,top: 16),
+            margin: EdgeInsets.only(bottom: 20, top: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Already have an account?',
-                  style:getCustomTextProperties(Colors.grey,12,"Schyler",0),
+                  style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
                 ),
                 SizedBox(
                   width: 5.0,
@@ -100,7 +100,8 @@ class Bootom_SignUp extends StatelessWidget {
                   },
                   child: Text(
                     'Sign In',
-                    style: getCustomTextProperties(Colors.indigo,14,"Schyler",1),
+                    style: getCustomTextProperties(
+                        colorDarkBlue1, 14, "Schyler", 1),
                   ),
                 ),
               ],

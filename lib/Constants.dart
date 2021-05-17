@@ -25,7 +25,10 @@ Color colorLightbackground = const Color.fromRGBO(51, 51, 51, 0.1);
 Color colorGolden = const Color.fromRGBO(252, 185, 101, 1);
 Color colorButtonDark = const Color.fromRGBO(29, 25, 26, 1);
 Color colorLightBlue = const Color.fromRGBO(188, 222, 254, 1);
-
+Color colorDarkBlue = const Color.fromRGBO(00, 32, 95, 1);
+Color colorDarkBlue1 = const Color.fromRGBO(00, 32, 95, 1);
+Color colorSelectedBottom = const Color.fromRGBO(00, 122, 255, 1);
+Color colorEventDetailText = const Color.fromRGBO(45, 45, 45, 1);
 
 //WIDGETS
 
@@ -70,8 +73,10 @@ var gradientDashboardBoxDecoration = BoxDecoration(
 var inputEditTextDecoration = InputDecoration(
   hintText: "Enter your email",
   labelText: "Email",
-  labelStyle: TextStyle(fontSize: 14,color: Colors.black,fontWeight: FontWeight.bold),
-  hintStyle: TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.w400),
+  labelStyle:
+      TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),
+  hintStyle:
+      TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),
   enabledBorder: UnderlineInputBorder(
     borderSide: BorderSide(color: colorLightbackground),
   ),
@@ -159,22 +164,25 @@ var textButtonRoundedStyle = TextButton.styleFrom(
   ),
 );
 
-var textStyleLog = TextStyle(color: Colors.black, fontSize: 16, fontFamily: fontKarlaRegular,fontWeight: FontWeight.bold);
-  getCustomTextProperties(
-Color color, double fontSize, String fontName, int i) {
-var dd;
-if (i == 1) {
-dd = FontWeight.w700;
-} else {
-dd = FontWeight.w400;
-}
-return new TextStyle(
+var textStyleLog = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontFamily: fontKarlaRegular,
+    fontWeight: FontWeight.bold);
+getCustomTextProperties(Color color, double fontSize, String fontName, int i) {
+  var dd;
+  if (i == 1) {
+    dd = FontWeight.w700;
+  } else {
+    dd = FontWeight.w400;
+  }
+  return new TextStyle(
 // set color of text
-color: color,
+      color: color,
 // set the font family as defined in pubspec.yaml
-fontFamily: fontName,
+      fontFamily: fontName,
 // set the font weight
-fontWeight: dd,
+      fontWeight: dd,
 // set the font size
-fontSize: fontSize);
+      fontSize: fontSize);
 }

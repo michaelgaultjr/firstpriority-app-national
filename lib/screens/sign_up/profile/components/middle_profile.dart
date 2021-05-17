@@ -93,8 +93,8 @@ class _MiddleProfileState extends State<MiddleProfile> {
               child: Material(
                 borderRadius: BorderRadius.circular(10.0),
                 shadowColor: Colors.blue,
-                color: Colors.indigo,
-                elevation: 7.0,
+                color: colorDarkBlue1,
+                elevation: 3,
                 child: GestureDetector(
                   onTap: () {},
                   child: Center(

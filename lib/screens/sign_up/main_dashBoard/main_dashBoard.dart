@@ -1,6 +1,9 @@
+import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/screens/sign_up/main_dashBoard/churches/churches_screen.dart';
 import 'package:first_priority_app/screens/sign_up/main_dashBoard/devotionals/devotionals_screen.dart';
+import 'package:first_priority_app/screens/sign_up/main_dashBoard/events/events_details.dart';
 import 'package:first_priority_app/screens/sign_up/main_dashBoard/events/events_screen.dart';
+import 'package:first_priority_app/screens/sign_up/main_dashBoard/resources/resources_detail_screen.dart';
 import 'package:first_priority_app/screens/sign_up/main_dashBoard/resources/resources_screen.dart';
 import 'package:first_priority_app/screens/sign_up/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +22,8 @@ class _MainDashBoard extends State<MainDashBoard> {
 
   final _pageOptions = [
     HomeScreen(),
-    EventsScreen(),
-    ResourcesScreen(),
+    EventsDetails(),
+    ResourcesDetails(),
     // ChurchesScreen(),
     DevotionalsScreen(),
     ProfileScreen(),
@@ -42,7 +45,9 @@ class _MainDashBoard extends State<MainDashBoard> {
                 icon: Icon(Icons.event_outlined, size: 30),
                 title: Text('Events')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.book, size: 30), title: Text('Resources')),
+              icon: Image.asset("assets/images/resources.jpg"),
+              title: Text('Resources'),
+            ),
             // BottomNavigationBarItem(
             //     icon: Icon(Icons.home, size: 30), title: Text('Churches')),
             BottomNavigationBarItem(
@@ -53,7 +58,7 @@ class _MainDashBoard extends State<MainDashBoard> {
                 title: Text('Profile'))
           ],
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.indigo,
+          selectedItemColor: colorSelectedBottom,
           unselectedItemColor: Colors.black12,
           iconSize: 40,
           backgroundColor: Colors.white,
