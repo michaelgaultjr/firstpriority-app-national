@@ -1,7 +1,7 @@
-import 'package:first_priority_app/screens/sign_up/profile/components/middle_profile.dart';
-import 'package:first_priority_app/screens/sign_up/profile/components/top_profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'components/middle_profile.dart';
+import 'components/top_profile.dart';
 
 
 class ProfileScreen extends StatelessWidget {

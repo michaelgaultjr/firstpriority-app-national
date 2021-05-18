@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../Constants.dart';
+import '../Constants.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

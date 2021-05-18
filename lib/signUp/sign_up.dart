@@ -1,9 +1,9 @@
-import 'package:first_priority_app/screens/sign_up/signUp/compotents/LogoImage.dart';
-import 'package:first_priority_app/screens/sign_up/signUp/compotents/middle_sign_up.dart';
-import 'package:first_priority_app/screens/sign_up/signUp/compotents/top_sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'components/LogoImage.dart';
+import 'components/bottom_signUp.dart';
+import 'components/middle_sign_up.dart';
+import 'components/top_sign_up.dart';
 
 class SignUp extends StatelessWidget {
   @override

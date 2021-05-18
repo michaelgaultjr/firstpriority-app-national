@@ -1,7 +1,5 @@
-import 'package:first_priority_app/screens/sign_up/signUp/sign_up.dart';
+import 'package:first_priority_app/signUp/sign_up.dart';
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {

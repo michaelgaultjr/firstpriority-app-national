@@ -1,7 +1,6 @@
-import 'package:first_priority_app/screens/sign_up/main_dashBoard/resources/resources_detail_screen.dart';
+import 'package:first_priority_app/resources_details/resources_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ResourcesScreen extends StatelessWidget {
   List a = [
@@ -12,7 +11,6 @@ class ResourcesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

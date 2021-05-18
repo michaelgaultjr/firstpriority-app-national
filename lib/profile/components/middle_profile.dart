@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../Constants.dart';
+import '../../Constants.dart';
 
 class MiddleProfile extends StatefulWidget {
   @override

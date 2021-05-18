@@ -8,6 +8,9 @@ double startMarginLogs = 20;
 double startMarginDetailsLogs = 30;
 double topMargin = Get.height / 10;
 double logsItemPadding = 30;
+//  Bottom navigation sized
+double iconSizes = 23;
+double textSizes = 12;
 
 //FONTS
 var fontRubikRegular = 'Rubik';
@@ -27,10 +30,21 @@ Color colorButtonDark = const Color.fromRGBO(29, 25, 26, 1);
 Color colorLightBlue = const Color.fromRGBO(188, 222, 254, 1);
 Color colorDarkBlue = const Color.fromRGBO(00, 32, 95, 1);
 Color colorDarkBlue1 = const Color.fromRGBO(00, 32, 95, 1);
+Color colorDarkBlue2 = const Color.fromRGBO(00, 50, 149, 1);
 Color colorSelectedBottom = const Color.fromRGBO(00, 122, 255, 1);
 Color colorEventDetailText = const Color.fromRGBO(45, 45, 45, 1);
+Color colorLightGray1 = const Color.fromRGBO(238, 238, 240, 1.0);
 
 //WIDGETS
+
+// Text button style
+var textButtonStyle = TextButton.styleFrom(
+  backgroundColor: colorLightGray1,
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.horizontal(left: Radius.circular(30),right: Radius.circular(30),
+    ),
+  ),
+  textStyle: TextStyle(fontSize: 12, color: colorDarkBlue2),);
 
 // top corners rounded
 var roundedTopRectangleBorder = ShapeDecoration(
@@ -169,7 +183,8 @@ var textStyleLog = TextStyle(
     fontSize: 16,
     fontFamily: fontKarlaRegular,
     fontWeight: FontWeight.bold);
-getCustomTextProperties(Color color, double fontSize, String fontName, int i) {
+
+  getCustomTextProperties(Color color, double fontSize, String fontName, int i) {
   var dd;
   if (i == 1) {
     dd = FontWeight.w700;

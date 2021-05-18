@@ -1,9 +1,7 @@
-import 'package:first_priority_app/screens/sign_up/signUp/compotents/bottom_signUp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../Constants.dart';
-
+import '../../Constants.dart';
+import 'bottom_signUp.dart';
 
 class Middle_signUp extends StatelessWidget {
   @override
@@ -13,7 +11,6 @@ class Middle_signUp extends StatelessWidget {
         margin: EdgeInsets.only(top: 16),
         child: SingleChildScrollView(
             child: Container(
-
           child: Column(
             children: [
               Container(
@@ -27,7 +24,6 @@ class Middle_signUp extends StatelessWidget {
                       labelStyle: getCustomTextProperties(Colors.grey,16,"Schyler",0),
                       hintText: "Enter Name",
                   hintStyle: getCustomTextProperties(Colors.black54,16,"Schyler",1)),
-
                 ),
               ),
               Container(
