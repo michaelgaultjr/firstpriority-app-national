@@ -1,3 +1,5 @@
+import 'package:first_priority_app/screens/sign_up/main_dashBoard/events/events_details.dart';
+import 'package:first_priority_app/screens/sign_up/main_dashBoard/resources/resources_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,14 +44,14 @@ class EventsScreen extends StatelessWidget {
             margin: EdgeInsets.only(left: 10.0, top: 10.0),
             child: Text(
               'MONDAY, SEPTEMBER 27',
-              style: getCustomTextProperties(Colors.black54,16,"Schyler",1),
+              style: getCustomTextProperties(Colors.black54, 16, "Schyler", 1),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 10,top: 10),
+            margin: EdgeInsets.only(left: 10, top: 10),
             child: Text(
               'Events',
-              style: getCustomTextProperties(Colors.black,30,"Schyler",1),
+              style: getCustomTextProperties(Colors.black, 30, "Schyler", 1),
             ),
           ),
           Expanded(
@@ -63,8 +65,16 @@ class EventsScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Container(
                         child: ListTile(
-                      title: Text(titles[index],style:  getCustomTextProperties(Colors.black,16,"Schyler",1),),
-                      subtitle: Text(subtitles[index],style:  getCustomTextProperties(colorLightDark,14,"Schyler",0),),
+                      title: Text(
+                        titles[index],
+                        style: getCustomTextProperties(
+                            Colors.black, 16, "Schyler", 1),
+                      ),
+                      subtitle: Text(
+                        subtitles[index],
+                        style: getCustomTextProperties(
+                            colorLightDark, 14, "Schyler", 0),
+                      ),
                       leading: Container(
                         margin: EdgeInsets.only(left: 10),
                         alignment: Alignment.centerRight,
@@ -84,11 +94,13 @@ class EventsScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     'SEP',
-                                    style: getCustomTextProperties(Colors.black,14,"Schyler",1),
+                                    style: getCustomTextProperties(
+                                        Colors.black, 14, "Schyler", 1),
                                   ),
                                   Text(
                                     '29',
-                                    style:  getCustomTextProperties(Colors.black,24,"Schyler",1),
+                                    style: getCustomTextProperties(
+                                        Colors.black, 24, "Schyler", 1),
                                   ),
                                 ],
                               ),
@@ -96,10 +108,16 @@ class EventsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      onTap: () => _navigateToNextScreen(context),
                     ));
                   }),
             ),
           )
         ]);
+  }
+
+  void _navigateToNextScreen(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => EventsDetails()));
   }
 }

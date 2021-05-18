@@ -1,3 +1,4 @@
+import 'package:first_priority_app/screens/sign_up/main_dashBoard/resources/resources_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,18 +32,27 @@ class ResourcesScreen extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.only(top: 8),
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemBuilder: (BuildContext ctx, int index) {
-                  return Container(
+              child: GestureDetector(
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (BuildContext ctx, int index) {
+                    return Container(
                       margin: EdgeInsets.all(8),
-                      child: Image(
-                          image: AssetImage(a[index]), fit: BoxFit.cover));
-                },
-                itemCount: a.length,
+                      child:
+                          Image(image: AssetImage(a[index]), fit: BoxFit.cover),
+                    );
+                  },
+                  itemCount: a.length,
+                ),
+                onTap: () => _navigateToNextScreen(context),
               ),
             ),
           )
         ]);
+  }
+
+  void _navigateToNextScreen(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => ResourcesDetails()));
   }
 }

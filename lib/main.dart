@@ -9,10 +9,13 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: mainNavigatorKey,
       debugShowCheckedModeBanner: false,
       title: "First Priority",
       home: SignUp(),
