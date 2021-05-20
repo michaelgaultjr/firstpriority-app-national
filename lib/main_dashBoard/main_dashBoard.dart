@@ -8,6 +8,7 @@ import 'package:first_priority_app/home/home_screen.dart';
 import 'package:first_priority_app/profile/profile_screen.dart';
 import 'package:first_priority_app/resources/resources_screen.dart';
 import 'package:first_priority_app/resources_details/resources_detail_screen.dart';
+import 'package:first_priority_app/schools/SchoolsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -33,6 +34,7 @@ class _MainDashBoard extends State<MainDashBoard> {
     ResourcesDetails(),
     // ChurchesScreen(),
     DevotionalsScreen(),
+    // SchoolsScreen(),
     ProfileScreen(),
   ];
 
@@ -63,6 +65,7 @@ class _MainDashBoard extends State<MainDashBoard> {
           ResourcesScreen(),
           // ChurchesScreen(),
           DevotionalsScreen(),
+          // SchoolsScreen(),
           ProfileScreen(),
         ],
 

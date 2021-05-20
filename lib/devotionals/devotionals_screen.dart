@@ -1,7 +1,7 @@
 import 'package:first_priority_app/devotionals_details/DevotionalsDetails.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../Constants.dart';
 
 class DevotionalsScreen extends StatelessWidget {
@@ -35,8 +35,9 @@ class DevotionalsScreen extends StatelessWidget {
                 itemBuilder: (BuildContext ctx, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DevotionalsDetailsScreen()));
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => DevotionalsDetailsScreen()));
+                      Get.to(() => DevotionalsDetailsScreen());
                     },
                     child: Container(
                       height: 110,

@@ -1,6 +1,7 @@
 import 'package:first_priority_app/event_details/events_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../Constants.dart';
 
@@ -42,14 +43,14 @@ class EventsScreen extends StatelessWidget {
           margin: EdgeInsets.only(left: 10.0, top: 10.0),
           child: Text(
             'MONDAY, SEPTEMBER 27',
-            style: getCustomTextProperties(Colors.black54, 16, "Schyler", 1),
+            style: getCustomTextProperties(Colors.black54, 16, fontSchylerRegular, 1),
           ),
         ),
         Container(
           margin: EdgeInsets.only(left: 10, top: 10),
           child: Text(
             'Events',
-            style: getCustomTextProperties(Colors.black, 30, "Schyler", 1),
+            style: getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
           ),
         ),
         Expanded(
@@ -64,13 +65,14 @@ class EventsScreen extends StatelessWidget {
                 return Container(
                   child: GestureDetector(
                     onTap: (){
-                      _navigateToNextScreen(context);
+                      // _navigateToNextScreen(context);
+                      Get.to(()=> EventsDetails());
                     },
                     child: ListTile(
                       title: Text(
                         titles[index],
                         style: getCustomTextProperties(
-                            Colors.black, 16, "Schyler", 1),
+                            Colors.black, 16, fontSchylerRegular, 1),
                       ),
                       subtitle: Text(
                         subtitles[index],

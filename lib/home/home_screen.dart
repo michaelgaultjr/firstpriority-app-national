@@ -17,14 +17,14 @@ class HomeScreen extends StatelessWidget {
             margin: EdgeInsets.only(left: 10.0, top: 10.0),
             child: Text(
               'MONDAY, SEPTEMBER 27',
-              style: getCustomTextProperties(Colors.black54, 16, "Schyler", 1),
+              style: getCustomTextProperties(Colors.black54, 16, fontSchylerRegular, 1),
             ),
           ),
           Container(
             margin: EdgeInsets.only(left: 10, top: 8),
             child: Text(
               'Home',
-              style: getCustomTextProperties(Colors.black, 30, "Schyler", 1),
+              style: getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
             ),
           ),
           Expanded(
@@ -52,15 +52,15 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     Container(
                                       margin: EdgeInsets.only(
-                                          left: 10.0, top: 10.0),
+                                          left: 10.0, top: 20.0),
                                       child: Text(
                                         'DEVOTIONAL',
                                         style: getCustomTextProperties(
-                                            colorLightGray, 15, "Schyler", 0),
+                                            colorLightGray, 14, "Schyler", 0),
                                       ),
                                     ),
                                     Container(
-                                      margin: EdgeInsets.all(10),
+                                      margin: EdgeInsets.fromLTRB(10, 5, 10, 10),
                                       child: Text(
                                         'Build Intentional\nFriendships in the New\nSchool Year',
                                         style: getCustomTextProperties(

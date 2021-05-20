@@ -15,6 +15,7 @@ double textSizes = 12;
 //FONTS
 var fontRubikRegular = 'Rubik';
 var fontKarlaRegular = 'Karla';
+  var fontSchylerRegular = 'Schyler';
 
 //COLORS
 Color colorDarkGreen = const Color.fromRGBO(62, 102, 62, 1);
@@ -34,6 +35,7 @@ Color colorDarkBlue2 = const Color.fromRGBO(00, 50, 149, 1);
 Color colorSelectedBottom = const Color.fromRGBO(00, 122, 255, 1);
 Color colorEventDetailText = const Color.fromRGBO(45, 45, 45, 1);
 Color colorLightGray1 = const Color.fromRGBO(238, 238, 240, 1.0);
+Color colorTransparent = const Color.fromRGBO(255, 99, 71, 0);
 
 //WIDGETS
 
@@ -41,10 +43,13 @@ Color colorLightGray1 = const Color.fromRGBO(238, 238, 240, 1.0);
 var textButtonStyle = TextButton.styleFrom(
   backgroundColor: colorLightGray1,
   shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.horizontal(left: Radius.circular(30),right: Radius.circular(30),
+    borderRadius: BorderRadius.horizontal(
+      left: Radius.circular(30),
+      right: Radius.circular(30),
     ),
   ),
-  textStyle: TextStyle(fontSize: 12, color: colorDarkBlue2),);
+  textStyle: TextStyle(fontSize: 12, color: colorDarkBlue2),
+);
 
 // top corners rounded
 var roundedTopRectangleBorder = ShapeDecoration(
@@ -184,7 +189,7 @@ var textStyleLog = TextStyle(
     fontFamily: fontKarlaRegular,
     fontWeight: FontWeight.bold);
 
-  getCustomTextProperties(Color color, double fontSize, String fontName, int i) {
+getCustomTextProperties(Color color, double fontSize, String fontName, int i) {
   var dd;
   if (i == 1) {
     dd = FontWeight.w700;
@@ -193,11 +198,14 @@ var textStyleLog = TextStyle(
   }
   return new TextStyle(
 // set color of text
-      color: color,
+    color: color,
 // set the font family as defined in pubspec.yaml
-      fontFamily: fontName,
+    fontFamily: fontName,
 // set the font weight
-      fontWeight: dd,
+    fontWeight: dd,
 // set the font size
-      fontSize: fontSize);
+    fontSize: fontSize,
+    // set the font size
+    decoration: TextDecoration.none,
+  );
 }
