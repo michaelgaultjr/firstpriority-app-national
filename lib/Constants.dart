@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 // start margin for text sign in screen
 double startMargin = 35;
 double startMarginLogs = 20;
+double topMarginStart = 20;
 double startMarginDetailsLogs = 30;
 double topMargin = Get.height / 10;
 double logsItemPadding = 30;
@@ -15,7 +16,7 @@ double textSizes = 12;
 //FONTS
 var fontRubikRegular = 'Rubik';
 var fontKarlaRegular = 'Karla';
-  var fontSchylerRegular = 'Schyler';
+var fontSchylerRegular = 'Schyler';
 
 //COLORS
 Color colorDarkGreen = const Color.fromRGBO(62, 102, 62, 1);
@@ -53,7 +54,7 @@ var textButtonStyle = TextButton.styleFrom(
 
 // top corners rounded
 var roundedTopRectangleBorder = ShapeDecoration(
-  color: Colors.white,
+  color: Colors.black,
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.only(
       topLeft: Radius.circular(40.0),

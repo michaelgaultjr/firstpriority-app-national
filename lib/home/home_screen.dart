@@ -17,14 +17,16 @@ class HomeScreen extends StatelessWidget {
             margin: EdgeInsets.only(left: 10.0, top: 10.0),
             child: Text(
               'MONDAY, SEPTEMBER 27',
-              style: getCustomTextProperties(Colors.black54, 16, fontSchylerRegular, 1),
+              style: getCustomTextProperties(
+                  Colors.black54, 16, fontSchylerRegular, 1),
             ),
           ),
           Container(
             margin: EdgeInsets.only(left: 10, top: 8),
             child: Text(
               'Home',
-              style: getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
+              style: getCustomTextProperties(
+                  Colors.black, 30, fontSchylerRegular, 1),
             ),
           ),
           Expanded(
@@ -33,111 +35,100 @@ class HomeScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Card(
-                      semanticContainer: true,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    Container(
+                      // semanticContainer: true,
+                      // clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: Stack(
                         children: [
-                          Stack(
-                            children: [
-                              Container(
-                                child: Image(
-                                    image: AssetImage(
-                                        'assets/images/home_card.jpg'),
-                                    fit: BoxFit.cover),
-                              ),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          left: 10.0, top: 20.0),
-                                      child: Text(
-                                        'DEVOTIONAL',
-                                        style: getCustomTextProperties(
-                                            colorLightGray, 14, "Schyler", 0),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.fromLTRB(10, 5, 10, 10),
-                                      child: Text(
-                                        'Build Intentional\nFriendships in the New\nSchool Year',
-                                        style: getCustomTextProperties(
-                                            Colors.white, 32, "Schyler", 1),
-                                      ),
-                                    ),
-                                  ]),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
                           Container(
-                            width: Get.width,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        'Read the Devotional',
-                                        style: getCustomTextProperties(
-                                            Colors.black, 16, "Schyler", 1),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(top: 4.0, left: 15),
-                                      child: Text(
-                                        'Connect with God Daily.',
-                                        style: getCustomTextProperties(
-                                            colorDarkGray, 11, "Schyler", 0),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  height: 30,
-                                  width: 80,
-                                  margin:
-                                      EdgeInsets.only(bottom: 4.0, right: 8),
-                                  child: Material(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    shadowColor: colorLightGray,
-                                    color: colorLightGray,
-                                    elevation: 7.0,
-                                    child: GestureDetector(
-                                      onTap: () {},
-                                      child: Center(
-                                        child: Text(
-                                          'READ',
-                                          style: TextStyle(
-                                              color: colorDarkBlue1,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20.0))),
+                            child: Image(
+                              image: AssetImage('assets/images/home_card.jpg'),
+                              fit: BoxFit.fill,
                             ),
                           ),
-                          SizedBox(
-                            height: 10.0,
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin:
+                                      EdgeInsets.only(left: 10.0, top: 20.0),
+                                  child: Text(
+                                    'DEVOTIONAL',
+                                    style: getCustomTextProperties(
+                                        colorLightGray, 14, "Schyler", 0),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(10, 5, 10, 10),
+                                  child: Text(
+                                    'Build Intentional\nFriendships in the New\nSchool Year',
+                                    style: getCustomTextProperties(
+                                        Colors.white, 32, "Schyler", 1),
+                                  ),
+                                ),
+                              ]),
+                        ],
+                      ),
+
+                      margin: EdgeInsets.all(10),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 5),
+                      width: Get.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 15),
+                                child: Text(
+                                  'Read the Devotional',
+                                  style: getCustomTextProperties(
+                                      Colors.black, 16, "Schyler", 1),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 4.0, left: 15),
+                                child: Text(
+                                  'Connect with God Daily.',
+                                  style: getCustomTextProperties(
+                                      colorDarkGray, 11, "Schyler", 0),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: 30,
+                            width: 80,
+                            margin: EdgeInsets.only(bottom: 4.0, right: 8),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: colorLightGray,
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Center(
+                                  child: Text(
+                                    'READ',
+                                    style: TextStyle(
+                                        color: colorDarkBlue1,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 5,
-                      margin: EdgeInsets.all(10),
                     ),
                     SizedBox(
                       height: 10.0,
@@ -234,7 +225,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 10.0,
+                            height: 30.0,
                           ),
                         ],
                       ),

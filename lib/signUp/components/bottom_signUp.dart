@@ -90,7 +90,7 @@ class Bootom_SignUp extends StatelessWidget {
                   style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
                 ),
                 SizedBox(
-                  width: 5.0,
+                  width: 2.0,
                 ),
                 InkWell(
                   onTap: () {
