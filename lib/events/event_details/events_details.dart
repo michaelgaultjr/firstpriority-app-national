@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-
-import '../Constants.dart';
+import '../../Constants.dart';
 
 class EventsDetails extends StatefulWidget {
   EventsDetails({Key key}) : super(key: key);

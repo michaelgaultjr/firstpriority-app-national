@@ -1,8 +1,9 @@
-import 'package:first_priority_app/resources/ResourcesController/ResourcesController.dart';
+import 'package:first_priority_app/resources/controller/ResourcesController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../Constants.dart';
+
+import '../../Constants.dart';
 
 class ResourcesDetails extends StatelessWidget {
   final ResourcesController _resourcesController = Get.put(ResourcesController());

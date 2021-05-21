@@ -1,13 +1,12 @@
 import 'package:first_priority_app/Constants.dart';
-import 'package:first_priority_app/resources/ResourcesController/ResourcesController.dart';
-import 'package:first_priority_app/resources_details/resources_detail_screen.dart';
+import 'package:first_priority_app/resources/controller/ResourcesController.dart';
+import 'file:///H:/Android%20Studio%20Projects/firstpriority-app/lib/resources/ResourcesDetails/resources_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ResourcesScreen extends StatelessWidget {
-  final ResourcesController _resourcesController =
-      Get.put(ResourcesController());
+  final ResourcesController _resourcesController = Get.put(ResourcesController());
 
   @override
   Widget build(BuildContext context) {

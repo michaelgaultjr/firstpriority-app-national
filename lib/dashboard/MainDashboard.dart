@@ -1,76 +1,45 @@
-import 'package:custom_navigator/custom_navigation.dart';
-import 'package:custom_navigator/custom_scaffold.dart';
 import 'package:first_priority_app/Constants.dart';
-import 'package:first_priority_app/devotionals/devotionals_screen.dart';
-import 'package:first_priority_app/event_details/events_details.dart';
+import 'controller/MainDashboardController.dart';
+import 'file:///H:/Android%20Studio%20Projects/firstpriority-app/lib/devotionals/devotionalsScreen/DevotionalsScreen.dart';
 import 'package:first_priority_app/events/events_screen.dart';
 import 'package:first_priority_app/home/home_screen.dart';
 import 'package:first_priority_app/profile/profile_screen.dart';
-import 'package:first_priority_app/resources/resources_screen.dart';
-import 'package:first_priority_app/resources_details/resources_detail_screen.dart';
-import 'package:first_priority_app/schools/SchoolsScreen.dart';
+import 'package:first_priority_app/resources/resourcesScreen/resources_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-class MainDashBoard extends StatefulWidget {
-  final String title;
-
-  MainDashBoard({Key key, this.title}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() {
-    return _MainDashBoard();
-  }
-}
-
-class _MainDashBoard extends State<MainDashBoard> {
-  int _currentIndex = 0;
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+class MainDashBoard extends StatelessWidget {
+  final MainDashboardController _mainDashboardController =
+      Get.put(MainDashboardController());
 
   final _pageOptions = [
     HomeScreen(),
-    EventsDetails(),
-    ResourcesDetails(),
-    // ChurchesScreen(),
+    EventsScreen(),
+    ResourcesScreen(),
     DevotionalsScreen(),
-    // SchoolsScreen(),
     ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-        scaffold: Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-              items: _items,
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor: colorSelectedBottom,
-              unselectedItemColor: Colors.black12,
-              iconSize: 40,
-              backgroundColor: Colors.white,
-              onTap: (index) {
-                navigatorKey.currentState.maybePop();
-                setState(() {
-                  _pageOptions[index];
-                });
-                _currentIndex = index;
-              },
-              currentIndex: _currentIndex,
-              elevation: 5),
-        ),
-        children: <Widget>[
-          HomeScreen(),
-          EventsScreen(),
-          ResourcesScreen(),
-          // ChurchesScreen(),
-          DevotionalsScreen(),
-          // SchoolsScreen(),
-          ProfileScreen(),
-        ],
-
-        // Called when one of the [items] is tapped.
-        onItemTap: (index) {});
+    return Obx(
+      () => Scaffold(
+        body: _pageOptions[_mainDashboardController.currentIndex.value],
+        bottomNavigationBar: BottomNavigationBar(
+            items: _items,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: colorSelectedBottom,
+            unselectedItemColor: Colors.black12,
+            iconSize: 40,
+            backgroundColor: Colors.white,
+            onTap: (index) {
+              _mainDashboardController.currentIndex.value = index;
+            },
+            currentIndex: _mainDashboardController.currentIndex.value,
+            elevation: 5),
+      ),
+    );
   }
 
   final _items = [
@@ -80,7 +49,10 @@ class _MainDashBoard extends State<MainDashBoard> {
           height: iconSizes,
           width: iconSizes,
         ),
-        title: Text('Home', style: TextStyle(fontSize: textSizes,)),
+        title: Text('Home',
+            style: TextStyle(
+              fontSize: textSizes,
+            )),
         activeIcon: SvgPicture.asset(
           'assets/svgimages/home.svg',
           height: iconSizes,
@@ -98,7 +70,9 @@ class _MainDashBoard extends State<MainDashBoard> {
       ),
       title: Text(
         'Events',
-        style: TextStyle(fontSize: textSizes,),
+        style: TextStyle(
+          fontSize: textSizes,
+        ),
       ),
     ),
     BottomNavigationBarItem(
@@ -112,7 +86,9 @@ class _MainDashBoard extends State<MainDashBoard> {
       ),
       title: Text(
         'Resources',
-        style: TextStyle(fontSize: textSizes,),
+        style: TextStyle(
+          fontSize: textSizes,
+        ),
       ),
     ),
     // BottomNavigationBarItem(
@@ -128,7 +104,9 @@ class _MainDashBoard extends State<MainDashBoard> {
       ),
       title: Text(
         'Devotionals',
-        style: TextStyle(fontSize: textSizes,),
+        style: TextStyle(
+          fontSize: textSizes,
+        ),
       ),
     ),
     BottomNavigationBarItem(
@@ -142,9 +120,10 @@ class _MainDashBoard extends State<MainDashBoard> {
       ),
       title: Text(
         'Profile',
-        style: TextStyle(fontSize: textSizes,),
+        style: TextStyle(
+          fontSize: textSizes,
+        ),
       ),
     )
-
   ];
 }

@@ -1,9 +1,8 @@
-import 'package:first_priority_app/event_details/events_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../Constants.dart';
+import 'event_details/events_details.dart';
 
 class EventsScreen extends StatelessWidget {
   final titles = [

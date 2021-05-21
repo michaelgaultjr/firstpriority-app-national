@@ -2,7 +2,6 @@ import 'package:first_priority_app/signUp/subComponents/DropDownSelectSchool.dar
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../Constants.dart';
-import 'BottomSignUpPart.dart';
 
 class MiddleSignUpPart extends StatelessWidget {
   @override

@@ -1,4 +1,4 @@
-import 'package:first_priority_app/main_dashBoard/main_screen.dart';
+import 'package:first_priority_app/dashboard/MainDashboard.dart';
 import 'package:first_priority_app/signUp/controller/SignUpController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +71,7 @@ class BottomSignUpPart extends StatelessWidget {
             elevation: 2.0,
             child: GestureDetector(
               onTap: () {
-                Get.to(MainScreen());
+                Get.to(MainDashBoard());
               },
               child: Center(
                 child: Text(
