@@ -2,8 +2,8 @@ import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/devotionals/devotionalsScreen/DevotionalsScreen.dart';
 import 'controller/MainDashboardController.dart';
 
-import 'package:first_priority_app/events/eventsScreen/events_screen.dart';
-import 'package:first_priority_app/home/home_screen.dart';
+import 'package:first_priority_app/events/eventsScreen/Events_screen.dart';
+import 'package:first_priority_app/home/homeScreen/home_screen.dart';
 import 'package:first_priority_app/profile/ProfileScreen.dart';
 import 'package:first_priority_app/resources/resourcesScreen/ResourcesScreen.dart';
 import 'package:flutter/material.dart';

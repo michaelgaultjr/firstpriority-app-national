@@ -1,5 +1,5 @@
 import 'package:first_priority_app/events/controller/EventsController.dart';
-import 'package:first_priority_app/events/event_details/events_details.dart';
+import 'package:first_priority_app/events/event_details/Events_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
