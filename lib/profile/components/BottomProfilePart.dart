@@ -1,14 +1,11 @@
+import 'package:first_priority_app/profile/controller/ProfileController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../Constants.dart';
 
 class BottomProfilePart extends StatelessWidget {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _countryController = TextEditingController();
-  TextEditingController _schoolController = TextEditingController();
-  TextEditingController _classController = TextEditingController();
-  TextEditingController _cityController = TextEditingController();
-
+  final ProfileController _profileController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,8 +15,7 @@ class BottomProfilePart extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _emailController,
-                initialValue: "mark.teney@gmail.com",
+                controller: _profileController.emailController.value,
                 keyboardType: TextInputType.emailAddress,
                 style: profileTextStyle,
                 decoration: profileTextDecoration,
@@ -28,8 +24,7 @@ class BottomProfilePart extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _countryController,
-                initialValue: "Lake County",
+                controller:_profileController.countryController.value,
                 keyboardType: TextInputType.text,
                 style: profileTextStyle,
                 decoration: profileTextDecoration,
@@ -38,8 +33,7 @@ class BottomProfilePart extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _schoolController,
-                initialValue: "Lake High School",
+                controller: _profileController.schoolController.value,
                 keyboardType: TextInputType.text,
                 style: profileTextStyle,
                 decoration: profileTextDecoration,
@@ -48,8 +42,7 @@ class BottomProfilePart extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _classController,
-                initialValue: "Class of 2025",
+                controller: _profileController.classController.value,
                 keyboardType: TextInputType.text,
                 style: profileTextStyle,
                 decoration: profileTextDecoration,
@@ -58,8 +51,7 @@ class BottomProfilePart extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _cityController,
-                initialValue: "City Church",
+                controller: _profileController.cityController.value,
                 keyboardType: TextInputType.text,
                 style: profileTextStyle,
                 decoration: profileTextDecoration,
