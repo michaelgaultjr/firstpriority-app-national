@@ -36,10 +36,8 @@ class ResourcesScreen extends StatelessWidget {
                       fit: BoxFit.cover),
                 ),
                 onTap: () {
-                  _resourcesController.titleText.value =
-                      _resourcesController.titleList[index];
-                  _resourcesController.selectedImage.value =
-                      _resourcesController.imagesList[index];
+                  _resourcesController.titleText.value = _resourcesController.titleList[index];
+                  _resourcesController.selectedImage.value = _resourcesController.imagesList[index];
                   Get.to(ResourcesDetails());
                 },
               );

@@ -21,7 +21,7 @@ class DropDownSelectSchool extends StatelessWidget {
                 color: Colors.grey,
               ),
               hint: Text('', style: getCustomTextProperties(Colors.grey, 16, fontSchylerRegular, 0),),
-              value:  _signUpController.schoolSelectedValue.value,
+              value: _signUpController.schoolSelectedValue.value == '' ? _signUpController.schoolSelected : _signUpController.schoolSelectedValue.value,
               iconSize: 24,
               style: textStyleLog,
               underline: Container(
