@@ -89,6 +89,7 @@ class MiddleSignUpPart extends StatelessWidget {
                   Colors.black54, 16, fontSchylerRegular, 1),
               hintText: "Enter Graduating Class"),
         ),
+
         TextFormField(
           keyboardType: TextInputType.text,
           style: TextStyle(fontFamily: fontKarlaRegular),
