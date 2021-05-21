@@ -16,31 +16,25 @@ class MiddleSignUpPart extends StatelessWidget {
           ),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Name",
-              labelStyle: getCustomTextProperties(
-                  Colors.grey, 16, fontSchylerRegular, 0),
+              labelStyle: labelStyleTextFormField,
               hintText: "Enter Name",
-              hintStyle: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1)),
+              hintStyle: hintStyleTextFormField),
         ),
         TextFormField(
           keyboardType: TextInputType.text,
           style: TextStyle(fontFamily: fontKarlaRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Email",
-              labelStyle: getCustomTextProperties(
-                  Colors.grey, 16, fontSchylerRegular, 0),
+              labelStyle: labelStyleTextFormField,
               hintText: "Enter Email",
-              hintStyle: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1)),
+              hintStyle: hintStyleTextFormField),
         ),
         TextFormField(
           style: TextStyle(fontFamily: fontKarlaRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Password",
-              labelStyle: getCustomTextProperties(
-                  Colors.grey, 16, fontSchylerRegular, 0),
-              hintStyle: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1),
+              labelStyle: labelStyleTextFormField,
+              hintStyle: hintStyleTextFormField,
               hintText: "Enter Password"),
           obscureText: true,
           keyboardType: TextInputType.text,
@@ -51,10 +45,8 @@ class MiddleSignUpPart extends StatelessWidget {
           style: TextStyle(fontFamily: fontKarlaRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Country",
-              labelStyle: getCustomTextProperties(
-                  Colors.grey, 16, fontSchylerRegular, 0),
-              hintStyle: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1),
+              labelStyle: labelStyleTextFormField,
+              hintStyle: hintStyleTextFormField,
               hintText: "Enter Country"),
         ),
         Container(
@@ -72,10 +64,8 @@ class MiddleSignUpPart extends StatelessWidget {
           style: TextStyle(fontFamily: fontKarlaRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Role",
-              labelStyle: getCustomTextProperties(
-                  Colors.grey, 16, fontSchylerRegular, 0),
-              hintStyle: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1),
+              labelStyle: labelStyleTextFormField,
+              hintStyle: hintStyleTextFormField,
               hintText: "Enter Role"),
         ),
         TextFormField(
@@ -83,22 +73,17 @@ class MiddleSignUpPart extends StatelessWidget {
           style: TextStyle(fontFamily: fontKarlaRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Graduating Class",
-              labelStyle: getCustomTextProperties(
-                  Colors.grey, 16, fontSchylerRegular, 0),
-              hintStyle: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1),
+              labelStyle: labelStyleTextFormField,
+              hintStyle: hintStyleTextFormField,
               hintText: "Enter Graduating Class"),
         ),
-
         TextFormField(
           keyboardType: TextInputType.text,
           style: TextStyle(fontFamily: fontKarlaRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Church Name",
-              labelStyle: getCustomTextProperties(
-                  Colors.grey, 16, fontSchylerRegular, 0),
-              hintStyle: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1),
+              labelStyle: labelStyleTextFormField,
+              hintStyle: hintStyleTextFormField,
               hintText: "Enter Church Name"),
         ),
       ],

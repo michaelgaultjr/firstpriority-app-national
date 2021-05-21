@@ -1,11 +1,12 @@
 import 'package:first_priority_app/main_dashBoard/main_screen.dart';
+import 'package:first_priority_app/signUp/controller/SignUpController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../Constants.dart';
 
 class BottomSignUpPart extends StatelessWidget {
-  bool valuefirst = false;
-  bool valuesecond = false;
+  final SignUpController _signUpController = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
@@ -14,43 +15,48 @@ class BottomSignUpPart extends StatelessWidget {
         SizedBox(
           height: 40,
         ),
-        Container(
-            child: Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               height: 24.0,
               width: 24.0,
-              child: Checkbox(
-                value: this.valuefirst,
-                onChanged: (bool value) {},
-                checkColor: Colors.indigo,
-                activeColor: Colors.blue,
+              child: Obx(
+                () => Checkbox(
+                  value: _signUpController.isChecked.value,
+                  onChanged: (bool value) {
+                    _signUpController.isChecked.value = value;
+                  },
+                  checkColor: Colors.indigo,
+                  activeColor: Colors.blue,
+                ),
               ),
             ),
             Text(
               ' I agree with our ',
-              style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
+              style: getCustomTextProperties(
+                  Colors.grey, 12, fontSchylerRegular, 0),
             ),
             SizedBox(width: 2.0),
             Text(
               'Terms',
-              style:
-                  getCustomTextProperties(colorDarkBlue1, 14, "Schyler", 1),
+              style: getCustomTextProperties(
+                  colorDarkBlue1, 14, fontSchylerRegular, 1),
             ),
             SizedBox(width: 2.0),
             Text(
               'and',
-              style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
+              style: getCustomTextProperties(
+                  Colors.grey, 12, fontSchylerRegular, 0),
             ),
             SizedBox(width: 2.0),
             Text(
               'Conditions',
-              style:
-                  getCustomTextProperties(colorDarkBlue1, 14, "Schyler", 1),
+              style: getCustomTextProperties(
+                  colorDarkBlue1, 14, fontSchylerRegular, 1),
             ),
           ],
-        )),
+        ),
         SizedBox(
           height: 8,
         ),
@@ -64,13 +70,13 @@ class BottomSignUpPart extends StatelessWidget {
             elevation: 2.0,
             child: GestureDetector(
               onTap: () {
-                _navigateToNextScreen(context);
+                Get.to(MainScreen());
               },
               child: Center(
                 child: Text(
                   'Create account',
-                  style:
-                      getCustomTextProperties(Colors.white, 16, "Schyler", 1),
+                  style: getCustomTextProperties(
+                      Colors.white, 16, fontSchylerRegular, 1),
                 ),
               ),
             ),
@@ -86,19 +92,18 @@ class BottomSignUpPart extends StatelessWidget {
             children: [
               Text(
                 'Already have an account?',
-                style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
+                style: getCustomTextProperties(
+                    Colors.grey, 12, fontSchylerRegular, 0),
               ),
               SizedBox(
                 width: 2.0,
               ),
               InkWell(
-                onTap: () {
-                  _navigateToNextScreen(context);
-                },
+                onTap: () {},
                 child: Text(
                   'Sign In',
                   style: getCustomTextProperties(
-                      colorDarkBlue1, 14, "Schyler", 1),
+                      colorDarkBlue1, 14, fontSchylerRegular, 1),
                 ),
               ),
             ],
@@ -106,10 +111,5 @@ class BottomSignUpPart extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  void _navigateToNextScreen(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => MainScreen()));
   }
 }

@@ -190,6 +190,18 @@ var textStyleLog = TextStyle(
     fontFamily: fontKarlaRegular,
     fontWeight: FontWeight.bold);
 
+var labelStyleTextFormField = TextStyle(
+    color: Colors.grey,
+    fontSize: 16,
+    fontFamily: fontSchylerRegular,
+    fontWeight: FontWeight.w400);
+
+var hintStyleTextFormField = TextStyle(
+    color: Colors.black54,
+    fontSize: 16,
+    fontFamily: fontSchylerRegular,
+    fontWeight: FontWeight.w700);
+
 getCustomTextProperties(Color color, double fontSize, String fontName, int i) {
   var dd;
   if (i == 1) {

@@ -16,7 +16,8 @@ class TopSignUpPart extends StatelessWidget {
           margin: EdgeInsets.only(top: 32.0),
           child: Text(
             "Create account",
-            style: getCustomTextProperties(Colors.black, 25, "Schyler", 1),
+            style: getCustomTextProperties(
+                Colors.black, 25, fontSchylerRegular, 1),
           ),
         ),
         Container(
@@ -25,7 +26,8 @@ class TopSignUpPart extends StatelessWidget {
           child: Center(
             child: Text(
               "Create an account to access your club events, devotionals, and notifications. ",
-              style: getCustomTextProperties(Colors.grey, 12, "Schyler", 0),
+              style: getCustomTextProperties(
+                  Colors.grey, 12, fontSchylerRegular, 0),
               textAlign: TextAlign.center,
             ),
           ),
