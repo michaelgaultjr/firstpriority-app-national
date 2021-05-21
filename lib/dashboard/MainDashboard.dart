@@ -3,8 +3,8 @@ import 'controller/MainDashboardController.dart';
 import 'file:///H:/Android%20Studio%20Projects/firstpriority-app/lib/devotionals/devotionalsScreen/DevotionalsScreen.dart';
 import 'package:first_priority_app/events/events_screen.dart';
 import 'package:first_priority_app/home/home_screen.dart';
-import 'package:first_priority_app/profile/profile_screen.dart';
-import 'package:first_priority_app/resources/resourcesScreen/resources_screen.dart';
+import 'package:first_priority_app/profile/ProfileScreen.dart';
+import 'package:first_priority_app/resources/resourcesScreen/ResourcesScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -44,21 +44,24 @@ class MainDashBoard extends StatelessWidget {
 
   final _items = [
     BottomNavigationBarItem(
-        icon: SvgPicture.asset(
-          'assets/svgimages/home.svg',
-          height: iconSizes,
-          width: iconSizes,
+      icon: SvgPicture.asset(
+        'assets/svgimages/home.svg',
+        height: iconSizes,
+        width: iconSizes,
+      ),
+      title: Text(
+        'Home',
+        style: TextStyle(
+          fontSize: textSizes,
         ),
-        title: Text('Home',
-            style: TextStyle(
-              fontSize: textSizes,
-            )),
-        activeIcon: SvgPicture.asset(
-          'assets/svgimages/home.svg',
-          height: iconSizes,
-          width: iconSizes,
-          color: colorSelectedBottom,
-        )),
+      ),
+      activeIcon: SvgPicture.asset(
+        'assets/svgimages/home.svg',
+        height: iconSizes,
+        width: iconSizes,
+        color: colorSelectedBottom,
+      ),
+    ),
     BottomNavigationBarItem(
       icon: SvgPicture.asset('assets/svgimages/events.svg',
           height: iconSizes, width: iconSizes),

@@ -2,11 +2,11 @@ import 'package:first_priority_app/resources/controller/ResourcesController.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../Constants.dart';
 
 class ResourcesDetails extends StatelessWidget {
   final ResourcesController _resourcesController = Get.put(ResourcesController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +21,8 @@ class ResourcesDetails extends StatelessWidget {
             margin: EdgeInsets.only(left: 10, top: 10),
             child: Text(
               _resourcesController.titleText.value,
-              style: getCustomTextProperties(Colors.black, 30, "Schyler", 1),
+              style: getCustomTextProperties(
+                  Colors.black, 30, fontSchylerRegular, 1),
             ),
           ),
           SizedBox(
@@ -34,14 +35,12 @@ class ResourcesDetails extends StatelessWidget {
                   fit: BoxFit.cover)),
           Container(
             margin: EdgeInsets.all(10),
-            child: Text(
-              'Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set'
-              'Orci Verb set neculer static road heat set'
-              'Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set'
-              'Orci Verb set neculer static road heat set'
-              'Orci Verb set neculer static road heat set',
-              style:
-                  getCustomTextProperties(colorEventDetailText, 15, "Schyler", 2),
+            child: Obx(
+              () => Text(
+                _resourcesController.resourcesDescription.value,
+                style: getCustomTextProperties(
+                    colorEventDetailText, 15, fontSchylerRegular, 2),
+              ),
             ),
           ),
           Container(

@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'components/middle_profile.dart';
-import 'components/top_profile.dart';
-
+import 'components/BottomProfilePart.dart';
+import 'components/TopProfilePart.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -12,7 +11,10 @@ class ProfileScreen extends StatelessWidget {
         child: Center(
           // decoration: gradientMainScreenBoxDecoration,
           child: Column(
-            children: [TopProfile(), MiddleProfile()],
+            children: [
+              TopProfilePart(),
+              BottomProfilePart(),
+            ],
           ),
         ),
       ),

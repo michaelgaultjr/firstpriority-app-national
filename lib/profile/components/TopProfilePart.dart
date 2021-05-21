@@ -1,24 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TopProfile extends StatelessWidget {
+class TopProfilePart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-              margin: EdgeInsets.only(top: 90.0),
-              width: 90.0,
-              height: 90.0,
-              decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: new DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage('assets/images/nature.jpeg')))),
+            margin: EdgeInsets.only(top: 90.0),
+            width: 90.0,
+            height: 90.0,
+            decoration: new BoxDecoration(
+              shape: BoxShape.circle,
+              image: new DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/nature.jpeg'),
+              ),
+            ),
+          ),
           Container(
             margin: EdgeInsets.only(top: 10.0),
             child: Text(

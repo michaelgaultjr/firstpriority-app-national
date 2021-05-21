@@ -13,4 +13,10 @@ class ResourcesController extends GetxController {
     "Club Start-Up",
     "Ministry Grid",
   ].obs;
+
+ var resourcesDescription = 'Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set'
+     'Orci Verb set neculer static road heat set'
+     'Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set Orci Verb set neculer static road heat set'
+     'Orci Verb set neculer static road heat set'
+     'Orci Verb set neculer static road heat set'.obs;
 }

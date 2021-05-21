@@ -40,6 +40,13 @@ Color colorTransparent = const Color.fromRGBO(255, 99, 71, 0);
 
 //WIDGETS
 
+// profile text style
+var profileTextStyle =
+    TextStyle(fontFamily: fontSchylerRegular, color: Colors.black54);
+var profileTextDecoration = InputDecoration(
+  border: UnderlineInputBorder(),
+);
+
 // Text button style
 var textButtonStyle = TextButton.styleFrom(
   backgroundColor: colorLightGray1,
