@@ -115,12 +115,9 @@ class _EventsDetailsState extends State<EventsDetails> {
     _controller = VideoPlayerController.network(
       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     );
-
     _initializeVideoPlayerFuture = _controller.initialize();
-
     // Use the controller to loop the video.
     _controller.setLooping(true);
-
     super.initState();
   }
 
@@ -128,7 +125,6 @@ class _EventsDetailsState extends State<EventsDetails> {
   void dispose() {
     // Ensure disposing of the VideoPlayerController to free up resources.
     _controller.dispose();
-
     super.dispose();
   }
 }

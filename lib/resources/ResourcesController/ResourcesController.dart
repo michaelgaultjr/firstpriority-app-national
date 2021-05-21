@@ -8,7 +8,7 @@ class ResourcesController extends GetxController {
     "assets/images/resources2.jpg",
     "assets/images/resources3.jpg",
   ].obs;
-List titleList = [
+ List titleList = [
     "The Four",
     "Club Start-Up",
     "Ministry Grid",
