@@ -16,6 +16,7 @@ class BottomSignUpPart extends StatelessWidget {
           height: 40,
         ),
         Row(
+          // checking
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
