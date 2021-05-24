@@ -15,27 +15,27 @@ class DevotionalListItemView extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          flex: 6,
-          child: Container(
-            width: 90,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/home_card.jpg'),
-                    fit: BoxFit.fill)),
+        Container(
+          width: 90,
+          height: 80,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/home_card.jpg'),
+                fit: BoxFit.fill),
           ),
         ),
-        Spacer(
-          flex: 1,
-        ),
+       SizedBox(
+         width: 5,
+       ),
         Expanded(
-          flex: 14,
           child: Container(
             padding: const EdgeInsets.only(top: 5),
-            child: Text(_devotionalsController.tiles[itemIndex],
-                style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold)),
+            child: Text(
+              _devotionalsController.tiles[itemIndex],
+              style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
+            ),
           ),
-        )
+        ),
       ],
     );
   }
