@@ -10,7 +10,7 @@ class MiddleSignUpPart extends StatelessWidget {
         TextFormField(
           keyboardType: TextInputType.text,
           style: TextStyle(
-            fontFamily: fontKarlaRegular,
+            fontFamily: fontSchylerRegular,
           ),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Name",
@@ -20,7 +20,7 @@ class MiddleSignUpPart extends StatelessWidget {
         ),
         TextFormField(
           keyboardType: TextInputType.text,
-          style: TextStyle(fontFamily: fontKarlaRegular),
+          style: TextStyle(fontFamily: fontSchylerRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Email",
               labelStyle: labelStyleTextFormField,
@@ -28,7 +28,7 @@ class MiddleSignUpPart extends StatelessWidget {
               hintStyle: hintStyleTextFormField),
         ),
         TextFormField(
-          style: TextStyle(fontFamily: fontKarlaRegular),
+          style: TextStyle(fontFamily: fontSchylerRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Password",
               labelStyle: labelStyleTextFormField,
@@ -40,7 +40,7 @@ class MiddleSignUpPart extends StatelessWidget {
         ),
         TextFormField(
           keyboardType: TextInputType.text,
-          style: TextStyle(fontFamily: fontKarlaRegular),
+          style: TextStyle(fontFamily: fontSchylerRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Country",
               labelStyle: labelStyleTextFormField,
@@ -59,7 +59,7 @@ class MiddleSignUpPart extends StatelessWidget {
         DropDownSelectSchool(),
         TextFormField(
           keyboardType: TextInputType.text,
-          style: TextStyle(fontFamily: fontKarlaRegular),
+          style: TextStyle(fontFamily: fontSchylerRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Role",
               labelStyle: labelStyleTextFormField,
@@ -68,7 +68,7 @@ class MiddleSignUpPart extends StatelessWidget {
         ),
         TextFormField(
           keyboardType: TextInputType.text,
-          style: TextStyle(fontFamily: fontKarlaRegular),
+          style: TextStyle(fontFamily: fontSchylerRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Graduating Class",
               labelStyle: labelStyleTextFormField,
@@ -77,7 +77,7 @@ class MiddleSignUpPart extends StatelessWidget {
         ),
         TextFormField(
           keyboardType: TextInputType.text,
-          style: TextStyle(fontFamily: fontKarlaRegular),
+          style: TextStyle(fontFamily: fontSchylerRegular),
           decoration: inputEditTextDecoration.copyWith(
               labelText: "Church Name",
               labelStyle: labelStyleTextFormField,

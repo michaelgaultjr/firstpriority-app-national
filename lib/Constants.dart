@@ -14,8 +14,6 @@ double iconSizes = 23;
 double textSizes = 12;
 
 //FONTS
-var fontRubikRegular = 'Rubik';
-var fontKarlaRegular = 'Karla';
 var fontSchylerRegular = 'Schyler';
 
 //COLORS
@@ -194,7 +192,7 @@ var textButtonRoundedStyle = TextButton.styleFrom(
 var textStyleLog = TextStyle(
     color: Colors.black,
     fontSize: 16,
-    fontFamily: fontKarlaRegular,
+    fontFamily: fontSchylerRegular,
     fontWeight: FontWeight.bold);
 
 var labelStyleTextFormField = TextStyle(
