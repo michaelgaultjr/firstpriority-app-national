@@ -69,7 +69,7 @@ class BottomSignUpPart extends StatelessWidget {
             elevation: 2.0,
             child: GestureDetector(
               onTap: () {
-                Get.to(MainDashBoard());
+                Get.to(()=>MainDashBoard());
               },
               child: Center(
                 child: Text(

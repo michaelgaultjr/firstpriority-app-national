@@ -1,4 +1,4 @@
-import 'package:first_priority_app/signUp/SignUpScreen.dart';
+import 'package:first_priority_app/splash/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: mainNavigatorKey,
       debugShowCheckedModeBanner: false,
       title: "First Priority",
-      home: SignUpScreen(),
+      home: SplashScreen(),
     );
   }
 }

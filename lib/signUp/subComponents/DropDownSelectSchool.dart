@@ -20,10 +20,19 @@ class DropDownSelectSchool extends StatelessWidget {
                 Icons.keyboard_arrow_down_sharp,
                 color: Colors.grey,
               ),
-              hint: Text('', style: getCustomTextProperties(Colors.grey, 16, fontSchylerRegular, 0),),
-              value: _signUpController.schoolSelectedValue.value == '' ? _signUpController.schoolSelected : _signUpController.schoolSelectedValue.value,
+              value: _signUpController.schoolSelectedValue.value == ''
+                  ? _signUpController.schoolSelected
+                  : _signUpController.schoolSelectedValue.value,
               iconSize: 24,
-              style: textStyleLog,
+              selectedItemBuilder: (BuildContext context) {
+                return _signUpController.schoolList.map<Widget>((String item) {
+                  return Text(item);
+                }).toList();
+              },
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontFamily: fontSchylerRegular),
               underline: Container(
                 height: 1,
                 color: colorLightbackground,
@@ -38,8 +47,8 @@ class DropDownSelectSchool extends StatelessWidget {
                   child: Text(
                     value,
                     overflow: TextOverflow.ellipsis,
-                    style:
-                        getCustomTextProperties(Colors.black, 16, fontSchylerRegular, 0),
+                    style: getCustomTextProperties(
+                        Colors.grey, 16, fontSchylerRegular, 0),
                   ),
                 );
               }).toList(),
