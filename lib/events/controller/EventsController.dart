@@ -31,4 +31,5 @@ class EventsController extends GetxController {
     "Vero Central High School: Room 567",
     "Vero Central High School: Room 567"
   ].obs;
+
 }

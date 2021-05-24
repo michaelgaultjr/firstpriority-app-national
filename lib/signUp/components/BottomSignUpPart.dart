@@ -1,6 +1,5 @@
 import 'package:first_priority_app/dashboard/MainDashboard.dart';
 import 'package:first_priority_app/signUp/controller/SignUpController.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constants.dart';

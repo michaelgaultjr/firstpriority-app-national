@@ -1,8 +1,7 @@
 import 'package:first_priority_app/events/controller/EventsController.dart';
-import 'package:first_priority_app/events/event_details/Events_details.dart';
+import 'package:first_priority_app/events/event_details/EventsDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../Constants.dart';
 
 class BottomEventPart extends StatelessWidget {
@@ -22,7 +21,6 @@ class BottomEventPart extends StatelessWidget {
             return Container(
               child: GestureDetector(
                 onTap: () {
-                  // _navigateToNextScreen(context);
                   Get.to(() => EventsDetails());
                 },
                 child: ListTile(

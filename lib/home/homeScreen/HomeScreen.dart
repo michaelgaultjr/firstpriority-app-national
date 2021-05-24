@@ -2,10 +2,8 @@ import 'package:first_priority_app/home/Controller/HomeController.dart';
 import 'package:first_priority_app/home/homeScreen/components/BottomHomePart.dart';
 import 'package:first_priority_app/home/homeScreen/components/MiddleHomePart.dart';
 import 'package:first_priority_app/home/homeScreen/components/TopHomePart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Constants.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeController _homeController = Get.put(HomeController());

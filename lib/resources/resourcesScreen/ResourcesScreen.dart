@@ -2,7 +2,6 @@ import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/resources/controller/ResourcesController.dart';
 import 'package:first_priority_app/resources/resourcesDetails/ResourcesDetails.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
