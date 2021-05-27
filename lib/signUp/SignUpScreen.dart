@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../signIn/components/MiddleSignInPart.dart';
+import '../signIn/components/TopSignInPart.dart';
 import 'components/BottomSignUpPart.dart';
 import 'components/MiddleSignUpPart.dart';
 import 'components/TopSignUpPart.dart';
@@ -20,10 +22,7 @@ class SignUpScreen extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.only(top: 16),
                       child: Column(
-                        children: [
-                          MiddleSignUpPart(),
-                          BottomSignUpPart(),
-                        ],
+                        children: [MiddleSignUpPart(), BottomSignUpPart()],
                       ),
                     ),
                   ),
