@@ -4,14 +4,7 @@ import 'package:first_priority_app/signIn/SignInScreen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class Authenticate extends StatefulWidget {
-  const Authenticate({Key key}) : super(key: key);
-
-  @override
-  _AuthenticateState createState() => _AuthenticateState();
-}
-
-class _AuthenticateState extends State<Authenticate> {
+class Authenticate extends StatelessWidget {
   final AccountController _controller = Get.find<AccountController>();
 
   @override

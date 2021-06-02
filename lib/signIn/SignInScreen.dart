@@ -1,5 +1,4 @@
 import 'package:first_priority_app/controllers/account.dart';
-import 'package:first_priority_app/dashboard/MainDashboard.dart';
 import 'package:first_priority_app/signIn/components/TopSignInPart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

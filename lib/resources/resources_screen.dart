@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:first_priority_app/Constants.dart';
-import 'package:first_priority_app/resources/controllers/resources_controller.dart';
+import 'package:first_priority_app/resources/resources_controller.dart';
 import 'package:first_priority_app/models/resource.dart';
 
 import 'package:flutter/material.dart';
@@ -56,14 +56,17 @@ class ResourcesScreen extends StatelessWidget {
 
   GestureDetector resourceWidget(Resource resource) {
     return GestureDetector(
-      child: Container(
-        margin: EdgeInsets.all(8),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image(
-            image: CachedNetworkImageProvider(resource.imageUrl),
-          ),
+      child: Card(
+        semanticContainer: true,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Image(
+          image: CachedNetworkImageProvider(resource.imageUrl),
         ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        elevation: 5,
+        margin: EdgeInsets.all(8),
       ),
       onTap: () => launch(resource.url),
     );
