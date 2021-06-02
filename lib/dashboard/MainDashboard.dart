@@ -4,7 +4,7 @@ import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/events/eventsScreen/EventsScreen.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
 import 'package:first_priority_app/profile/ProfileScreen.dart';
-import 'package:first_priority_app/resources/resourcesScreen/ResourcesScreen.dart';
+import 'package:first_priority_app/resources/resources_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

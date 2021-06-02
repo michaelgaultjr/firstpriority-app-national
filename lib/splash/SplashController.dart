@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:first_priority_app/signUp/SignUpScreen.dart';
+import 'package:first_priority_app/signIn/SignInScreen.dart';
+import 'package:first_priority_app/widgets/authenticate.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -9,9 +10,9 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
     _timer = Timer(
-      Duration(milliseconds: 5000),
+      Duration(milliseconds: 1000),
       () {
-        Get.off(SignUpScreen());
+        Get.off(Authenticate());
       },
     );
   }
