@@ -1,10 +1,23 @@
-import 'package:first_priority_app/profile/controller/ProfileController.dart';
+import 'package:first_priority_app/controllers/account.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constants.dart';
 
 class BottomProfilePart extends StatelessWidget {
-  final ProfileController _profileController = Get.find();
+  final AccountController _controller = Get.find<AccountController>();
+
+  var firstNameController = TextEditingController();
+  var lastNameController = TextEditingController();
+  var countryController = TextEditingController(text: "Lake County");
+  var schoolController = TextEditingController(text: "Lake High School");
+  var churchController = TextEditingController();
+
+  BottomProfilePart() {
+    firstNameController.text = _controller.user.value.firstName;
+    lastNameController.text = _controller.user.value.lastName;
+    churchController.text = _controller.user.value.church;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,46 +27,48 @@ class BottomProfilePart extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _profileController.emailController.value,
-                keyboardType: TextInputType.emailAddress,
+                controller: firstNameController,
+                keyboardType: TextInputType.name,
                 style: profileTextStyle,
-                decoration: profileTextDecoration,
+                decoration:
+                    profileTextDecoration.copyWith(hintText: "First Name"),
               ),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller:_profileController.countryController.value,
-                keyboardType: TextInputType.text,
+                controller: lastNameController,
+                keyboardType: TextInputType.name,
                 style: profileTextStyle,
-                decoration: profileTextDecoration,
+                decoration:
+                    profileTextDecoration.copyWith(hintText: "Last Name"),
               ),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _profileController.schoolController.value,
+                controller: countryController,
                 keyboardType: TextInputType.text,
                 style: profileTextStyle,
-                decoration: profileTextDecoration,
+                decoration: profileTextDecoration.copyWith(hintText: "Region"),
               ),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _profileController.classController.value,
+                controller: schoolController,
                 keyboardType: TextInputType.text,
                 style: profileTextStyle,
-                decoration: profileTextDecoration,
+                decoration: profileTextDecoration.copyWith(hintText: "School"),
               ),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(startMargin, 20, startMargin, 0),
               child: TextFormField(
-                controller: _profileController.cityController.value,
+                controller: churchController,
                 keyboardType: TextInputType.text,
                 style: profileTextStyle,
-                decoration: profileTextDecoration,
+                decoration: profileTextDecoration.copyWith(hintText: "Church"),
               ),
             ),
             SizedBox(

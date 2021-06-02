@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../signIn/components/MiddleSignInPart.dart';
-import '../signIn/components/TopSignInPart.dart';
 import 'components/BottomSignUpPart.dart';
 import 'components/MiddleSignUpPart.dart';
 import 'components/TopSignUpPart.dart';
