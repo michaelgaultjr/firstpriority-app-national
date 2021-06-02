@@ -1,9 +1,10 @@
 import 'package:first_priority_app/events/controller/EventsController.dart';
-import 'package:first_priority_app/events/eventsScreen/subComponents/EventVedioView.dart';
+import 'package:first_priority_app/events/event_details/components/EventsDetailsTopPart.dart';
+import 'components/EventVedioView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 import '../../Constants.dart';
+import 'components/EventsDetailsBottomPart.dart';
 
 class EventsDetails extends StatelessWidget {
   EventsDetails({Key key}) : super(key: key);
@@ -13,38 +14,15 @@ class EventsDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 60.0,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10.0, top: 10.0),
-            child: Text(
-              _eventsController.eventDetailsTitle.value,
-              style: getCustomTextProperties(
-                  Colors.black54, 16, fontSchylerRegular, 1),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 10),
-            child: Text(
-              _eventsController.eventDetailsSubTitle.value,
-              style: getCustomTextProperties(
-                  Colors.black, 30, fontSchylerRegular, 1),
-            ),
-          ),
-          EventVedioView(),
-          Container(
-            margin: EdgeInsets.all(10),
-            child: Text(
-              _eventsController.eventDetailsDescription.value,
-              style: getCustomTextProperties(
-                  colorEventDetailText, 15, fontSchylerRegular, 2),
-            ),
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            EventsDetailsTopPart(),
+            EventVedioView(),
+            EventsDetailsBottomPart()
+          ],
+        ),
       ),
     );
   }

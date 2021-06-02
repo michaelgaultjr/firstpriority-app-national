@@ -16,8 +16,8 @@ class _EventVedioViewState extends State<EventVedioView> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        height: 197,
         color: Colors.black,
-        height: 200,
         margin: EdgeInsets.only(top: 10),
         child: Stack(
           children: [
@@ -28,7 +28,7 @@ class _EventVedioViewState extends State<EventVedioView> {
                   // If the VideoPlayerController has finished initialization, use
                   // the data it provides to limit the aspect ratio of the video.
                   return AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
+                    aspectRatio: 4/2,
                     // Use the VideoPlayer widget to display the video.
                     child: VideoPlayer(_controller),
                   );
