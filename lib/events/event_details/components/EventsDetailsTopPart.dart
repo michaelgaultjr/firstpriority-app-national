@@ -15,20 +15,21 @@ class EventsDetailsTopPart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 60.0,
+            height: 70.0,
           ),
           Text(
             _eventsController.eventDetailsTitle.value,
             style: getCustomTextProperties(
                 Colors.black54, 16, fontSchylerRegular, 1),
           ),
+          SizedBox(height: 8,),
           Text(
             _eventsController.eventDetailsSubTitle.value,
             style:
                 getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
           ),
           SizedBox(
-            height: 6.0,
+            height: 8.0,
           ),
           Text(
             _eventsController.eventRoomTimeText.value,
