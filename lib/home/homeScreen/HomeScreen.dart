@@ -1,12 +1,12 @@
 import 'package:first_priority_app/home/Controller/HomeController.dart';
-import 'package:first_priority_app/home/homeScreen/components/BottomHomePart.dart';
-import 'package:first_priority_app/home/homeScreen/components/MiddleHomePart.dart';
+import 'package:first_priority_app/home/homeScreen/components/upcoming_event_card.dart';
+import 'package:first_priority_app/home/homeScreen/components/devotional_card.dart';
 import 'package:first_priority_app/home/homeScreen/components/TopHomePart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeController _homeController = Get.put(HomeController());
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,11 @@ class HomeScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    MiddleHomePart(),
+                    DevotionalCard(),
                     SizedBox(
                       height: 10.0,
                     ),
-                    BottomHomePart(),
+                    UpcomingEventCard(),
                   ],
                 ),
               ),

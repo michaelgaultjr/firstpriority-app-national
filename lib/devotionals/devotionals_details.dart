@@ -1,10 +1,14 @@
-import 'package:first_priority_app/devotionals/controller/DevotionalsController.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:first_priority_app/models/devotional.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Constants.dart';
+import '../Constants.dart';
 
 class DevotionalsDetailsScreen extends StatelessWidget {
-  final DevotionalsController _devotionalsController = Get.find();
+  final Devotional devotional;
+
+  DevotionalsDetailsScreen({this.devotional});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,20 +20,22 @@ class DevotionalsDetailsScreen extends StatelessWidget {
               Image(
                   width: Get.width,
                   height: Get.height / 3,
-                  image: AssetImage('assets/images/devontionalProfile.png'),
+                  image: CachedNetworkImageProvider(devotional.contentUrl),
                   fit: BoxFit.cover),
               Container(
                 margin: EdgeInsets.all(10),
                 child: Text(
-                 _devotionalsController.devotionalDetailsTitle.value,
-                  style: getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
+                  devotional.title,
+                  style: getCustomTextProperties(
+                      Colors.black, 30, fontSchylerRegular, 1),
                 ),
               ),
               Container(
                 margin: EdgeInsets.all(10),
                 child: Text(
-                  _devotionalsController.devotionalDetailsDescription.value,
-                  style: getCustomTextProperties(colorEventDetailText, 15, fontSchylerRegular, 2),
+                  devotional.description,
+                  style: getCustomTextProperties(
+                      colorEventDetailText, 15, fontSchylerRegular, 2),
                 ),
               ),
             ],

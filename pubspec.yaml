@@ -41,6 +41,7 @@ dependencies:
       url: https://github.com/kjawadDeveloper/Custom-navigator.git
   video_player:
   path_provider: ^1.6.28
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

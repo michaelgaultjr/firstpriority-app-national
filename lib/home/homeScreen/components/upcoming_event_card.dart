@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../../../Constants.dart';
 
-class BottomHomePart extends StatelessWidget {
-  HomeController _homeController = Get.put(HomeController());
+class UpcomingEventCard extends StatelessWidget {
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class BottomHomePart extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 15.0, top: 20.0),
             child: Text(
-              'DON\'T MISS ANYTHING',
+              "DON'T MISS ANYTHING",
               style: getCustomTextProperties(colorDarkGray, 16, "dd", 1),
             ),
           ),
@@ -46,7 +46,7 @@ class BottomHomePart extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.0),
                     shadowColor: Colors.black12,
                     color: Colors.black12,
-                    elevation: 7.0,
+                    elevation: 5,
                     child: GestureDetector(
                       onTap: () {},
                       child: Center(
