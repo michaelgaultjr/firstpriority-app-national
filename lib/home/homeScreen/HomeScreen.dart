@@ -22,9 +22,6 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     DevotionalCard(),
-                    SizedBox(
-                      height: 10.0,
-                    ),
                     UpcomingEventCard(),
                   ],
                 ),

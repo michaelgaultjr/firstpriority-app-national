@@ -5,14 +5,15 @@ import 'package:flutter/widgets.dart';
 class PillButton extends StatelessWidget {
   final Widget child;
   final void Function() onTap;
+  final double width;
 
-  PillButton({@required this.child, @required this.onTap});
+  PillButton({@required this.child, @required this.onTap, this.width = 80});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 30,
-      width: 80,
+      width: width,
       margin: EdgeInsets.only(bottom: 4.0, right: 8),
       child: Material(
         elevation: 2,

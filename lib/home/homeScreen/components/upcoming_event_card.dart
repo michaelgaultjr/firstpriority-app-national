@@ -105,7 +105,7 @@ class UpcomingEventCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       elevation: 5,
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(8),
     );
   }
 }

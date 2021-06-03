@@ -20,7 +20,7 @@ class DevotionalsDetailsScreen extends StatelessWidget {
               Image(
                   width: Get.width,
                   height: Get.height / 3,
-                  image: CachedNetworkImageProvider(devotional.contentUrl),
+                  image: CachedNetworkImageProvider(devotional.imageUrl),
                   fit: BoxFit.cover),
               Container(
                 margin: EdgeInsets.all(10),
@@ -30,6 +30,7 @@ class DevotionalsDetailsScreen extends StatelessWidget {
                       Colors.black, 30, fontSchylerRegular, 1),
                 ),
               ),
+              Divider(),
               Container(
                 margin: EdgeInsets.all(10),
                 child: Text(

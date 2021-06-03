@@ -1,7 +1,8 @@
 class Devotional {
   final String title;
   final String description;
-  final String contentUrl;
+  final String imageUrl;
+  final String videoUrl;
   final String planUrl;
   final DateTime startDate;
   final DateTime endDate;
@@ -9,7 +10,8 @@ class Devotional {
   Devotional.fromMap(Map<String, dynamic> map)
       : title = map['title'],
         description = map['description'],
-        contentUrl = map['contentUrl'],
+        imageUrl = map['imageUrl'],
+        videoUrl = map['videoUrl'],
         planUrl = map['planUrl'],
         startDate = DateTime.parse(map['startDate']),
         endDate = DateTime.parse(map['endDate']);
