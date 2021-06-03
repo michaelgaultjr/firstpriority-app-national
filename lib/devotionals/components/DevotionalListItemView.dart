@@ -34,6 +34,31 @@ class DevotionalListItemView extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      devotional.title,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                        "${dateFormat.format(devotional.startDate)} - ${dateFormat.format(devotional.endDate)}")
+                  ],
+                ),
+                PillButton(
+                  child: Text(
+                    'READ',
+                    style: TextStyle(
+                      color: colorDarkBlue1,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  onTap: () {
                     if (devotional.planUrl != null &&
                         devotional.planUrl.isNotEmpty) {
                       launch(devotional.planUrl);
