@@ -1,8 +1,9 @@
-import 'package:first_priority_app/devotionals/controller/DevotionalsController.dart';
-import 'package:first_priority_app/devotionals/devotionalsScreen/components/BottomDevotionalPart.dart';
-import 'package:first_priority_app/devotionals/devotionalsScreen/components/TopDevotionalPart.dart';
+import 'package:first_priority_app/devotionals/devotionals_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'components/BottomDevotionalPart.dart';
+import 'components/TopDevotionalPart.dart';
 
 class DevotionalsScreen extends StatelessWidget {
   final DevotionalsController _devotionalsController =
@@ -12,7 +13,7 @@ class DevotionalsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         TopDevotionalPart(),
         BottomDevotionalPart(),
       ],

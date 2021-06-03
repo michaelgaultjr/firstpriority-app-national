@@ -1,5 +1,5 @@
 import 'package:first_priority_app/Constants.dart';
-import 'package:first_priority_app/devotionals/devotionalsScreen/DevotionalsScreen.dart';
+import 'package:first_priority_app/devotionals/devotionals_screen.dart';
 import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/events/eventsScreen/EventsScreen.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
