@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/resources/resources_controller.dart';
 import 'package:first_priority_app/models/resource.dart';
 
@@ -13,44 +12,26 @@ class ResourcesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        SizedBox(
-          height: 60.0,
-        ),
-        Container(
-          margin: EdgeInsets.all(10),
-          child: Text(
-            'Resources',
-            style: getCustomTextProperties(
-                Colors.black, 30, fontSchylerRegular, 1),
-          ),
-        ),
-        FutureBuilder<List<Resource>>(
-          future: _resourcesController.get(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+    return FutureBuilder<List<Resource>>(
+      future: _resourcesController.get(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
 
-            return Expanded(
-              child: Container(
-                padding: EdgeInsets.only(top: 8),
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (BuildContext ctx, int index) {
-                    return resourceWidget(snapshot.data[index]);
-                  },
-                ),
-              ),
-            );
-          },
-        )
-      ],
+        return Container(
+          padding: EdgeInsets.only(top: 8),
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext ctx, int index) {
+              return resourceWidget(snapshot.data[index]);
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -65,7 +46,6 @@ class ResourcesScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        elevation: 5,
         margin: EdgeInsets.all(8),
       ),
       onTap: () => launch(resource.url),

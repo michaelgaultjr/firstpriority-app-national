@@ -1,7 +1,7 @@
 import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/devotionals/devotionals_screen.dart';
 import 'controller/MainDashboardController.dart';
-import 'package:first_priority_app/events/eventsScreen/EventsScreen.dart';
+import 'package:first_priority_app/events/events_screen.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
 import 'package:first_priority_app/profile/ProfileScreen.dart';
 import 'package:first_priority_app/resources/resources_screen.dart';
@@ -23,110 +23,122 @@ class MainDashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _items = buildItems(context);
     return Obx(
       () => Scaffold(
-        body: _pageOptions[_mainDashboardController.currentIndex.value],
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text(
+                        'MONDAY, SEPTEMBER 27',
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        _items[_mainDashboardController.currentIndex.value]
+                            .label,
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child:
+                    _pageOptions[_mainDashboardController.currentIndex.value],
+              )
+            ],
+          ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
-            items: _items,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: colorSelectedBottom,
-            unselectedItemColor: Colors.black12,
-            iconSize: 40,
-            backgroundColor: Colors.white,
-            onTap: (index) {
-              _mainDashboardController.currentIndex.value = index;
-            },
-            currentIndex: _mainDashboardController.currentIndex.value,
-            elevation: 5),
+          items: _items,
+          type: BottomNavigationBarType.fixed,
+          iconSize: 40,
+          onTap: (index) {
+            _mainDashboardController.currentIndex.value = index;
+          },
+          currentIndex: _mainDashboardController.currentIndex.value,
+        ),
       ),
     );
   }
 
-  final _items = [
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset(
-        'assets/svgimages/home.svg',
-        height: iconSizes,
-        width: iconSizes,
-      ),
-      title: Text(
-        'Home',
-        style: TextStyle(
-          fontSize: textSizes,
+  List<BottomNavigationBarItem> buildItems(BuildContext context) {
+    return [
+      BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          'assets/svgimages/home.svg',
+          height: iconSizes,
+          width: iconSizes,
+        ),
+        label: 'Home',
+        activeIcon: SvgPicture.asset(
+          'assets/svgimages/home.svg',
+          height: iconSizes,
+          width: iconSizes,
+          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
         ),
       ),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/home.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/events.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/events.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Events',
-        style: TextStyle(
-          fontSize: textSizes,
+      BottomNavigationBarItem(
+          icon: SvgPicture.asset('assets/svgimages/events.svg',
+              height: iconSizes, width: iconSizes),
+          activeIcon: SvgPicture.asset(
+            'assets/svgimages/events.svg',
+            height: iconSizes,
+            width: iconSizes,
+            color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+          ),
+          label: 'Events'),
+      BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          'assets/svgimages/message.svg',
+          height: iconSizes,
+          width: iconSizes,
         ),
-      ),
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/message.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/message.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Resources',
-        style: TextStyle(
-          fontSize: textSizes,
+        activeIcon: SvgPicture.asset(
+          'assets/svgimages/message.svg',
+          height: iconSizes,
+          width: iconSizes,
+          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
         ),
+        label: 'Resources',
       ),
-    ),
-    // BottomNavigationBarItem(
-    //     icon: Icon(Icons.home, size: 30), title: Text('Churches')),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/bookmark.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/bookmark.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Devotionals',
-        style: TextStyle(
-          fontSize: textSizes,
+      BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          'assets/svgimages/bookmark.svg',
+          height: iconSizes,
+          width: iconSizes,
         ),
-      ),
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/profile.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/profile.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Profile',
-        style: TextStyle(
-          fontSize: textSizes,
+        activeIcon: SvgPicture.asset(
+          'assets/svgimages/bookmark.svg',
+          height: iconSizes,
+          width: iconSizes,
+          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
         ),
+        label: 'Devotionals',
       ),
-    )
-  ];
+      BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          'assets/svgimages/profile.svg',
+          height: iconSizes,
+          width: iconSizes,
+        ),
+        activeIcon: SvgPicture.asset(
+          'assets/svgimages/profile.svg',
+          height: iconSizes,
+          width: iconSizes,
+          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        ),
+        label: 'Profile',
+      )
+    ];
+  }
 }

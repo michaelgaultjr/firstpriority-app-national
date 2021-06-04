@@ -5,7 +5,11 @@ import 'package:get/get.dart';
 import 'splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
-  final SplashController _splashController = Get.put(SplashController());
+  SplashScreen() {
+    // * Not sure if this will work properly.
+    Get.put(SplashController());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
