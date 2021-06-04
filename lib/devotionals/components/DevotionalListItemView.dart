@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/devotionals/devotionals_details.dart';
 import 'package:first_priority_app/models/devotional.dart';
 import 'package:first_priority_app/widgets/pill_button.dart';
@@ -51,14 +50,7 @@ class DevotionalListItemView extends StatelessWidget {
                   ],
                 ),
                 PillButton(
-                  child: Text(
-                    'READ',
-                    style: TextStyle(
-                      color: colorDarkBlue1,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
+                  child: Text('READ'),
                   onTap: () {
                     if (devotional.planUrl != null &&
                         devotional.planUrl.isNotEmpty) {

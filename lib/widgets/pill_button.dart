@@ -21,7 +21,14 @@ class PillButton extends StatelessWidget {
         color: colorLightGray,
         child: InkWell(
           child: Center(
-            child: child,
+            child: DefaultTextStyle(
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+              child: child,
+            ),
           ),
           onTap: onTap,
           borderRadius: BorderRadius.circular(20),

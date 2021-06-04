@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/models/devotional.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../Constants.dart';
 
 class DevotionalsDetailsScreen extends StatelessWidget {
   final Devotional devotional;
