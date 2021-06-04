@@ -9,8 +9,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 10,right: 10),
-      color: Colors.white,
+      margin: EdgeInsets.only(left: 10, right: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -18,19 +17,17 @@ class EventsDetailsBottomPart extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
             child: Text(
               _eventsController.eventDetailsDescription.value,
-              style: getCustomTextProperties(
-                  colorEventDetailText, 15, fontSchylerRegular, 2),
+              style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
           SizedBox(height: 10),
           Text(
             'Roles',
-            style: getCustomTextProperties(
-                colorEventDetailText, 30, fontSchylerRegular, 1),
+            style: Theme.of(context).textTheme.headline1,
           ),
-         SizedBox(
-           height: 20,
-         ),
+          SizedBox(
+            height: 20,
+          ),
           Text(
             _eventsController.detailsRoleList[0].title,
             style: getCustomTextProperties(
@@ -38,8 +35,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
           ),
           Text(
             _eventsController.detailsRoleList[0].subTitle,
-            style: getCustomTextProperties(
-                colorLightDark, 14, "Schyler", 0),
+            style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
           SizedBox(
             height: 20,
@@ -51,8 +47,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
           ),
           Text(
             _eventsController.detailsRoleList[1].subTitle,
-            style: getCustomTextProperties(
-                colorLightDark, 14, "Schyler", 0),
+            style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
           SizedBox(
             height: 20,
@@ -64,8 +59,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
           ),
           Text(
             _eventsController.detailsRoleList[2].subTitle,
-            style: getCustomTextProperties(
-                colorLightDark, 14, "Schyler", 0),
+            style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
           SizedBox(
             height: 20,
@@ -77,8 +71,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
           ),
           Text(
             _eventsController.detailsRoleList[3].subTitle,
-            style: getCustomTextProperties(
-                colorLightDark, 14, "Schyler", 0),
+            style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
           SizedBox(
             height: 20,
@@ -90,8 +83,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
           ),
           Text(
             _eventsController.detailsRoleList[4].subTitle,
-            style: getCustomTextProperties(
-                colorLightDark, 14, "Schyler", 0),
+            style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
           SizedBox(
             height: 20,
@@ -103,8 +95,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
           ),
           Text(
             _eventsController.detailsRoleList[5].subTitle,
-            style: getCustomTextProperties(
-                colorLightDark, 14, "Schyler", 0),
+            style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
           SizedBox(
             height: 20,
@@ -116,8 +107,7 @@ class EventsDetailsBottomPart extends StatelessWidget {
           ),
           Text(
             _eventsController.detailsRoleList[6].subTitle,
-            style: getCustomTextProperties(
-                colorLightDark, 14, "Schyler", 0),
+            style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
           SizedBox(
             height: 20,

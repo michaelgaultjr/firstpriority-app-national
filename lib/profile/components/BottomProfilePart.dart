@@ -6,11 +6,11 @@ import '../../Constants.dart';
 class BottomProfilePart extends StatelessWidget {
   final AccountController _controller = Get.find<AccountController>();
 
-  var firstNameController = TextEditingController();
-  var lastNameController = TextEditingController();
-  var countryController = TextEditingController(text: "Lake County");
-  var schoolController = TextEditingController(text: "Lake High School");
-  var churchController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final countryController = TextEditingController(text: "Lake County");
+  final schoolController = TextEditingController(text: "Lake High School");
+  final churchController = TextEditingController();
 
   BottomProfilePart() {
     firstNameController.text = _controller.user.value.firstName;
@@ -75,25 +75,12 @@ class BottomProfilePart extends StatelessWidget {
               height: 90,
             ),
             Container(
-              margin: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 40,
-              child: Material(
-                borderRadius: BorderRadius.circular(10.0),
-                shadowColor: Colors.blue,
-                color: colorDarkBlue1,
-                elevation: 3,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Center(
-                    child: Text(
-                      'Edit Profile',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('Edit Profile'),
               ),
-            ),
+            )
           ],
         ),
       ),

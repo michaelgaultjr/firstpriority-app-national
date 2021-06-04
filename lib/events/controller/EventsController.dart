@@ -1,7 +1,31 @@
 import 'package:first_priority_app/events/EventsDetailsModel.dart';
+import 'package:first_priority_app/models/event.dart';
 import 'package:get/get.dart';
 
 class EventsController extends GetxController {
+  final List<Event> events = [
+    Event(
+        weekType: 'Equip',
+        schoolName: 'Vero Central High School',
+        room: 'Room 567'),
+    Event(
+        weekType: 'Equip',
+        schoolName: 'Vero Central High School',
+        room: 'Room 567'),
+    Event(
+        weekType: 'Equip',
+        schoolName: 'Vero Central High School',
+        room: 'Room 567'),
+    Event(
+        weekType: 'Equip',
+        schoolName: 'Vero Central High School',
+        room: 'Room 567'),
+    Event(
+        weekType: 'Equip',
+        schoolName: 'Vero Central High School',
+        room: 'Room 567'),
+  ];
+
   var eventDetailsTitle = 'WEDNESDAY, SEPTEMBER 27'.obs;
   var eventDetailsSubTitle = 'Equip'.obs;
   var eventRoomTimeText = '3:30p • Room 204'.obs;
@@ -15,7 +39,8 @@ class EventsController extends GetxController {
     EvetnsDetailsModel('Game Coordinators:', 'Jim Wells, Haley Brown'),
     EvetnsDetailsModel('Greeters:', 'Jim Wells, Haley Brown'),
     EvetnsDetailsModel('Promotions:', 'Jim Wells'),
-    EvetnsDetailsModel('Setup & Teardown:', 'Jim Wells, Haley Brown, Ella Johnson'),
+    EvetnsDetailsModel(
+        'Setup & Teardown:', 'Jim Wells, Haley Brown, Ella Johnson'),
     EvetnsDetailsModel('Food Orders', 'Jim Wells, Haley Brown, Ella Johnson'),
   ];
 

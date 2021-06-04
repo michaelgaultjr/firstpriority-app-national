@@ -11,35 +11,34 @@ class DevotionalsDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image(
-                  width: Get.width,
-                  height: Get.height / 3,
-                  image: CachedNetworkImageProvider(devotional.imageUrl),
-                  fit: BoxFit.cover),
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text(
-                  devotional.title,
-                  style: getCustomTextProperties(
-                      Colors.black, 30, fontSchylerRegular, 1),
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image(
+                    width: Get.width,
+                    height: Get.height / 3,
+                    image: CachedNetworkImageProvider(devotional.imageUrl),
+                    fit: BoxFit.cover),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: Text(
+                    devotional.title,
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
                 ),
-              ),
-              Divider(),
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text(
-                  devotional.description,
-                  style: getCustomTextProperties(
-                      colorEventDetailText, 15, fontSchylerRegular, 2),
+                Divider(),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: Text(
+                    devotional.description,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
