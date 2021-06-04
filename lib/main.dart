@@ -18,12 +18,24 @@ class MyApp extends StatelessWidget {
       navigatorKey: mainNavigatorKey,
       debugShowCheckedModeBanner: false,
       title: "First Priority",
-      // themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       darkTheme: buildTheme(
+        colorScheme: ColorScheme.dark(
+          primary: Color.fromARGB(255, 0, 33, 91),
+          primaryVariant: Color.fromARGB(255, 0, 22, 61),
+          secondary: Color.fromARGB(255, 178, 8, 56),
+          secondaryVariant: Color.fromARGB(255, 157, 7, 49),
+          surface: Color.fromARGB(255, 40, 40, 40),
+          background: Color.fromARGB(255, 25, 25, 25),
+          error: Colors.red,
+          onPrimary: Colors.white,
+          onSecondary: Colors.white,
+          onSurface: Colors.white,
+          onBackground: Colors.white,
+          onError: Colors.white,
+        ),
         accentColor: colorSelectedBottom,
-        secondaryColor: Colors.white12,
-        backgroundColor: Color.fromARGB(255, 25, 25, 25),
-        cardBackgroundColor: Color.fromARGB(255, 40, 40, 40),
+        surfaceBright: Colors.white12,
         bodyText1: TextStyle(color: Colors.white, fontSize: 16),
         headline1:
             getCustomTextProperties(Colors.white, 30, fontSchylerRegular, 1),
@@ -39,10 +51,22 @@ class MyApp extends StatelessWidget {
         dividerColor: Colors.white24,
       ),
       theme: buildTheme(
+        colorScheme: ColorScheme.light(
+          primary: Color.fromARGB(255, 0, 33, 91),
+          primaryVariant: Color.fromARGB(255, 0, 22, 61),
+          secondary: Color.fromARGB(255, 178, 8, 56),
+          secondaryVariant: Color.fromARGB(255, 157, 7, 49),
+          surface: Colors.white,
+          background: Colors.white,
+          error: Colors.red,
+          onPrimary: Colors.white,
+          onSecondary: Colors.white,
+          onSurface: Colors.black,
+          onBackground: Colors.black,
+          onError: Colors.white,
+        ),
         accentColor: colorSelectedBottom,
-        secondaryColor: Colors.black12,
-        backgroundColor: Colors.white,
-        cardBackgroundColor: Colors.white,
+        surfaceBright: Colors.black12,
         headline1:
             getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
         subtitle1:
@@ -60,9 +84,8 @@ class MyApp extends StatelessWidget {
 }
 
 ThemeData buildTheme({
-  Color backgroundColor,
-  Color cardBackgroundColor,
-  Color secondaryColor,
+  ColorScheme colorScheme,
+  Color surfaceBright,
   TextStyle headline1,
   TextStyle headline3,
   TextStyle headline4,
@@ -76,10 +99,11 @@ ThemeData buildTheme({
 }) {
   return ThemeData(
     fontFamily: 'Schyler',
-    backgroundColor: backgroundColor,
-    scaffoldBackgroundColor: backgroundColor,
+    backgroundColor: colorScheme.background,
+    scaffoldBackgroundColor: colorScheme.background,
     accentColor: accentColor,
-    secondaryHeaderColor: secondaryColor,
+    secondaryHeaderColor: surfaceBright,
+    colorScheme: colorScheme,
     textTheme: TextTheme(
       headline1: headline1,
       headline3: headline3,
@@ -89,27 +113,28 @@ ThemeData buildTheme({
       bodyText1: bodyText1,
     ),
     cardTheme: CardTheme(
-      color: cardBackgroundColor,
       elevation: 5,
+      color: colorScheme.surface,
     ),
     dividerColor: dividerColor,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 5,
-        primary: colorDarkBlue1,
+        primary: colorScheme.primary,
         minimumSize: Size(double.infinity, 40),
         textStyle: TextStyle(
           fontFamily: fontSchylerRegular,
           fontSize: 16,
           fontWeight: FontWeight.w700,
+          color: colorScheme.onPrimary,
         ),
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 5,
-      backgroundColor: navBackgroundColor,
+      backgroundColor: colorScheme.background,
       unselectedItemColor: navUnselectedColor,
-      selectedItemColor: accentColor,
+      selectedItemColor: colorScheme.secondary,
     ),
   );
 }

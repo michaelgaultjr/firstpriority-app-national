@@ -1,12 +1,11 @@
-import 'package:first_priority_app/Constants.dart';
 import 'package:first_priority_app/devotionals/devotionals_screen.dart';
-import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/events/events_screen.dart';
+import 'package:intl/intl.dart';
+import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
 import 'package:first_priority_app/profile/ProfileScreen.dart';
 import 'package:first_priority_app/resources/resources_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class MainDashBoard extends StatelessWidget {
@@ -37,7 +36,9 @@ class MainDashBoard extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        'MONDAY, SEPTEMBER 27',
+                        DateFormat('EEEE, MMMM d')
+                            .format(DateTime.now())
+                            .toUpperCase(),
                         style: Theme.of(context).textTheme.subtitle1,
                       ),
                     ),
@@ -74,68 +75,57 @@ class MainDashBoard extends StatelessWidget {
   List<BottomNavigationBarItem> buildItems(BuildContext context) {
     return [
       BottomNavigationBarItem(
-        icon: SvgPicture.asset(
-          'assets/svgimages/home.svg',
-          height: iconSizes,
-          width: iconSizes,
+        icon: Icon(
+          Icons.home_outlined,
+          size: 24,
+        ),
+        activeIcon: Icon(
+          Icons.home_outlined,
+          size: 32,
         ),
         label: 'Home',
-        activeIcon: SvgPicture.asset(
-          'assets/svgimages/home.svg',
-          height: iconSizes,
-          width: iconSizes,
-          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-        ),
       ),
       BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/svgimages/events.svg',
-              height: iconSizes, width: iconSizes),
-          activeIcon: SvgPicture.asset(
-            'assets/svgimages/events.svg',
-            height: iconSizes,
-            width: iconSizes,
-            color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-          ),
-          label: 'Events'),
-      BottomNavigationBarItem(
-        icon: SvgPicture.asset(
-          'assets/svgimages/message.svg',
-          height: iconSizes,
-          width: iconSizes,
+        icon: Icon(
+          Icons.calendar_today_outlined,
+          size: 24,
         ),
-        activeIcon: SvgPicture.asset(
-          'assets/svgimages/message.svg',
-          height: iconSizes,
-          width: iconSizes,
-          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        activeIcon: Icon(
+          Icons.calendar_today_outlined,
+          size: 32,
+        ),
+        label: 'Events',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(
+          Icons.menu_book_outlined,
+          size: 24,
+        ),
+        activeIcon: Icon(
+          Icons.menu_book_outlined,
+          size: 32,
         ),
         label: 'Resources',
       ),
       BottomNavigationBarItem(
-        icon: SvgPicture.asset(
-          'assets/svgimages/bookmark.svg',
-          height: iconSizes,
-          width: iconSizes,
+        icon: Icon(
+          Icons.book_outlined,
+          size: 24,
         ),
-        activeIcon: SvgPicture.asset(
-          'assets/svgimages/bookmark.svg',
-          height: iconSizes,
-          width: iconSizes,
-          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        activeIcon: Icon(
+          Icons.book_outlined,
+          size: 32,
         ),
         label: 'Devotionals',
       ),
       BottomNavigationBarItem(
-        icon: SvgPicture.asset(
-          'assets/svgimages/profile.svg',
-          height: iconSizes,
-          width: iconSizes,
+        icon: Icon(
+          Icons.person_outline,
+          size: 24,
         ),
-        activeIcon: SvgPicture.asset(
-          'assets/svgimages/profile.svg',
-          height: iconSizes,
-          width: iconSizes,
-          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        activeIcon: Icon(
+          Icons.person_outline,
+          size: 32,
         ),
         label: 'Profile',
       )
