@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: mainNavigatorKey,
       debugShowCheckedModeBanner: false,
       title: "First Priority",
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       darkTheme: buildTheme(
         colorScheme: ColorScheme.dark(
           primary: Color.fromARGB(255, 0, 33, 91),
