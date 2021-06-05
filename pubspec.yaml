@@ -35,6 +35,9 @@ dependencies:
     git:
       url: https://github.com/kjawadDeveloper/Custom-navigator.git
   video_player:
+  flutter_datetime_picker: ^1.5.1
+  intl: ^0.17.0
+  multi_select_flutter: ^3.1.8
 
 dev_dependencies:
   flutter_test:

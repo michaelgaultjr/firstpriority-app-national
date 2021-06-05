@@ -1,4 +1,7 @@
+import 'package:first_priority_app/events/newevent/NewEventView.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../Constants.dart';
 
 class TopEventPart extends StatelessWidget {
@@ -11,11 +14,25 @@ class TopEventPart extends StatelessWidget {
           height: 60.0,
         ),
         Container(
-          margin: EdgeInsets.only(left: 10.0, top: 10.0),
-          child: Text(
-            'MONDAY, SEPTEMBER 27',
-            style: getCustomTextProperties(
-                Colors.black54, 16, fontSchylerRegular, 1),
+          margin: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'MONDAY, SEPTEMBER 27',
+                style: getCustomTextProperties(
+                    Colors.black54, 16, fontSchylerRegular, 1),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(NewEventView());
+                },
+                child: Icon(
+                  Icons.add,
+                  color: Colors.blue,
+                ),
+              ),
+            ],
           ),
         ),
         Container(
