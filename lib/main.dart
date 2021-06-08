@@ -113,25 +113,41 @@ ThemeData buildTheme({
       bodyText1: bodyText1,
     ),
     cardTheme: CardTheme(
-      elevation: 5,
+      elevation: 2,
       color: colorScheme.surface,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: TextStyle(
+        color: colorScheme.onBackground,
+      ),
+      contentPadding: EdgeInsets.all(4),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: colorScheme.secondary),
+      ),
+    ),
+    textSelectionTheme:
+        TextSelectionThemeData(cursorColor: colorScheme.secondaryVariant),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: colorScheme.primary,
+    ),
+    canvasColor: colorScheme.surface,
     dividerColor: dividerColor,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 2,
         primary: colorScheme.primary,
         minimumSize: Size(double.infinity, 40),
         textStyle: TextStyle(
           fontFamily: fontSchylerRegular,
           fontSize: 16,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w400,
           color: colorScheme.onPrimary,
         ),
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      elevation: 5,
+      elevation: 2,
       backgroundColor: colorScheme.background,
       unselectedItemColor: navUnselectedColor,
       selectedItemColor: colorScheme.secondary,

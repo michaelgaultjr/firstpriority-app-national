@@ -1,4 +1,4 @@
-import 'package:first_priority_app/events/event_preview.dart';
+import 'package:first_priority_app/meetings/meeting_preview.dart';
 import 'package:first_priority_app/models/event.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +28,9 @@ class UpcomingEventCard extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          EventPreview(
-            event: Event(
-                room: 'Room 404',
-                schoolName: 'Example School',
-                weekType: 'Invite'),
+          MeetingPreview(
+            meeting: Meeting(
+                room: 'Room 404', school: 'Example School', week: 'Invite'),
           ),
           SizedBox(
             height: 30.0,

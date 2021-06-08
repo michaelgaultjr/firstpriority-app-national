@@ -14,7 +14,7 @@ class PillButton extends StatelessWidget {
     return Container(
       height: 30,
       width: width,
-      margin: EdgeInsets.only(bottom: 4.0, right: 8),
+      margin: EdgeInsets.all(4),
       child: Material(
         elevation: 2,
         borderRadius: BorderRadius.circular(20),

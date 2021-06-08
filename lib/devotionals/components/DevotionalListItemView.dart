@@ -23,50 +23,55 @@ class DevotionalListItemView extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 5),
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Image(
-              image: CachedNetworkImageProvider(devotional.imageUrl),
+            child: Column(
+              children: [
+                Image(
+                  image: CachedNetworkImageProvider(devotional.imageUrl),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            devotional.title,
+                            style:
+                                Theme.of(context).textTheme.headline1.copyWith(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
+                          Text(
+                              "${dateFormat.format(devotional.startDate)} - ${dateFormat.format(devotional.endDate)}")
+                        ],
+                      ),
+                      PillButton(
+                        child: Text('READ'),
+                        onTap: () {
+                          if (devotional.planUrl != null &&
+                              devotional.planUrl.isNotEmpty) {
+                            launch(devotional.planUrl);
+                          } else {
+                            Get.to(
+                              () => DevotionalsDetailsScreen(
+                                devotional: devotional,
+                              ),
+                            );
+                          }
+                        },
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      devotional.title,
-                      style: Theme.of(context).textTheme.headline1.copyWith(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    Text(
-                        "${dateFormat.format(devotional.startDate)} - ${dateFormat.format(devotional.endDate)}")
-                  ],
-                ),
-                PillButton(
-                  child: Text('READ'),
-                  onTap: () {
-                    if (devotional.planUrl != null &&
-                        devotional.planUrl.isNotEmpty) {
-                      launch(devotional.planUrl);
-                    } else {
-                      Get.to(
-                        () => DevotionalsDetailsScreen(
-                          devotional: devotional,
-                        ),
-                      );
-                    }
-                  },
-                )
-              ],
-            ),
-          )
         ],
       ),
     );

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Api extends GetxController {
-  static const String API_URL = "http://192.168.1.100:8080";
+  static const String API_URL = "http://66.229.44.232:8080";
 
   final Dio client;
 

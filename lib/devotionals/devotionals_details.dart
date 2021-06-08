@@ -16,11 +16,15 @@ class DevotionalsDetailsScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image(
+                Material(
+                  elevation: 5,
+                  child: Image(
                     width: Get.width,
                     height: Get.height / 3,
                     image: CachedNetworkImageProvider(devotional.imageUrl),
-                    fit: BoxFit.cover),
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
@@ -28,7 +32,10 @@ class DevotionalsDetailsScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline1,
                   ),
                 ),
-                Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(),
+                ),
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(

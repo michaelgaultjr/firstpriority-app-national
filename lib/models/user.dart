@@ -7,6 +7,8 @@ class User {
   final String phoneNumber;
   final String church;
   final List<String> roles;
+  final String schoolId;
+  final String schoolName;
 
   User.fromMap(Map<String, dynamic> map)
       : name = map['name'],
@@ -16,5 +18,7 @@ class User {
         email = map['email'],
         phoneNumber = map['phoneNumber'],
         church = map['church'],
-        roles = List<String>.from(map['roles']);
+        roles = List<String>.from(map['roles']),
+        schoolId = map['schoolId'],
+        schoolName = map['schoolName'];
 }

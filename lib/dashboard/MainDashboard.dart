@@ -1,9 +1,9 @@
 import 'package:first_priority_app/devotionals/devotionals_screen.dart';
-import 'package:first_priority_app/events/events_screen.dart';
+import 'package:first_priority_app/meetings/meeting_screen.dart';
+import 'package:first_priority_app/more/more_screen.dart';
 import 'package:intl/intl.dart';
 import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
-import 'package:first_priority_app/profile/ProfileScreen.dart';
 import 'package:first_priority_app/resources/resources_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,10 +14,10 @@ class MainDashBoard extends StatelessWidget {
 
   final _pageOptions = [
     HomeScreen(),
-    EventsScreen(),
+    MeetingScreen(),
     ResourcesScreen(),
     DevotionalsScreen(),
-    ProfileScreen(),
+    MoreScreen(),
   ];
 
   @override
@@ -94,7 +94,7 @@ class MainDashBoard extends StatelessWidget {
           Icons.calendar_today_outlined,
           size: 32,
         ),
-        label: 'Events',
+        label: 'Meetings',
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -120,14 +120,14 @@ class MainDashBoard extends StatelessWidget {
       ),
       BottomNavigationBarItem(
         icon: Icon(
-          Icons.person_outline,
+          Icons.more_horiz,
           size: 24,
         ),
         activeIcon: Icon(
-          Icons.person_outline,
+          Icons.more_horiz,
           size: 32,
         ),
-        label: 'Profile',
+        label: 'More',
       )
     ];
   }

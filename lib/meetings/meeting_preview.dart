@@ -1,27 +1,32 @@
-import 'package:first_priority_app/events/event_details/EventsDetails.dart';
+import 'package:first_priority_app/meetings/meeting_details/meeting_details.dart';
 import 'package:first_priority_app/models/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-class EventPreview extends StatelessWidget {
-  final Event event;
+class MeetingPreview extends StatelessWidget {
+  final Meeting meeting;
 
-  const EventPreview({Key key, @required this.event}) : super(key: key);
+  const MeetingPreview({Key key, @required this.meeting}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => EventsDetails());
+        Get.to(
+          () => MeetingDetails(
+            meeting: meeting,
+          ),
+        );
       },
       child: ListTile(
         title: Text(
-          'Weekly Meeting: ${event.weekType}',
+          'Weekly Meeting: ${meeting.week}',
           style: Theme.of(context).textTheme.headline3,
         ),
         subtitle: Text(
-          '${event.schoolName}: ${event.room}',
+          '${meeting.school}: ${meeting.room}',
           style: Theme.of(context).textTheme.headline4,
         ),
         leading: InkWell(
@@ -41,14 +46,16 @@ class EventPreview extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'SEP',
+                      DateFormat('MMM')
+                          .format(meeting.time ?? DateTime.now())
+                          .toUpperCase(),
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2
                           .copyWith(fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      '29',
+                      DateFormat('d').format(meeting.time ?? DateTime.now()),
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2
