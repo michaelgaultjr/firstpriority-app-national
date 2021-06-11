@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: mainNavigatorKey,
       debugShowCheckedModeBanner: false,
       title: "First Priority",
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       darkTheme: buildTheme(
         colorScheme: ColorScheme.dark(
           primary: Color.fromARGB(255, 0, 33, 91),
@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
         bodyText1: TextStyle(color: Colors.white, fontSize: 16),
         headline1:
             getCustomTextProperties(Colors.white, 30, fontSchylerRegular, 1),
-        subtitle1:
+        defaultText: TextStyle(color: Colors.white),
+        subtitle2:
             getCustomTextProperties(Colors.white54, 16, fontSchylerRegular, 1),
         headline3:
             getCustomTextProperties(Colors.white, 16, fontSchylerRegular, 1),
@@ -69,7 +70,11 @@ class MyApp extends StatelessWidget {
         surfaceBright: Colors.black12,
         headline1:
             getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
-        subtitle1:
+        defaultText: TextStyle(
+          color: Colors.black,
+          fontSize: 16,
+        ),
+        subtitle2:
             getCustomTextProperties(Colors.black54, 16, fontSchylerRegular, 1),
         headline4:
             getCustomTextProperties(colorLightDark, 14, fontSchylerRegular, 0),
@@ -89,7 +94,8 @@ ThemeData buildTheme({
   TextStyle headline1,
   TextStyle headline3,
   TextStyle headline4,
-  TextStyle subtitle1,
+  TextStyle defaultText,
+  TextStyle subtitle2,
   TextStyle bodyText1,
   TextStyle bodyText2,
   Color accentColor,
@@ -109,7 +115,8 @@ ThemeData buildTheme({
       headline3: headline3,
       headline4: headline4,
       bodyText2: bodyText2,
-      subtitle1: subtitle1,
+      subtitle1: defaultText,
+      subtitle2: subtitle2,
       bodyText1: bodyText1,
     ),
     cardTheme: CardTheme(
@@ -118,6 +125,7 @@ ThemeData buildTheme({
     ),
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
         color: colorScheme.onBackground,
       ),
       contentPadding: EdgeInsets.all(4),

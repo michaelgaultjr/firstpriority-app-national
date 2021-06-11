@@ -39,7 +39,7 @@ class MainDashBoard extends StatelessWidget {
                         DateFormat('EEEE, MMMM d')
                             .format(DateTime.now())
                             .toUpperCase(),
-                        style: Theme.of(context).textTheme.subtitle1,
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                     ),
                     Container(

@@ -1,5 +1,4 @@
 import 'package:first_priority_app/models/event.dart';
-import 'package:first_priority_app/models/meeting_role.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../Constants.dart';
@@ -48,9 +47,8 @@ class MeetingDetails extends StatelessWidget {
                   'Roles',
                   style: Theme.of(context).textTheme.headline1,
                 ),
-                ...List.generate(meeting.roles.length, (index) {
-                  return _roleDisplay(meeting.roles[index]);
-                }),
+                for (var key in meeting.roles.keys)
+                  _roleDisplay(key, meeting.roles[key].join(', '))
               ],
             ),
           ),
@@ -59,19 +57,19 @@ class MeetingDetails extends StatelessWidget {
     );
   }
 
-  Widget _roleDisplay(MeetingRole role) {
+  Widget _roleDisplay(String role, String users) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            role.role,
+            role,
             style: getCustomTextProperties(
                 Colors.black, 16, fontSchylerRegular, 0),
           ),
           Text(
-            role.name,
+            users,
             style: getCustomTextProperties(colorLightDark, 14, "Schyler", 0),
           ),
         ],

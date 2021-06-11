@@ -1,5 +1,4 @@
-import 'package:first_priority_app/models/meeting_role.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 
 class Meeting {
   final String id;
@@ -8,7 +7,7 @@ class Meeting {
   final String room;
   final DateTime time;
   final String week;
-  final List<MeetingRole> roles;
+  final Map<String, List<String>> roles;
 
   Meeting({
     @required this.week,
@@ -27,6 +26,10 @@ class Meeting {
         room = map['room'],
         time = DateTime.parse(map['time']),
         week = map['week'],
-        roles =
-            List.from(map['roles']).map((e) => MeetingRole.fromMap(e)).toList();
+        roles = Map.from(map['roles']).map(
+          (key, value) => MapEntry<String, List<String>>(
+            key,
+            List<String>.from(value),
+          ),
+        );
 }

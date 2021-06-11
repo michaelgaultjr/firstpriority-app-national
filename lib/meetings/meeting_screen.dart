@@ -14,7 +14,7 @@ class MeetingScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Get.to(MeetingCreate());
+          Get.to(() => MeetingCreate());
         },
       ),
       body: Container(
