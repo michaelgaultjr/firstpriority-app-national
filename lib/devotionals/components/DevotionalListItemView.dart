@@ -25,9 +25,11 @@ class DevotionalListItemView extends StatelessWidget {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Column(
               children: [
-                Image(
-                  image: CachedNetworkImageProvider(devotional.imageUrl),
-                ),
+                if (devotional.imageUrl != null &&
+                    devotional.imageUrl.isNotEmpty)
+                  Image(
+                    image: CachedNetworkImageProvider(devotional.imageUrl),
+                  ),
                 Padding(
                   padding: const EdgeInsets.all(12),
                   child: Row(
@@ -44,25 +46,27 @@ class DevotionalListItemView extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
-                          Text(
-                              "${dateFormat.format(devotional.startDate)} - ${dateFormat.format(devotional.endDate)}")
+                          if (devotional.startDate != null)
+                            Text(
+                                "${dateFormat.format(devotional.startDate)} - ${dateFormat.format(devotional.endDate)}")
                         ],
                       ),
-                      PillButton(
-                        child: Text('READ'),
-                        onTap: () {
-                          if (devotional.planUrl != null &&
-                              devotional.planUrl.isNotEmpty) {
-                            launch(devotional.planUrl);
-                          } else {
-                            Get.to(
-                              () => DevotionalsDetailsScreen(
-                                devotional: devotional,
-                              ),
-                            );
-                          }
-                        },
-                      )
+                      if (devotional.planUrl != null)
+                        PillButton(
+                          child: Text('READ'),
+                          onTap: () {
+                            if (devotional.planUrl != null &&
+                                devotional.planUrl.isNotEmpty) {
+                              launch(devotional.planUrl);
+                            } else {
+                              Get.to(
+                                () => DevotionalsDetailsScreen(
+                                  devotional: devotional,
+                                ),
+                              );
+                            }
+                          },
+                        )
                     ],
                   ),
                 )

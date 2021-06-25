@@ -1,11 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.first_priority_app">
+    package="com.firstpriority.app">
 
   <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
         android:label="First Priority"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/ic_stat_first_priority_full_icon_white" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

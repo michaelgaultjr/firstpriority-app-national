@@ -4,6 +4,7 @@ import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/models/cycle.dart';
 import 'package:first_priority_app/models/user_profile.dart';
 import 'package:first_priority_app/models/week.dart';
+import 'package:first_priority_app/validators.dart';
 import 'package:first_priority_app/widgets/generic_list.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,12 @@ class _MeetingCreateState extends State<MeetingCreate> {
     'Discussion Leaders': ValueNotifier([]),
     'Setup & Teardown': ValueNotifier([]),
   };
+
+  @override
+  void initState() {
+    super.initState();
+    _roomController.text = _accountController.user.value.schoolRoom;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,11 +108,13 @@ class _MeetingCreateState extends State<MeetingCreate> {
                             decoration: InputDecoration(
                               labelText: 'Room',
                             ),
+                            validator: Validators.required,
                           ),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'Meeting Date',
                             ),
+                            validator: Validators.required,
                             controller: _timeController,
                             readOnly: true,
                             onTap: () async {
@@ -228,27 +237,29 @@ class _MeetingCreateState extends State<MeetingCreate> {
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              LoadingDialog.show(
-                                context: context,
-                                future: () async {
-                                  await _controller.create(
-                                    schoolId:
-                                        _accountController.user.value.schoolId,
-                                    room: _roomController.text,
-                                    time: _meetingTime,
-                                    week: _week.name,
-                                    cycleId: _cycle.id,
-                                    roles: roles.map(
-                                      (key, value) => MapEntry(
-                                        key,
-                                        value.value.map((e) => e.id).toList(),
+                              if (_formKey.currentState.validate()) {
+                                LoadingDialog.show(
+                                  context: context,
+                                  future: () async {
+                                    await _controller.create(
+                                      schoolId: _accountController
+                                          .user.value.schoolId,
+                                      room: _roomController.text,
+                                      time: _meetingTime,
+                                      week: _week.name,
+                                      cycleId: _cycle.id,
+                                      roles: roles.map(
+                                        (key, value) => MapEntry(
+                                          key,
+                                          value.value.map((e) => e.id).toList(),
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
 
-                                  Get.back();
-                                },
-                              );
+                                    Get.back();
+                                  },
+                                );
+                              }
                             },
                             child: Text('Schedule Meeting'),
                           ),

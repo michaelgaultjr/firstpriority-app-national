@@ -8,6 +8,7 @@ class MeetingController extends GetxController {
   final api = Get.find<Api>();
 
   List<Meeting> _meetings = [];
+  List<Meeting> _upcomingMeetings = [];
 
   Future<void> create({
     String schoolId,
@@ -18,7 +19,7 @@ class MeetingController extends GetxController {
     Map<String, List<String>> roles,
   }) async {
     final res = await api.client.post(
-      '/api/meeting',
+      '/api/meetings',
       data: {
         'schoolId': schoolId,
         'cycleId': cycleId,
@@ -34,12 +35,23 @@ class MeetingController extends GetxController {
 
   Future<List<Meeting>> get() async {
     if (_meetings.isEmpty) {
-      final res = await api.client.get('/api/meeting');
+      final res = await api.client.get('/api/meetings');
 
       _meetings = List.from(res.data).map((e) => Meeting.fromMap(e)).toList();
     }
 
     return _meetings;
+  }
+
+  Future<List<Meeting>> getUpcoming() async {
+    if (_upcomingMeetings.isEmpty) {
+      final res = await api.client.get('/api/meetings/upcoming');
+
+      _upcomingMeetings =
+          List.from(res.data).map((e) => Meeting.fromMap(e)).toList();
+    }
+
+    return _upcomingMeetings;
   }
 
   Future<List<Week>> getWeeks() async {

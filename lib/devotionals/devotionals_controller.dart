@@ -14,6 +14,10 @@ class DevotionalsController extends GetxController {
   Future<Devotional> getToday() async {
     final res = await api.client.get('/api/devotionals/today');
 
+    if (res.data == null || res.data == "") {
+      return Devotional(title: "No Devotional Today");
+    }
+
     return Devotional.fromMap(res.data);
   }
 }

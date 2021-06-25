@@ -10,10 +10,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             DevotionalCard(),
-            // TODO: Make this user a proper spacer
-            SizedBox(
-              height: 20,
-            ),
             UpcomingEventCard(),
           ],
         ),

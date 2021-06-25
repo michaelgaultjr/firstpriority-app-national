@@ -15,4 +15,14 @@ class Devotional {
         planUrl = map['planUrl'],
         startDate = DateTime.parse(map['startDate']),
         endDate = DateTime.parse(map['endDate']);
+
+  Devotional({
+    this.title,
+    this.description,
+    this.imageUrl,
+    this.videoUrl,
+    this.planUrl,
+    this.startDate,
+    this.endDate,
+  });
 }
