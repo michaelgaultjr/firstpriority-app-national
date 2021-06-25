@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/models/authentication_result.dart';
 import 'package:first_priority_app/models/user.dart';
@@ -32,6 +33,12 @@ class AccountController extends getx.GetxController {
 
     if (result.authenticated) {
       _user(result.user);
+
+      FirebaseMessaging.instance
+          .subscribeToTopic("school_${result.user.schoolId}");
+      FirebaseMessaging.instance
+          .subscribeToTopic("region_${result.user.regionId}");
+      FirebaseMessaging.instance.subscribeToTopic("user_${result.user.id}");
     }
     return result;
   }

@@ -4,20 +4,18 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/school.dart';
-import 'package:first_priority_app/models/user.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
   Future<void> initialize() async {
-    await Get.putAsync(() => Api.createInstance());
-    final authenticationResult =
-        await Get.put(AccountController()).authenticate();
-    Get.lazyPut(() => SchoolController(), fenix: true);
+    await initializeFirebase();
 
-    await initializeFirebase(authenticationResult.user);
+    await Get.putAsync(() => Api.createInstance());
+    await Get.put(AccountController()).authenticate();
+    Get.lazyPut(() => SchoolController(), fenix: true);
   }
 
-  Future<void> initializeFirebase(User user) async {
+  Future<void> initializeFirebase() async {
     await Firebase.initializeApp();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     await FirebaseMessaging.instance.requestPermission(
@@ -36,10 +34,6 @@ class SplashController extends GetxController {
       badge: true,
       sound: true,
     );
-
-    FirebaseMessaging.instance.subscribeToTopic("school_${user.schoolId}");
-    FirebaseMessaging.instance.subscribeToTopic("region_${user.regionId}");
-    FirebaseMessaging.instance.subscribeToTopic("user_${user.id}");
   }
 }
 
