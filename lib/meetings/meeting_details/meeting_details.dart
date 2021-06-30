@@ -1,4 +1,5 @@
 import 'package:first_priority_app/models/event.dart';
+import 'package:first_priority_app/widgets/text/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../Constants.dart';
@@ -43,10 +44,7 @@ class MeetingDetails extends StatelessWidget {
                   height: 10.0,
                 ),
                 SizedBox(height: 10),
-                Text(
-                  'Roles',
-                  style: Theme.of(context).textTheme.headline1,
-                ),
+                HeaderText("Roles"),
                 for (var key in meeting.roles.keys)
                   _roleDisplay(key, meeting.roles[key].join(', '))
               ],

@@ -1,6 +1,8 @@
 import 'package:first_priority_app/devotionals/devotionals_screen.dart';
 import 'package:first_priority_app/meetings/meeting_screen.dart';
 import 'package:first_priority_app/more/more_screen.dart';
+import 'package:first_priority_app/widgets/text/header_text.dart';
+import 'package:first_priority_app/widgets/text/subtitle_text.dart';
 import 'package:intl/intl.dart';
 import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
@@ -35,18 +37,16 @@ class MainDashBoard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      child: Text(
+                      child: SubtitleText(
                         DateFormat('EEEE, MMMM d')
                             .format(DateTime.now())
                             .toUpperCase(),
-                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                     ),
                     Container(
-                      child: Text(
+                      child: HeaderText(
                         _items[_mainDashboardController.currentIndex.value]
                             .label,
-                        style: Theme.of(context).textTheme.headline1,
                       ),
                     ),
                   ],

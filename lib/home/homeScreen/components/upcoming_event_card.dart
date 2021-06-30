@@ -1,6 +1,7 @@
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/meetings/meeting_preview.dart';
 import 'package:first_priority_app/models/event.dart';
+import 'package:first_priority_app/widgets/text/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,10 +30,7 @@ class UpcomingEventCard extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.only(left: 15, top: 10),
-              child: Text(
-                'Upcoming Events',
-                style: Theme.of(context).textTheme.headline1,
-              ),
+              child: HeaderText('Upcoming Events'),
             ),
             SizedBox(
               height: 10,

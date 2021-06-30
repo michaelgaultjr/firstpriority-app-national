@@ -7,6 +7,8 @@ import 'package:first_priority_app/models/week.dart';
 import 'package:first_priority_app/validators.dart';
 import 'package:first_priority_app/widgets/generic_list.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
+import 'package:first_priority_app/widgets/text/header_text.dart';
+import 'package:first_priority_app/widgets/text/subtitle_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -81,15 +83,13 @@ class _MeetingCreateState extends State<MeetingCreate> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          child: Text(
+                          child: HeaderText(
                             'New Meeting',
-                            style: Theme.of(context).textTheme.headline1,
                           ),
                         ),
                         Container(
-                          child: Text(
+                          child: SubtitleText(
                             _accountController.user.value.schoolName,
-                            style: Theme.of(context).textTheme.subtitle2,
                           ),
                         ),
                       ],
@@ -186,10 +186,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
                           Container(
                             alignment: Alignment.centerLeft,
                             margin: EdgeInsets.only(top: 20, bottom: 5),
-                            child: Text(
-                              'Roles',
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
+                            child: HeaderText('Roles'),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
