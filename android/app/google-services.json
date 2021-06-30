@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:791409646526:android:4dbd1359ac21e6316b77ef",
         "android_client_info": {
-          "package_name": "com.firstpriority.app"
+          "package_name": "com.firstpriority.core.app"
         }
       },
       "oauth_client": [

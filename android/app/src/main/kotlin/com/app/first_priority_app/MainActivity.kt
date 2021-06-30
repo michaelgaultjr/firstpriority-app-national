@@ -1,4 +1,4 @@
-package com.firstpriority.app
+package com.firstpriority.core.app
 
 import io.flutter.embedding.android.FlutterActivity
 
