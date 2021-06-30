@@ -24,15 +24,14 @@ class AsyncSearchDelegate<T> extends SearchDelegate<T> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.clear),
+      icon: Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null);
       },
     );
   }
 
-  @override
-  Widget buildResults(BuildContext context) {
+  Widget _searchResults() {
     return FutureBuilder<List<T>>(
       future: future(query),
       builder: (context, snapshot) {
@@ -54,7 +53,12 @@ class AsyncSearchDelegate<T> extends SearchDelegate<T> {
   }
 
   @override
+  Widget buildResults(BuildContext context) {
+    return _searchResults();
+  }
+
+  @override
   Widget buildSuggestions(BuildContext context) {
-    return Container();
+    return _searchResults();
   }
 }
