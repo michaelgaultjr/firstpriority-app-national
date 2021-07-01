@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:first_priority_app/models/devotional.dart';
+import 'package:first_priority_app/widgets/text/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
@@ -8,8 +9,6 @@ class DevotionalsDetailsScreen extends StatelessWidget {
   final Devotional devotional;
 
   DevotionalsDetailsScreen({this.devotional});
-
-  VideoPlayerController _videoController;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +24,8 @@ class DevotionalsDetailsScreen extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.all(10),
-                  child: Text(
+                  child: HeaderText(
                     devotional.title,
-                    style: Theme.of(context).textTheme.headline1,
                   ),
                 ),
                 Padding(
@@ -51,7 +49,8 @@ class DevotionalsDetailsScreen extends StatelessWidget {
 
   Widget _buildMediaWidget() {
     if (devotional.videoUrl != null && devotional.videoUrl.isNotEmpty) {
-      _videoController = new VideoPlayerController.network(devotional.videoUrl);
+      VideoPlayerController _videoController =
+          new VideoPlayerController.network(devotional.videoUrl);
       return VideoPlayer(_videoController);
     }
 

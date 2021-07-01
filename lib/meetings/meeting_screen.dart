@@ -2,6 +2,7 @@ import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/meetings/meeting_create.dart';
 import 'package:first_priority_app/meetings/meeting_preview.dart';
 import 'package:first_priority_app/models/event.dart';
+import 'package:first_priority_app/widgets/text/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +25,12 @@ class MeetingScreen extends StatelessWidget {
             if (!snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(),
+              );
+            }
+
+            if (snapshot.data.isEmpty) {
+              return Center(
+                child: HeaderText("No Upcoming Meetings"),
               );
             }
 
