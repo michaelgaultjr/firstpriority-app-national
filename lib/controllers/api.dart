@@ -15,7 +15,7 @@ class Api extends GetxController {
 
   static Future<Api> createInstance() async {
     final client = Dio(
-      BaseOptions(baseUrl: API_URL),
+      BaseOptions(baseUrl: kDebugMode ? "http://192.168.1.100:8080" : API_URL),
     );
 
     final cookieStorageDirectory = await getApplicationDocumentsDirectory();

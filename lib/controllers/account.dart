@@ -28,6 +28,25 @@ class AccountController extends getx.GetxController {
     return _handleAuthResult(res.data);
   }
 
+  Future<User> updateDetails({
+    String firstName,
+    String lastName,
+    String phoneNumber,
+  }) async {
+    await api.client.post('/api/account', data: {
+      "phoneNumber": phoneNumber,
+    });
+
+    _user.update((usr) {
+      usr.firstName = firstName;
+      usr.lastName = lastName;
+      usr.phoneNumber = phoneNumber;
+      return usr;
+    });
+
+    return _user.value;
+  }
+
   AuthenticationResult _handleAuthResult(dynamic data) {
     final result = AuthenticationResult.fromMap(data);
 

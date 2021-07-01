@@ -1,11 +1,11 @@
 class User {
   final String id;
   final String name;
-  final String firstName;
-  final String lastName;
+  String firstName;
+  String lastName;
   final String regionId;
   final String email;
-  final String phoneNumber;
+  String phoneNumber;
   final String church;
   final List<String> roles;
 
