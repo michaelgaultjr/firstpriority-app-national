@@ -1,8 +1,7 @@
 import 'package:first_priority_app/devotionals/devotionals_screen.dart';
 import 'package:first_priority_app/meetings/meeting_screen.dart';
 import 'package:first_priority_app/more/more_screen.dart';
-import 'package:first_priority_app/widgets/text/header_text.dart';
-import 'package:first_priority_app/widgets/text/subtitle_text.dart';
+import 'package:first_priority_app/widgets/header_app_bar.dart';
 import 'package:intl/intl.dart';
 import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
@@ -27,38 +26,12 @@ class MainDashBoard extends StatelessWidget {
     final _items = buildItems(context);
     return Obx(
       () => Scaffold(
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: SubtitleText(
-                        DateFormat('EEEE, MMMM d')
-                            .format(DateTime.now())
-                            .toUpperCase(),
-                      ),
-                    ),
-                    Container(
-                      child: HeaderText(
-                        _items[_mainDashboardController.currentIndex.value]
-                            .label,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child:
-                    _pageOptions[_mainDashboardController.currentIndex.value],
-              )
-            ],
-          ),
+        appBar: HeaderAppBar(
+          title: _items[_mainDashboardController.currentIndex.value].label,
+          subtitle:
+              DateFormat('EEEE, MMMM d').format(DateTime.now()).toUpperCase(),
         ),
+        body: _pageOptions[_mainDashboardController.currentIndex.value],
         bottomNavigationBar: BottomNavigationBar(
           items: _items,
           type: BottomNavigationBarType.fixed,
