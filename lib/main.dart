@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "First Priority",
         theme: theme.current,
+        themeMode: theme.mode,
         home: SplashScreen(),
       ),
     );

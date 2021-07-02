@@ -40,7 +40,7 @@ class ThemeNotifier with ChangeNotifier {
       primaryVariant: Color.fromARGB(255, 0, 22, 61),
       secondary: Color.fromARGB(255, 178, 8, 56),
       secondaryVariant: Color.fromARGB(255, 157, 7, 49),
-      surface: Colors.white,
+      surface: Color.fromARGB(255, 242, 242, 247),
       background: Colors.white,
       error: Colors.red,
       onPrimary: Colors.white,
@@ -66,27 +66,34 @@ class ThemeNotifier with ChangeNotifier {
   );
 
   static final _themes = {
-    'light': lightTheme,
-    'dark': darkTheme,
+    'light': {
+      'mode': ThemeMode.light,
+      'data': lightTheme,
+    },
+    'dark': {
+      'mode': ThemeMode.dark,
+      'data': darkTheme,
+    },
   };
 
   ThemeData _themeData;
   String _themeKey;
   ThemeData get current => _themeData;
   String get key => _themeKey;
+  ThemeMode get mode => _themes[_themeKey]["mode"];
 
   ThemeNotifier() {
     StorageManager.read('theme').then((theme) {
       theme ??= _themes.keys.first;
 
-      _themeData = _themes[theme];
+      _themeData = _themes[theme]["data"];
       _themeKey = theme;
       notifyListeners();
     });
   }
 
   void setTheme(String theme) {
-    _themeData = _themes[theme];
+    _themeData = _themes[theme]["data"];
     _themeKey = theme;
     StorageManager.save("theme", theme);
     notifyListeners();

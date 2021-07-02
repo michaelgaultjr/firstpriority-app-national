@@ -1,11 +1,9 @@
 import 'package:first_priority_app/controllers/account.dart';
-import 'package:first_priority_app/models/user.dart';
 import 'package:first_priority_app/validators.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AccountScreen extends StatefulWidget {
   AccountScreen({Key key}) : super(key: key);
