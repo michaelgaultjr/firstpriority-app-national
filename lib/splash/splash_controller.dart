@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/school.dart';
+import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -12,6 +13,7 @@ class SplashController extends GetxController {
 
     await Get.putAsync(() => Api.createInstance());
     await Get.put(AccountController()).authenticate();
+    Get.put(MeetingController());
     Get.lazyPut(() => SchoolController(), fenix: true);
   }
 

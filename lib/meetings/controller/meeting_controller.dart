@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 class MeetingController extends GetxController {
   final api = Get.find<Api>();
 
-  List<Meeting> _meetings = [];
-  List<Meeting> _upcomingMeetings = [];
+  RxList<Meeting> _meetings = RxList<Meeting>();
+  RxList<Meeting> _upcomingMeetings = RxList<Meeting>();
 
   Future<void> create({
     String schoolId,
@@ -30,14 +30,14 @@ class MeetingController extends GetxController {
       },
     );
 
-    _meetings.add(Meeting.fromMap(res.data));
+    _meetings.insert(0, Meeting.fromMap(res.data));
   }
 
   Future<List<Meeting>> get() async {
     if (_meetings.isEmpty) {
       final res = await api.client.get('/api/meetings');
 
-      _meetings = List.from(res.data).map((e) => Meeting.fromMap(e)).toList();
+      _meetings(List.from(res.data).map((e) => Meeting.fromMap(e)).toList());
     }
 
     return _meetings;
@@ -47,8 +47,8 @@ class MeetingController extends GetxController {
     if (_upcomingMeetings.isEmpty) {
       final res = await api.client.get('/api/meetings/upcoming');
 
-      _upcomingMeetings =
-          List.from(res.data).map((e) => Meeting.fromMap(e)).toList();
+      _upcomingMeetings(
+          List.from(res.data).map((e) => Meeting.fromMap(e)).toList());
     }
 
     return _upcomingMeetings;
