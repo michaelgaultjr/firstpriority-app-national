@@ -77,6 +77,8 @@ class ThemeNotifier with ChangeNotifier {
 
   ThemeNotifier() {
     StorageManager.read('theme').then((theme) {
+      theme ??= _themes.keys.first;
+
       _themeData = _themes[theme];
       _themeKey = theme;
       notifyListeners();
