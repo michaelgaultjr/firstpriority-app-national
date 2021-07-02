@@ -39,7 +39,6 @@ dependencies:
   path_provider: ^1.6.28
   intl: ^0.17.0
   video_player: ^2.1.5
-  flutter_typeahead: ^2.0.0
   firebase_core: ^0.7.0
   firebase_messaging: ^8.0.0-dev.15
   provider: ^5.0.0
