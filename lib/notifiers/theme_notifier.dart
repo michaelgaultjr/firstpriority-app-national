@@ -78,16 +78,19 @@ class ThemeNotifier with ChangeNotifier {
 
   ThemeData _themeData;
   String _themeKey;
+  ThemeMode _themeMode;
+
   ThemeData get current => _themeData;
   String get key => _themeKey;
-  ThemeMode get mode => _themes[_themeKey]["mode"];
+  ThemeMode get mode => _themeMode;
 
   ThemeNotifier() {
     StorageManager.read('theme').then((theme) {
       theme ??= _themes.keys.first;
 
-      _themeData = _themes[theme]["data"];
       _themeKey = theme;
+      _themeData = _themes[theme]["data"];
+      _themeMode = _themes[_themeKey]["mode"];
       notifyListeners();
     });
   }
