@@ -1,6 +1,6 @@
 import 'package:first_priority_app/signUp/subComponents/LogoImage.dart';
+import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:flutter/material.dart';
-import '../../Constants.dart';
 
 class TopSignInPart extends StatelessWidget {
   @override
@@ -9,33 +9,24 @@ class TopSignInPart extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 15,
-        ),
-        LogoImage(),
         Container(
-          margin: EdgeInsets.only(top: 32.0),
-          child: Text(
-            "Sign In",
-            style: getCustomTextProperties(
-                Colors.black, 25, fontSchylerRegular, 1),
-          ),
+          margin: EdgeInsets.symmetric(vertical: 16),
+          child: LogoImage(),
         ),
         Container(
-          margin: EdgeInsets.only(top: 16.0),
+          margin: EdgeInsets.only(top: 16),
+          child: TitleText("Login"),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 16),
           alignment: Alignment.center,
           child: Center(
             child: Text(
               "Sign into your First Priority account to access"
-              "events devotionals, and resources. ",
-              style: getCustomTextProperties(
-                  Colors.grey, 12, fontSchylerRegular, 0),
+              "events devotionals, and resources.",
               textAlign: TextAlign.center,
             ),
           ),
-        ),
-        SizedBox(
-          height: 15,
         ),
       ],
     );

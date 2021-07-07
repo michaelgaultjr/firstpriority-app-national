@@ -1,16 +1,23 @@
+import 'package:first_priority_app/controllers/account.dart';
+import 'package:first_priority_app/dashboard/controller/MainDashboardController.dart';
 import 'package:first_priority_app/more/account/account_screen.dart';
 import 'package:first_priority_app/more/settings/settings_screen.dart';
+import 'package:first_priority_app/notifiers/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MoreItem {
   final String name;
-  final Widget screen;
   final Icon icon;
-  final String url;
+  final Function(BuildContext) action;
 
-  MoreItem({this.name, this.icon, this.screen, this.url});
+  MoreItem({
+    this.name,
+    this.icon,
+    this.action,
+  });
 }
 
 class MoreScreen extends StatelessWidget {
@@ -20,17 +27,38 @@ class MoreScreen extends StatelessWidget {
     MoreItem(
       name: "Settings",
       icon: Icon(Icons.settings),
-      screen: SettingsScreen(),
+      action: (_) => Get.to(() => SettingsScreen()),
     ),
     MoreItem(
       name: "Account",
       icon: Icon(Icons.person),
-      screen: AccountScreen(),
+      action: (_) => Get.to(() => AccountScreen()),
     ),
     MoreItem(
       name: "Website",
       icon: Icon(Icons.public),
-      url: "https://firstpriority.cc",
+      action: (context) async {
+        final url = "https://firstpriority.cc";
+        await canLaunch(url)
+            ? await launch(url)
+            : ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Could not launch $url'),
+                ),
+              );
+      },
+    ),
+    MoreItem(
+      name: "Logout",
+      icon: Icon(Icons.logout),
+      action: (context) {
+        final accountController = Get.find<AccountController>();
+        final _mainDashboardController = Get.find<MainDashboardController>();
+
+        accountController.logout();
+        Provider.of<ThemeNotifier>(context, listen: false).setTheme(null);
+        _mainDashboardController.currentIndex.value = 0;
+      },
     ),
   ];
 
@@ -41,22 +69,12 @@ class MoreScreen extends StatelessWidget {
         itemCount: _screens.length,
         itemBuilder: (context, index) {
           return ListTile(
-              leading: _screens[index].icon,
-              title: Text(_screens[index].name),
-              onTap: () async {
-                if (_screens[index].url != null) {
-                  await canLaunch(_screens[index].url)
-                      ? await launch(_screens[index].url)
-                      : ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content:
-                                Text('Could not launch ${_screens[index].url}'),
-                          ),
-                        );
-                } else {
-                  Get.to(() => _screens[index].screen);
-                }
-              });
+            leading: _screens[index].icon,
+            title: Text(_screens[index].name),
+            onTap: () async {
+              _screens[index].action(context);
+            },
+          );
         },
         separatorBuilder: (context, index) => const Divider(),
       ),

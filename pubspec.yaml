@@ -23,7 +23,7 @@ dependencies:
   flutter_svg: ^0.22.0
   dio: ^4.0.0
   path_provider: ^1.6.28
-  intl: ^0.17.0
+  jiffy: ^4.1.0
   video_player: ^2.1.5
   chewie: ^1.2.2
   firebase_core: ^0.7.0

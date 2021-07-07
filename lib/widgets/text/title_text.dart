@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class HeaderText extends StatelessWidget {
+class TitleText extends StatelessWidget {
   final String data;
   final double fontSize;
 
-  const HeaderText(this.data, {Key key, this.fontSize}) : super(key: key);
+  const TitleText(this.data, {Key key, this.fontSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

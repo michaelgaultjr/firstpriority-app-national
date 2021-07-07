@@ -23,6 +23,11 @@ class AccountController extends getx.GetxController {
     return _handleAuthResult(res.data);
   }
 
+  Future<void> logout() async {
+    await api.client.get('/api/account/logout');
+    _user.value = null;
+  }
+
   Future<AuthenticationResult> authenticate() async {
     final res = await api.client.get('/api/account/authenticate');
     return _handleAuthResult(res.data);

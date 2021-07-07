@@ -27,4 +27,8 @@ class User {
         schoolId = map['schoolId'],
         schoolName = map['schoolName'],
         schoolRoom = map['schoolRoom'];
+
+  bool hasRole(List<String> requiredRoles) {
+    return requiredRoles.any((element) => roles.contains(element));
+  }
 }

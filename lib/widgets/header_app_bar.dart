@@ -1,4 +1,4 @@
-import 'package:first_priority_app/widgets/text/header_text.dart';
+import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:first_priority_app/widgets/text/subtitle_text.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class HeaderAppBar extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              child: HeaderText(title),
+              child: TitleText(title),
             ),
             if (subtitle != null)
               Container(

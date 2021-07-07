@@ -86,19 +86,21 @@ class ThemeNotifier with ChangeNotifier {
 
   ThemeNotifier() {
     StorageManager.read('theme').then((theme) {
-      theme ??= _themes.keys.first;
-
-      _themeKey = theme;
-      _themeData = _themes[theme]["data"];
-      _themeMode = _themes[_themeKey]["mode"];
-      notifyListeners();
+      _applyTheme(theme);
     });
   }
 
   void setTheme(String theme) {
-    _themeData = _themes[theme]["data"];
-    _themeKey = theme;
+    _applyTheme(theme);
     StorageManager.save("theme", theme);
+  }
+
+  void _applyTheme(String theme) {
+    theme ??= _themes.keys.first;
+
+    _themeKey = theme;
+    _themeData = _themes[theme]["data"];
+    _themeMode = _themes[_themeKey]["mode"];
     notifyListeners();
   }
 }

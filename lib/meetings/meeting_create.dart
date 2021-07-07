@@ -8,7 +8,7 @@ import 'package:first_priority_app/validators.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/generic_list.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
-import 'package:first_priority_app/widgets/text/header_text.dart';
+import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -166,7 +166,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
                     Container(
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.only(top: 20, bottom: 5),
-                      child: HeaderText('Roles'),
+                      child: TitleText('Roles'),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

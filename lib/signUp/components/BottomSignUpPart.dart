@@ -1,5 +1,5 @@
 import 'package:first_priority_app/dashboard/MainDashboard.dart';
-import 'package:first_priority_app/signIn/SignInScreen.dart';
+import 'package:first_priority_app/login/login_screen.dart';
 import 'package:first_priority_app/signUp/controller/SignUpController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -100,7 +100,7 @@ class BottomSignUpPart extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(() => SignInScreen());
+                  Get.to(() => LoginScreen());
                 },
                 child: Text(
                   'Sign In',

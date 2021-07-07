@@ -30,7 +30,8 @@ class MeetingController extends GetxController {
       },
     );
 
-    _meetings.insert(0, Meeting.fromMap(res.data));
+    _meetings.add(Meeting.fromMap(res.data));
+    _meetings.sort((a, b) => b.time.compareTo(a.time));
   }
 
   Future<List<Meeting>> get() async {

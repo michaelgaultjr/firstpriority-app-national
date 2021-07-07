@@ -1,4 +1,4 @@
-import 'package:first_priority_app/widgets/text/header_text.dart';
+import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:flutter/material.dart';
 
 class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -30,7 +30,7 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               Align(
-                child: HeaderText(
+                child: TitleText(
                   title,
                   fontSize: 24,
                 ),

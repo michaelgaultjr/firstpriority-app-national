@@ -1,7 +1,7 @@
 import 'package:first_priority_app/devotionals/components/DevotionalListItemView.dart';
 import 'package:first_priority_app/devotionals/devotionals_controller.dart';
 import 'package:first_priority_app/models/devotional.dart';
-import 'package:first_priority_app/widgets/text/header_text.dart';
+import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +23,7 @@ class DevotionalsScreen extends StatelessWidget {
 
           if (snapshot.data.isEmpty) {
             return Center(
-              child: HeaderText("No Devotionals"),
+              child: TitleText("No Devotionals"),
             );
           }
 

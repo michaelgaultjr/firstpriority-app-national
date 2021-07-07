@@ -1,4 +1,4 @@
-import 'package:first_priority_app/meetings/meeting_details/meeting_details.dart';
+import 'package:first_priority_app/meetings/meeting_details.dart';
 import 'package:first_priority_app/models/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
