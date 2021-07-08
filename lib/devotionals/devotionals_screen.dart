@@ -10,38 +10,35 @@ class DevotionalsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
-      child: FutureBuilder<List<Devotional>>(
-        future: _controller.get(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (snapshot.data.isEmpty) {
-            return Center(
-              child: TitleText("No Devotionals"),
-            );
-          }
-
-          return ListView.builder(
-            shrinkWrap: true,
-            padding: EdgeInsets.zero,
-            itemBuilder: (BuildContext ctx, int index) {
-              return Container(
-                margin: EdgeInsets.symmetric(vertical: 6),
-                child: DevotionalListItemView(
-                  devotional: snapshot.data[index],
-                ),
-              );
-            },
-            itemCount: snapshot.data.length,
+    return FutureBuilder<List<Devotional>>(
+      future: _controller.get(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
           );
-        },
-      ),
+        }
+
+        if (snapshot.data.isEmpty) {
+          return Center(
+            child: TitleText("No Devotionals"),
+          );
+        }
+
+        return ListView.builder(
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          itemBuilder: (BuildContext ctx, int index) {
+            return Container(
+              margin: EdgeInsets.symmetric(vertical: 6),
+              child: DevotionalListItemView(
+                devotional: snapshot.data[index],
+              ),
+            );
+          },
+          itemCount: snapshot.data.length,
+        );
+      },
     );
   }
 }

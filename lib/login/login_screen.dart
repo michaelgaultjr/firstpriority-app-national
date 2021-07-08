@@ -1,11 +1,14 @@
 import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/login/components/TopSignInPart.dart';
+import 'package:first_priority_app/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Constants.dart';
 
 class LoginScreen extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
   static const resetPasswordUrl =
       "https://core.firstpriority.cc/Identity/Account/ForgotPassword";
 
@@ -20,14 +23,18 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(16),
-          child: Center(
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   TopSignInPart(),
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
+                    validator: Validators.email,
                     decoration: InputDecoration(
                       labelText: "Email",
                       hintText: "Enter Email Address",
@@ -36,6 +43,7 @@ class LoginScreen extends StatelessWidget {
                   TextFormField(
                     controller: _passwordController,
                     keyboardType: TextInputType.visiblePassword,
+                    validator: Validators.required,
                     style: TextStyle(fontFamily: fontSchylerRegular),
                     obscureText: true,
                     decoration: InputDecoration(
@@ -49,6 +57,8 @@ class LoginScreen extends StatelessWidget {
                     child: ElevatedButton(
                       child: Text("Sign In"),
                       onPressed: () async {
+                        if (!_formKey.currentState.validate()) return;
+
                         final result = await _controller.login(
                           _emailController.text,
                           _passwordController.text,
@@ -60,7 +70,7 @@ class LoginScreen extends StatelessWidget {
 
                         if (result.isLockedOut) {
                           errorMessage =
-                              "Locked Out. Too many invalid login attempts.";
+                              "Locked out. Too many invalid login attempts.";
                         } else if (result.isNotAllowed) {
                           errorMessage = "Login disabled for this account.";
                         }

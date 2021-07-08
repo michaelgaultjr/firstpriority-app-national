@@ -85,7 +85,7 @@ class ThemeNotifier with ChangeNotifier {
   ThemeMode get mode => _themeMode;
 
   ThemeNotifier() {
-    StorageManager.read('theme').then((theme) {
+    StorageManager.read("theme").then((theme) {
       _applyTheme(theme);
     });
   }

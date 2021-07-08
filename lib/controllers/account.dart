@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/api.dart';
+import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/models/authentication_result.dart';
 import 'package:first_priority_app/models/user.dart';
 import 'package:get/get.dart' as getx;
 
 class AccountController extends getx.GetxController {
   final api = getx.Get.find<Api>();
+  final _schoolController = getx.Get.find<SchoolController>();
 
   getx.Rx<User> get user => _user;
   getx.Rx<User> _user = getx.Rx<User>(null);
@@ -57,13 +59,16 @@ class AccountController extends getx.GetxController {
 
     if (result.authenticated) {
       _user(result.user);
+      _schoolController.school(result.school);
 
-      FirebaseMessaging.instance
-          .subscribeToTopic("school_${result.user.schoolId}");
+      if (result.school != null)
+        FirebaseMessaging.instance
+            .subscribeToTopic("school_${result.school.id}");
       FirebaseMessaging.instance
           .subscribeToTopic("region_${result.user.regionId}");
       FirebaseMessaging.instance.subscribeToTopic("user_${result.user.id}");
     }
+
     return result;
   }
 }

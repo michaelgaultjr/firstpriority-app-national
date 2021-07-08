@@ -3,6 +3,7 @@ import 'package:first_priority_app/dashboard/controller/MainDashboardController.
 import 'package:first_priority_app/more/account/account_screen.dart';
 import 'package:first_priority_app/more/settings/settings_screen.dart';
 import 'package:first_priority_app/notifiers/theme_notifier.dart';
+import 'package:first_priority_app/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -51,13 +52,18 @@ class MoreScreen extends StatelessWidget {
     MoreItem(
       name: "Logout",
       icon: Icon(Icons.logout),
-      action: (context) {
+      action: (context) async {
         final accountController = Get.find<AccountController>();
         final _mainDashboardController = Get.find<MainDashboardController>();
 
-        accountController.logout();
-        Provider.of<ThemeNotifier>(context, listen: false).setTheme(null);
-        _mainDashboardController.currentIndex.value = 0;
+        LoadingDialog.show(
+          context: context,
+          future: () async {
+            await accountController.logout();
+            Provider.of<ThemeNotifier>(context, listen: false).setTheme(null);
+            _mainDashboardController.currentIndex.value = 0;
+          },
+        );
       },
     ),
   ];

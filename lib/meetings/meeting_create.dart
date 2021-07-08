@@ -1,4 +1,3 @@
-import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/models/cycle.dart';
@@ -26,7 +25,6 @@ class _MeetingCreateState extends State<MeetingCreate> {
 
   final _controller = Get.find<MeetingController>();
   final _schoolController = Get.find<SchoolController>();
-  final _accountController = Get.find<AccountController>();
   final _timeController = TextEditingController();
 
   final _roomController = TextEditingController();
@@ -49,7 +47,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
   @override
   void initState() {
     super.initState();
-    _roomController.text = _accountController.user.value.schoolRoom;
+    _roomController.text = _schoolController.school.value.room;
   }
 
   @override
@@ -80,6 +78,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Form(
                 key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -219,8 +218,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
                             context: context,
                             future: () async {
                               await _controller.create(
-                                schoolId:
-                                    _accountController.user.value.schoolId,
+                                schoolId: _schoolController.school.value.id,
                                 room: _roomController.text,
                                 time: _meetingTime,
                                 week: _week.name,

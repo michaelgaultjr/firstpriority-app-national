@@ -21,15 +21,12 @@ class ResourcesScreen extends StatelessWidget {
           );
         }
 
-        return Container(
-          padding: EdgeInsets.only(top: 8),
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: snapshot.data.length,
-            itemBuilder: (BuildContext ctx, int index) {
-              return resourceWidget(snapshot.data[index]);
-            },
-          ),
+        return ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: snapshot.data.length,
+          itemBuilder: (BuildContext ctx, int index) {
+            return resourceWidget(snapshot.data[index]);
+          },
         );
       },
     );

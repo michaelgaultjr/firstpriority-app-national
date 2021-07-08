@@ -12,9 +12,9 @@ class SplashController extends GetxController {
     await initializeFirebase();
 
     await Get.putAsync(() => Api.createInstance());
+    Get.put(SchoolController());
     await Get.put(AccountController()).authenticate();
     Get.put(MeetingController());
-    Get.lazyPut(() => SchoolController(), fenix: true);
   }
 
   Future<void> initializeFirebase() async {

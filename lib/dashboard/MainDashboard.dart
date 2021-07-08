@@ -1,8 +1,8 @@
+import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/devotionals/devotionals_screen.dart';
 import 'package:first_priority_app/meetings/meeting_screen.dart';
 import 'package:first_priority_app/more/more_screen.dart';
 import 'package:first_priority_app/widgets/header_app_bar.dart';
-import 'package:intl/intl.dart';
 import 'controller/MainDashboardController.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
 import 'package:first_priority_app/resources/resources_screen.dart';
@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 class MainDashBoard extends StatelessWidget {
   final MainDashboardController _mainDashboardController =
       Get.put(MainDashboardController());
+  final SchoolController _schoolController = Get.find<SchoolController>();
 
   final _pageOptions = [
     HomeScreen(),
@@ -28,8 +29,7 @@ class MainDashBoard extends StatelessWidget {
       () => Scaffold(
         appBar: HeaderAppBar(
           title: _items[_mainDashboardController.currentIndex.value].label,
-          subtitle:
-              DateFormat('EEEE, MMMM d').format(DateTime.now()).toUpperCase(),
+          subtitle: _schoolController.school.value.name,
         ),
         body: _pageOptions[_mainDashboardController.currentIndex.value],
         bottomNavigationBar: BottomNavigationBar(

@@ -1,4 +1,5 @@
 import 'package:first_priority_app/controllers/api.dart';
+import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/models/cycle.dart';
 import 'package:first_priority_app/models/event.dart';
 import 'package:first_priority_app/models/week.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 
 class MeetingController extends GetxController {
   final api = Get.find<Api>();
+  final _schoolController = Get.find<SchoolController>();
 
   RxList<Meeting> _meetings = RxList<Meeting>();
   RxList<Meeting> _upcomingMeetings = RxList<Meeting>();
@@ -19,7 +21,7 @@ class MeetingController extends GetxController {
     Map<String, List<String>> roles,
   }) async {
     final res = await api.client.post(
-      '/api/meetings',
+      '/api/meetings/${_schoolController.school.value.id}',
       data: {
         'schoolId': schoolId,
         'cycleId': cycleId,
@@ -36,7 +38,8 @@ class MeetingController extends GetxController {
 
   Future<List<Meeting>> get() async {
     if (_meetings.isEmpty) {
-      final res = await api.client.get('/api/meetings');
+      final res = await api.client
+          .get('/api/meetings/${_schoolController.school.value.id}');
 
       _meetings(List.from(res.data).map((e) => Meeting.fromMap(e)).toList());
     }
@@ -46,7 +49,8 @@ class MeetingController extends GetxController {
 
   Future<List<Meeting>> getUpcoming() async {
     if (_upcomingMeetings.isEmpty) {
-      final res = await api.client.get('/api/meetings/upcoming');
+      final res = await api.client
+          .get('/api/meetings/${_schoolController.school.value.id}/upcoming');
 
       _upcomingMeetings(
           List.from(res.data).map((e) => Meeting.fromMap(e)).toList());
