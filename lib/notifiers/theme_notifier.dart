@@ -191,5 +191,8 @@ ThemeData buildTheme({
         ),
       ),
     ),
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.all(colorScheme.secondary),
+    ),
   );
 }

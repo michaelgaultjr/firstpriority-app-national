@@ -2,19 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingDialog extends StatelessWidget {
-  final BuildContext context;
-
-  LoadingDialog.show({
-    @required this.context,
+  static Future<void> show({
+    @required BuildContext context,
     Future<dynamic> Function() future,
-  }) {
+  }) async {
     showDialog(
       context: context,
-      builder: (BuildContext context) => this,
+      builder: (BuildContext context) => LoadingDialog(),
     );
 
     if (future != null) {
-      future().whenComplete(() => Navigator.of(context).pop());
+      await future().whenComplete(() => Navigator.of(context).pop());
     }
   }
 

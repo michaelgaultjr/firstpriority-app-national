@@ -1,6 +1,6 @@
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/meetings/meeting_preview.dart';
-import 'package:first_priority_app/models/event.dart';
+import 'package:first_priority_app/models/meeting.dart';
 import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:first_priority_app/widgets/text/subtitle_text.dart';
 import 'package:flutter/material.dart';

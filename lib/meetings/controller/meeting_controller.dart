@@ -1,7 +1,8 @@
 import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/models/cycle.dart';
-import 'package:first_priority_app/models/event.dart';
+import 'package:first_priority_app/models/meeting.dart';
+import 'package:first_priority_app/models/message.dart';
 import 'package:first_priority_app/models/week.dart';
 import 'package:get/get.dart';
 
@@ -45,6 +46,17 @@ class MeetingController extends GetxController {
     }
 
     return _meetings;
+  }
+
+  Future<bool> hasReport(DateTime time) async {
+    final res = await api.client.get(
+      '/api/meetings/${_schoolController.school.value.id}/report',
+      queryParameters: {
+        "time": time,
+      },
+    );
+
+    return res.data as bool;
   }
 
   Future<List<Meeting>> getUpcoming() async {
