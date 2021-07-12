@@ -1,8 +1,6 @@
 import 'package:first_priority_app/controllers/message.dart';
-import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/models/meeting.dart';
-import 'package:first_priority_app/models/school.dart';
 import 'package:first_priority_app/report/report_screen.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/dialogs/select_dialog.dart';
