@@ -1,133 +1,108 @@
-import 'package:first_priority_app/Constants.dart';
-import 'package:first_priority_app/devotionals/devotionalsScreen/DevotionalsScreen.dart';
+import 'package:first_priority_app/controllers/school.dart';
+import 'package:first_priority_app/devotionals/devotionals_screen.dart';
+import 'package:first_priority_app/meetings/meeting_screen.dart';
+import 'package:first_priority_app/more/more_screen.dart';
+import 'package:first_priority_app/widgets/header_app_bar.dart';
 import 'controller/MainDashboardController.dart';
-import 'package:first_priority_app/events/eventsScreen/EventsScreen.dart';
 import 'package:first_priority_app/home/homeScreen/HomeScreen.dart';
-import 'package:first_priority_app/profile/ProfileScreen.dart';
-import 'package:first_priority_app/resources/resourcesScreen/ResourcesScreen.dart';
+import 'package:first_priority_app/resources/resources_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class MainDashBoard extends StatelessWidget {
   final MainDashboardController _mainDashboardController =
       Get.put(MainDashboardController());
+  final SchoolController _schoolController = Get.find<SchoolController>();
 
   final _pageOptions = [
     HomeScreen(),
-    EventsScreen(),
+    MeetingScreen(),
     ResourcesScreen(),
     DevotionalsScreen(),
-    ProfileScreen(),
+    MoreScreen(),
   ];
 
 
   @override
   Widget build(BuildContext context) {
+    final _items = buildItems(context);
     return Obx(
       () => Scaffold(
+        appBar: HeaderAppBar(
+          title: _items[_mainDashboardController.currentIndex.value].label,
+          subtitle: _schoolController.school.value.name,
+        ),
         body: _pageOptions[_mainDashboardController.currentIndex.value],
         bottomNavigationBar: BottomNavigationBar(
-            items: _items,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: colorSelectedBottom,
-            unselectedItemColor: Colors.black12,
-            iconSize: 40,
-            backgroundColor: Colors.white,
-            onTap: (index) {
-              _mainDashboardController.currentIndex.value = index;
-            },
-            currentIndex: _mainDashboardController.currentIndex.value,
-            elevation: 5),
+          items: _items,
+          type: BottomNavigationBarType.fixed,
+          iconSize: 40,
+          onTap: (index) {
+            _mainDashboardController.currentIndex.value = index;
+          },
+          currentIndex: _mainDashboardController.currentIndex.value,
+        ),
       ),
     );
   }
 
-  final _items = [
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset(
-        'assets/svgimages/home.svg',
-        height: iconSizes,
-        width: iconSizes,
-      ),
-      title: Text(
-        'Home',
-        style: TextStyle(
-          fontSize: textSizes,
+  List<BottomNavigationBarItem> buildItems(BuildContext context) {
+    return [
+      BottomNavigationBarItem(
+        icon: Icon(
+          Icons.home_outlined,
+          size: 24,
         ),
-      ),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/home.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/events.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/events.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Events',
-        style: TextStyle(
-          fontSize: textSizes,
+        activeIcon: Icon(
+          Icons.home_outlined,
+          size: 32,
         ),
+        label: 'Home',
       ),
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/message.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/message.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Resources',
-        style: TextStyle(
-          fontSize: textSizes,
+      BottomNavigationBarItem(
+        icon: Icon(
+          Icons.calendar_today_outlined,
+          size: 24,
         ),
-      ),
-    ),
-    // BottomNavigationBarItem(
-    //     icon: Icon(Icons.home, size: 30), title: Text('Churches')),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/bookmark.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/bookmark.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Devotionals',
-        style: TextStyle(
-          fontSize: textSizes,
+        activeIcon: Icon(
+          Icons.calendar_today_outlined,
+          size: 32,
         ),
+        label: 'Meetings',
       ),
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset('assets/svgimages/profile.svg',
-          height: iconSizes, width: iconSizes),
-      activeIcon: SvgPicture.asset(
-        'assets/svgimages/profile.svg',
-        height: iconSizes,
-        width: iconSizes,
-        color: colorSelectedBottom,
-      ),
-      title: Text(
-        'Profile',
-        style: TextStyle(
-          fontSize: textSizes,
+      BottomNavigationBarItem(
+        icon: Icon(
+          Icons.menu_book_outlined,
+          size: 24,
         ),
+        activeIcon: Icon(
+          Icons.menu_book_outlined,
+          size: 32,
+        ),
+        label: 'Resources',
       ),
-    )
-  ];
+      BottomNavigationBarItem(
+        icon: Icon(
+          Icons.book_outlined,
+          size: 24,
+        ),
+        activeIcon: Icon(
+          Icons.book_outlined,
+          size: 32,
+        ),
+        label: 'Devotionals',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(
+          Icons.more_horiz,
+          size: 24,
+        ),
+        activeIcon: Icon(
+          Icons.more_horiz,
+          size: 32,
+        ),
+        label: 'More',
+      )
+    ];
+  }
 }

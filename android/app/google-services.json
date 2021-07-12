@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "791409646526",
+    "project_id": "first-priority-app-f8bfb",
+    "storage_bucket": "first-priority-app-f8bfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791409646526:android:4dbd1359ac21e6316b77ef",
+        "android_client_info": {
+          "package_name": "com.firstpriority.core.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791409646526-posiai85lu9c9l0t41rfk3qn5jrhekda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcqUFaL7lFDD9ofpxJwIF-B6HM-yem4w0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791409646526-posiai85lu9c9l0t41rfk3qn5jrhekda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

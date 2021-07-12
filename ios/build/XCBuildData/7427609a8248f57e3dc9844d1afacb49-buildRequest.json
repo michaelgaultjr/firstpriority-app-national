@@ -1,0 +1,58 @@
+{
+  "buildCommand" : "prepareForIndexing",
+  "configuredTargets" : [
+    {
+      "guid" : "9b71fb20a27e9cf721b97bf25420290988a783a885d8b0b3beb2e9f90bde3f49"
+    }
+  ],
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos14.5",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "arm64v8",
+        "arm64",
+        "armv8"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/michaelgault/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/michaelgault/Library/Developer/Xcode/DerivedData/Runner-enjttqtwawmndvazmckyhwpnonwz/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/michaelgault/Library/Developer/Xcode/DerivedData/Runner-enjttqtwawmndvazmckyhwpnonwz/Index/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ASSETCATALOG_FILTER_FOR_DEVICE_MODEL" : "iPad6,4",
+          "ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION" : "14.6",
+          "BUILD_ACTIVE_RESOURCES_ONLY" : "YES",
+          "ENABLE_PREVIEWS" : "NO",
+          "TARGET_DEVICE_IDENTIFIER" : "0b50a1fc615aacf9ebd37e4a44c2158f0a283e90",
+          "TARGET_DEVICE_MODEL" : "iPad6,4",
+          "TARGET_DEVICE_OS_VERSION" : "14.6",
+          "TARGET_DEVICE_PLATFORM_NAME" : "iphoneos"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
