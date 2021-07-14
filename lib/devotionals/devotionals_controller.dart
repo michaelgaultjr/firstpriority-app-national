@@ -24,11 +24,9 @@ class DevotionalsController extends GetxController {
     if (_today.value == null) {
       final res = await api.client.get('/api/devotionals/today');
 
-      if (res.data == null || res.data == "") {
-        _today(Devotional(title: "No Devotional Today"));
-      }
-
-      _today(Devotional.fromMap(res.data));
+      _today(res.data == null || res.data == ""
+          ? null
+          : Devotional.fromMap(res.data));
     }
 
     return _today.value;

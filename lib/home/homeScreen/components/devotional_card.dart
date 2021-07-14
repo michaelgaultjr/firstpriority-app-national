@@ -12,10 +12,15 @@ class DevotionalCard extends StatelessWidget {
     return FutureBuilder<Devotional>(
       future: _controller.getToday(),
       builder: (context, snapshot) {
-        if (!snapshot.hasData) {
+        // * Check if the request is done rather than checking if the request has data, as the data could be null
+        if (snapshot.connectionState != ConnectionState.done) {
           return Center(
             child: CircularProgressIndicator(),
           );
+        }
+
+        if (snapshot.data == null) {
+          return Container();
         }
 
         return DevotionalListItemView(devotional: snapshot.data);
