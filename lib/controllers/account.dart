@@ -27,6 +27,14 @@ class AccountController extends getx.GetxController {
 
   Future<void> logout() async {
     await api.client.get('/api/account/logout');
+
+    // Unsubscribe from push notification topics before logout
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic("school_${_schoolController.school.value.id}");
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic("region_${_user.value.regionId}");
+    FirebaseMessaging.instance.unsubscribeFromTopic("user_${_user.value.id}");
+
     _user.value = null;
     _schoolController.school.value = null;
   }
@@ -62,9 +70,14 @@ class AccountController extends getx.GetxController {
       _user(result.user);
       _schoolController.school(result.school);
 
-      if (result.school != null)
+      // Only subscribe to school notifications if the user has a default school
+      // If the user doesn't have a default school, they are likely managing multiple
+      // and probably don't want reminder notifications for all of them.
+      if (result.school != null) {
         FirebaseMessaging.instance
             .subscribeToTopic("school_${result.school.id}");
+      }
+
       FirebaseMessaging.instance
           .subscribeToTopic("region_${result.user.regionId}");
       FirebaseMessaging.instance.subscribeToTopic("user_${result.user.id}");
