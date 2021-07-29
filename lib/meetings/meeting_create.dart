@@ -93,7 +93,9 @@ class _MeetingCreateState extends State<MeetingCreate> {
                       decoration: InputDecoration(
                         labelText: 'Meeting Date',
                       ),
-                      validator: Validators.required,
+                      validator: Validators.requiredWithMessage(
+                        "Please pick a meeting date",
+                      ),
                       controller: _timeController,
                       readOnly: true,
                       onTap: () async {

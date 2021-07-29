@@ -24,10 +24,16 @@ class _DevotionalsDetailsScreenState extends State<DevotionalsDetailsScreen> {
   void initState() {
     super.initState();
     _videoController = VideoPlayerController.network(widget.devotional.videoUrl)
-      ..initialize().then((_) => setState(() {
-            _chewieController =
-                ChewieController(videoPlayerController: _videoController);
-          }));
+      ..initialize()
+          .then(
+            (_) => setState(
+              () {
+                _chewieController =
+                    ChewieController(videoPlayerController: _videoController);
+              },
+            ),
+          )
+          .catchError((e) => print(e));
   }
 
   @override

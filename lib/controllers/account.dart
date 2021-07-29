@@ -29,8 +29,9 @@ class AccountController extends getx.GetxController {
     await api.client.get('/api/account/logout');
 
     // Unsubscribe from push notification topics before logout
-    FirebaseMessaging.instance
-        .unsubscribeFromTopic("school_${_schoolController.school.value.id}");
+    if (_schoolController.school.value != null)
+      FirebaseMessaging.instance
+          .unsubscribeFromTopic("school_${_schoolController.school.value.id}");
     FirebaseMessaging.instance
         .unsubscribeFromTopic("region_${_user.value.regionId}");
     FirebaseMessaging.instance.unsubscribeFromTopic("user_${_user.value.id}");

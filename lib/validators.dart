@@ -3,6 +3,12 @@ class Validators {
     return value.isEmpty ? "Field cannot be empty" : null;
   }
 
+  static String Function(String) requiredWithMessage(String message) {
+    return (String value) {
+      return value.isEmpty ? message : null;
+    };
+  }
+
   static final _phoneNumberRegex = RegExp(
     r"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$",
   );
