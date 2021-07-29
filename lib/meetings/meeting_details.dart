@@ -69,11 +69,23 @@ class _MeetingDetailsState extends State<MeetingDetails> {
             SubtitleText(
               '${Jiffy(widget.meeting.time).format("h:mma")} • ${widget.meeting.room}',
             ),
-            ElevatedButton(
-              onPressed: () async {
-                await launch(meeting.pdfUrl);
-              },
-              child: Text("View PDF"),
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await launch(meeting.videoUrl);
+                },
+                child: Text("Video Summary"),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await launch(meeting.pdfUrl);
+                },
+                child: Text("Discussion Guide"),
+              ),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 10),
