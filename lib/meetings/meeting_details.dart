@@ -1,6 +1,5 @@
 import 'package:first_priority_app/controllers/message.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
-import 'package:first_priority_app/models/cycle_resource.dart';
 import 'package:first_priority_app/models/meeting.dart';
 import 'package:first_priority_app/report/report_screen.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
@@ -14,6 +13,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class MeetingDetails extends StatefulWidget {
   final Meeting meeting;
@@ -84,7 +84,13 @@ class _MeetingDetailsState extends State<MeetingDetails> {
               margin: EdgeInsets.only(top: 5),
               child: ElevatedButton(
                 onPressed: () async {
-                  await launch(meeting.pdfUrl);
+                  // await launch(meeting.pdfUrl);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return SfPdfViewer.network(meeting.pdfUrl);
+                    },
+                  );
                 },
                 child: Text("Discussion Guide"),
               ),
