@@ -1,9 +1,11 @@
 import 'package:first_priority_app/controllers/account.dart';
+import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/dashboard/controller/MainDashboardController.dart';
 import 'package:first_priority_app/more/account/account_screen.dart';
 import 'package:first_priority_app/more/settings/settings_screen.dart';
 import 'package:first_priority_app/notifiers/theme_notifier.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
+import 'package:first_priority_app/widgets/policy_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +37,18 @@ class MoreScreen extends StatelessWidget {
       icon: Icon(Icons.person),
       action: (_) => Get.to(() => AccountScreen()),
     ),
+    if (Policy.validate(Policy.switchClub))
+      MoreItem(
+        name: "Switch Club",
+        icon: Icon(Icons.swap_horiz),
+        action: (_) {
+          final schoolController = Get.find<SchoolController>();
+          final mainDashboardController = Get.find<MainDashboardController>();
+
+          schoolController.school.value = null;
+          mainDashboardController.currentIndex.value = 0;
+        },
+      ),
     MoreItem(
       name: "Website",
       icon: Icon(Icons.public),
@@ -54,14 +68,14 @@ class MoreScreen extends StatelessWidget {
       icon: Icon(Icons.logout),
       action: (context) async {
         final accountController = Get.find<AccountController>();
-        final _mainDashboardController = Get.find<MainDashboardController>();
+        final mainDashboardController = Get.find<MainDashboardController>();
 
         LoadingDialog.show(
           context: context,
           future: () async {
             await accountController.logout();
             Provider.of<ThemeNotifier>(context, listen: false).setTheme(null);
-            _mainDashboardController.currentIndex.value = 0;
+            mainDashboardController.currentIndex.value = 0;
           },
         );
       },

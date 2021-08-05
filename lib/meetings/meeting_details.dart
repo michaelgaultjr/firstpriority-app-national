@@ -40,7 +40,8 @@ class _MeetingDetailsState extends State<MeetingDetails> {
         policy: Policy.manageMeetings,
         builder: (context, valid) {
           if (!valid) return Container();
-          if (meeting.time.isBefore(DateTime.now())) return Container();
+          if (meeting.time.toUtc().isBefore(DateTime.now().toUtc()))
+            return Container();
 
           return _buildSpeedDial(context);
         },
@@ -54,7 +55,8 @@ class _MeetingDetailsState extends State<MeetingDetails> {
               policy: Policy.manageMeetings,
               builder: (context, valid) {
                 if (!valid) return Container();
-                if (meeting.time.isBefore(DateTime.now())) return Container();
+                if (meeting.time.toUtc().isAfter(DateTime.now().toUtc()))
+                  return Container();
 
                 return _buildReportPrompt();
               },
@@ -184,11 +186,11 @@ class _MeetingDetailsState extends State<MeetingDetails> {
     return FutureBuilder<bool>(
       future: _meetingController.hasReport(widget.meeting.time),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (!snapshot.hasData) {
           return Container();
         }
 
-        if ((snapshot.data ?? false) == false) {
+        if (snapshot.data ?? false) {
           return Container();
         }
 

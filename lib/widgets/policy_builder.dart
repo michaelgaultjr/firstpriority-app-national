@@ -14,11 +14,7 @@ class PolicyBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final accountController = Get.find<AccountController>();
-
-    final isValid = accountController.user.value.hasRole(policy.roles);
-
-    return builder(context, isValid);
+    return builder(context, Policy.validate(this.policy));
   }
 }
 
@@ -32,7 +28,21 @@ class Policy {
     "Parent",
     "Sponsor",
     "Mentor",
+    "Coach",
     "Staff",
     "Admin",
   ]);
+
+  static const Policy switchClub = Policy(roles: [
+    "Mentor",
+    "Coach",
+  ]);
+
+  static validate(Policy policy) {
+    final accountController = Get.find<AccountController>();
+
+    final isValid = accountController.user.value.hasRole(policy.roles);
+
+    return isValid;
+  }
 }

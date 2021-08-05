@@ -42,6 +42,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
     'Food Order': ValueNotifier([]),
     'Discussion Leaders': ValueNotifier([]),
     'Setup & Teardown': ValueNotifier([]),
+    'Reporting': ValueNotifier([]),
   };
 
   @override
@@ -92,6 +93,8 @@ class _MeetingCreateState extends State<MeetingCreate> {
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Meeting Date',
+                        hintText: 'Pick Meeting Date & Time',
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
                       validator: Validators.requiredWithMessage(
                         "Please pick a meeting date",

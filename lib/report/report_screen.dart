@@ -77,6 +77,7 @@ class _ReportScreenState extends State<ReportScreen> {
                       decoration: InputDecoration(
                         labelText: "Notes",
                         hintText: "Enter notes here...",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
                       controller: _notesTextController,
                       keyboardType: TextInputType.multiline,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/account.dart';
@@ -6,9 +7,17 @@ import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/message.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
+  static const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    'This channel is used for important notifications.', // description
+    importance: Importance.max,
+  );
+
   Future<void> initialize() async {
     await initializeFirebase();
 
@@ -41,6 +50,38 @@ class SplashController extends GetxController {
       badge: true,
       sound: true,
     );
+
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
+    if (Platform.isAndroid) {
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        RemoteNotification notification = message.notification;
+        AndroidNotification android = message.notification?.android;
+
+        // If `onMessage` is triggered with a notification, construct our own
+        // local notification to show to users using the created channel.
+        if (notification != null && android != null) {
+          flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id, channel.name, channel.description,
+                icon: "ic_stat_first_priority_full_icon_white",
+                // other properties...
+              ),
+            ),
+          );
+        }
+      });
+    }
   }
 }
 
