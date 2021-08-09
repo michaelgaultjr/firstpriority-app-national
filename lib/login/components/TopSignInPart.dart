@@ -22,8 +22,7 @@ class TopSignInPart extends StatelessWidget {
           alignment: Alignment.center,
           child: Center(
             child: Text(
-              "Login to your First Priority account to access"
-              "events devotionals, and resources.",
+              "Login to your First Priority account to access events devotionals, and resources.",
               textAlign: TextAlign.center,
             ),
           ),

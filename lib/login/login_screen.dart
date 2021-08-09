@@ -12,6 +12,8 @@ class LoginScreen extends StatelessWidget {
   static const resetPasswordUrl =
       "https://core.firstpriority.cc/Identity/Account/ForgotPassword";
 
+  static const createAccountUrl = "https://core.firstpriority.cc/register";
+
   final AccountController _controller = Get.find<AccountController>();
 
   final TextEditingController _emailController = new TextEditingController();
@@ -97,7 +99,6 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Trouble signing in?'),
-                      SizedBox(width: 2.0),
                       TextButton(
                         onPressed: () async {
                           await canLaunch(resetPasswordUrl)
@@ -110,6 +111,25 @@ class LoginScreen extends StatelessWidget {
                                 );
                         },
                         child: Text("Reset your password."),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Don't have an account?"),
+                      TextButton(
+                        onPressed: () async {
+                          await canLaunch(createAccountUrl)
+                              ? launch(createAccountUrl)
+                              : ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        'Could not launch $createAccountUrl'),
+                                  ),
+                                );
+                        },
+                        child: Text("Register here!"),
                       )
                     ],
                   ),

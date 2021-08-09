@@ -84,7 +84,6 @@ class _MeetingDetailsState extends State<MeetingDetails> {
               margin: EdgeInsets.only(top: 5),
               child: ElevatedButton(
                 onPressed: () async {
-                  // await launch(meeting.pdfUrl);
                   showDialog(
                     context: context,
                     builder: (context) {
