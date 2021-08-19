@@ -24,8 +24,6 @@ dependencies:
   dio: ^4.0.0
   path_provider: ^1.6.28
   jiffy: ^4.1.0
-  video_player: ^2.1.5
-  chewie: ^1.2.2
   firebase_core: ^0.7.0
   firebase_messaging: ^8.0.0-dev.15
   provider: ^5.0.0

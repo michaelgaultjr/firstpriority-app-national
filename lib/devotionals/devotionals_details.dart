@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chewie/chewie.dart';
 import 'package:first_priority_app/models/devotional.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DevotionalsDetailsScreen extends StatefulWidget {
   final Devotional devotional;
@@ -17,31 +16,6 @@ class DevotionalsDetailsScreen extends StatefulWidget {
 }
 
 class _DevotionalsDetailsScreenState extends State<DevotionalsDetailsScreen> {
-  VideoPlayerController _videoController;
-  ChewieController _chewieController;
-
-  @override
-  void initState() {
-    super.initState();
-    _videoController = VideoPlayerController.network(widget.devotional.videoUrl)
-      ..initialize()
-          .then(
-            (_) => setState(
-              () {
-                _chewieController =
-                    ChewieController(videoPlayerController: _videoController);
-              },
-            ),
-          )
-          .catchError((e) => print(e));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _videoController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +28,24 @@ class _DevotionalsDetailsScreenState extends State<DevotionalsDetailsScreen> {
             children: [
               Material(
                 elevation: 5,
-                child: _buildMediaWidget(),
+                child: Image(
+                  width: Get.width,
+                  height: Get.height / 3,
+                  image: CachedNetworkImageProvider(widget.devotional.imageUrl),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  await canLaunch(widget.devotional.videoUrl)
+                      ? await launch(widget.devotional.videoUrl)
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Cannot open video.'),
+                          ),
+                        );
+                },
+                child: Text("Devotional Video"),
               ),
               Container(
                 margin: EdgeInsets.all(10),
@@ -64,24 +55,6 @@ class _DevotionalsDetailsScreenState extends State<DevotionalsDetailsScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildMediaWidget() {
-    if (_videoController.value.isInitialized) {
-      return AspectRatio(
-        aspectRatio: _videoController.value.aspectRatio,
-        child: Chewie(
-          controller: _chewieController,
-        ),
-      );
-    }
-
-    return Image(
-      width: Get.width,
-      height: Get.height / 3,
-      image: CachedNetworkImageProvider(widget.devotional.imageUrl),
-      fit: BoxFit.cover,
     );
   }
 }

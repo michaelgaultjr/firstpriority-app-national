@@ -9,9 +9,10 @@ class MeetingController extends GetxController {
   final api = Get.find<Api>();
   final _schoolController = Get.find<SchoolController>();
 
+  RxList<Meeting> get meetings => _meetings;
   RxList<Meeting> _meetings = RxList<Meeting>();
 
-  Future<void> create({
+  Future<Meeting> create({
     String schoolId,
     String cycleId,
     String room,
@@ -31,11 +32,14 @@ class MeetingController extends GetxController {
       },
     );
 
-    _meetings.add(Meeting.fromMap(res.data));
+    final meeting = Meeting.fromMap(res.data);
+    _meetings.add(meeting);
     _meetings.sort((a, b) => b.time.compareTo(a.time));
+
+    return meeting;
   }
 
-  Future<void> edit({
+  Future<Meeting> edit({
     String meetingId,
     String cycleId,
     String room,
@@ -55,8 +59,12 @@ class MeetingController extends GetxController {
       },
     );
 
+    final meeting = Meeting.fromMap(res.data);
+
     int index = _meetings.indexWhere((meeting) => meeting.id == meetingId);
-    _meetings[index] = Meeting.fromMap(res.data);
+    _meetings[index] = meeting;
+
+    return meeting;
   }
 
   Future<List<Meeting>> get() async {

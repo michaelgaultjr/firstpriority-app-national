@@ -39,8 +39,7 @@ class _MeetingDetailsState extends State<MeetingDetails> {
     orderedMeetingRoleIds = widget.meeting.roles.keys.toList()
       ..sort(
         (a, b) =>
-            MeetingRole.roles[a]?.order ??
-            999.compareTo(MeetingRole.roles[b]?.order ?? 999),
+            MeetingRole.roles[a].order.compareTo(MeetingRole.roles[b].order),
       );
   }
 
@@ -80,6 +79,9 @@ class _MeetingDetailsState extends State<MeetingDetails> {
                 },
               ),
               TitleText("${widget.meeting.week} Week"),
+              SubtitleText(
+                'Cycle: ${widget.meeting.cycle}',
+              ),
               SizedBox(
                 height: 8,
               ),
@@ -165,10 +167,15 @@ class _MeetingDetailsState extends State<MeetingDetails> {
       heroTag: 'options-hero-tag',
       children: [
         SpeedDialChild(
+          child: Icon(Icons.notifications_active),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          onTap: _buildSpeedDialNotificationsDialog,
+        ),
+        SpeedDialChild(
           child: Icon(Icons.edit),
           backgroundColor: Theme.of(context).colorScheme.secondary,
           onTap: () {
-            Get.to(
+            Get.off(
               () => MeetingCreate(
                 meeting: widget.meeting,
               ),
@@ -179,11 +186,6 @@ class _MeetingDetailsState extends State<MeetingDetails> {
           child: Icon(Icons.cancel),
           backgroundColor: Theme.of(context).colorScheme.secondary,
           onTap: _buildSpeedDialCancelDialog,
-        ),
-        SpeedDialChild(
-          child: Icon(Icons.notifications_active),
-          backgroundColor: Theme.of(context).colorScheme.secondary,
-          onTap: _buildSpeedDialNotificationsDialog,
         ),
       ],
     );

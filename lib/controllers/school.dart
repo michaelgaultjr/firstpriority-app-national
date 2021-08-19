@@ -1,9 +1,11 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/api.dart';
+import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/models/school.dart';
 import 'package:first_priority_app/models/user_profile.dart';
 import 'package:first_priority_app/storage_manager.dart';
 import 'package:get/get.dart' as getx;
+import 'package:get/get_core/src/get_main.dart';
 
 class SchoolController extends getx.GetxController {
   final api = getx.Get.find<Api>();
@@ -42,6 +44,11 @@ class SchoolController extends getx.GetxController {
       _school.value = null;
 
       await StorageManager.delete("currentSchoolId");
+
+      // Resets meetings when chagning schools.
+      // This should probably be somewhere else, but it works ¯\_(ツ)_/¯
+      final meetingController = Get.find<MeetingController>();
+      meetingController.meetings([]);
     } else {
       _school(newSchool);
       FirebaseMessaging.instance.subscribeToTopic("school_${_school.value.id}");
