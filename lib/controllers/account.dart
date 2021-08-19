@@ -4,6 +4,7 @@ import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/models/authentication_result.dart';
 import 'package:first_priority_app/models/user.dart';
+import 'package:first_priority_app/storage_manager.dart';
 import 'package:get/get.dart' as getx;
 
 class AccountController extends getx.GetxController {
@@ -14,35 +15,42 @@ class AccountController extends getx.GetxController {
   getx.Rx<User> _user = getx.Rx<User>(null);
 
   Future<AuthenticationResult> login(String email, String password) async {
+    final schoolId = await StorageManager.read<String>("currentSchoolId");
     final res = await api.client.post(
       '/api/account/login',
+      queryParameters: {
+        'schoolId': schoolId,
+      },
       data: FormData.fromMap({
         "email": email,
         "password": password,
       }),
     );
 
-    return _handleAuthResult(res.data);
+    return await _handleAuthResult(res.data);
   }
 
   Future<void> logout() async {
     await api.client.get('/api/account/logout');
 
-    // Unsubscribe from push notification topics before logout
-    if (_schoolController.school.value != null)
-      FirebaseMessaging.instance
-          .unsubscribeFromTopic("school_${_schoolController.school.value.id}");
     FirebaseMessaging.instance
         .unsubscribeFromTopic("region_${_user.value.regionId}");
     FirebaseMessaging.instance.unsubscribeFromTopic("user_${_user.value.id}");
 
     _user.value = null;
-    _schoolController.school.value = null;
+
+    await _schoolController.setSchool(null);
   }
 
   Future<AuthenticationResult> authenticate() async {
-    final res = await api.client.get('/api/account/authenticate');
-    return _handleAuthResult(res.data);
+    final schoolId = await StorageManager.read<String>("currentSchoolId");
+    final res = await api.client.get(
+      '/api/account/authenticate',
+      queryParameters: {
+        'schoolId': schoolId,
+      },
+    );
+    return await _handleAuthResult(res.data);
   }
 
   Future<User> updateDetails({
@@ -64,20 +72,12 @@ class AccountController extends getx.GetxController {
     return _user.value;
   }
 
-  AuthenticationResult _handleAuthResult(dynamic data) {
+  Future<AuthenticationResult> _handleAuthResult(dynamic data) async {
     final result = AuthenticationResult.fromMap(data);
 
     if (result.authenticated) {
       _user(result.user);
-      _schoolController.school(result.school);
-
-      // Only subscribe to school notifications if the user has a default school
-      // If the user doesn't have a default school, they are likely managing multiple
-      // and probably don't want reminder notifications for all of them.
-      if (result.school != null) {
-        FirebaseMessaging.instance
-            .subscribeToTopic("school_${result.school.id}");
-      }
+      await _schoolController.setSchool(result.school);
 
       FirebaseMessaging.instance
           .subscribeToTopic("region_${result.user.regionId}");

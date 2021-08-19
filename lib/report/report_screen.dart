@@ -59,8 +59,9 @@ class _ReportScreenState extends State<ReportScreen> {
                     if (values["story"] ?? false)
                       TextFormField(
                         decoration: InputDecoration(
-                          labelText: "Share the Story!",
+                          labelText: "Tell the story!!",
                           hintText: "Enter story here...",
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
                         ),
                         controller: _storyTextController,
                         keyboardType: TextInputType.multiline,

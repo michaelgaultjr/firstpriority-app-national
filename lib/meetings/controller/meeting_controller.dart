@@ -10,7 +10,6 @@ class MeetingController extends GetxController {
   final _schoolController = Get.find<SchoolController>();
 
   RxList<Meeting> _meetings = RxList<Meeting>();
-  RxList<Meeting> _upcomingMeetings = RxList<Meeting>();
 
   Future<void> create({
     String schoolId,
@@ -36,6 +35,30 @@ class MeetingController extends GetxController {
     _meetings.sort((a, b) => b.time.compareTo(a.time));
   }
 
+  Future<void> edit({
+    String meetingId,
+    String cycleId,
+    String room,
+    DateTime time,
+    String week,
+    Map<String, List<String>> roles,
+  }) async {
+    final res = await api.client.patch(
+      '/api/meetings/${_schoolController.school.value.id}',
+      data: {
+        'Id': meetingId,
+        'cycleId': cycleId,
+        'room': room,
+        'time': time.toIso8601String(),
+        'week': week,
+        'roles': roles,
+      },
+    );
+
+    int index = _meetings.indexWhere((meeting) => meeting.id == meetingId);
+    _meetings[index] = Meeting.fromMap(res.data);
+  }
+
   Future<List<Meeting>> get() async {
     if (_meetings.isEmpty) {
       final res = await api.client
@@ -45,6 +68,16 @@ class MeetingController extends GetxController {
     }
 
     return _meetings;
+  }
+
+  Future<void> cancel(Meeting meeting) async {
+    final res = await api.client.delete(
+      '/api/meetings/${_schoolController.school.value.id}/${meeting.id}',
+    );
+
+    if (res.statusCode == 200) {
+      _meetings.remove(meeting);
+    }
   }
 
   Future<bool> hasReport(DateTime time) async {
@@ -59,15 +92,16 @@ class MeetingController extends GetxController {
   }
 
   Future<List<Meeting>> getUpcoming() async {
-    if (_upcomingMeetings.isEmpty) {
-      final res = await api.client
-          .get('/api/meetings/${_schoolController.school.value.id}/upcoming');
-
-      _upcomingMeetings(
-          List.from(res.data).map((e) => Meeting.fromMap(e)).toList());
-    }
-
-    return _upcomingMeetings;
+    final meetings = await get();
+    return meetings
+        .where(
+          (meeting) =>
+              meeting.time.isAfter(DateTime.now()) &&
+              meeting.time.isBefore(
+                DateTime.now().add(Duration(days: 7)),
+              ),
+        )
+        .toList();
   }
 
   Future<List<Week>> getWeeks() async {

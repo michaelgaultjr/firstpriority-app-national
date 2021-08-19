@@ -4,7 +4,6 @@ import 'package:first_priority_app/dashboard/controller/MainDashboardController.
 import 'package:first_priority_app/more/account/account_screen.dart';
 import 'package:first_priority_app/more/settings/settings_screen.dart';
 import 'package:first_priority_app/notifiers/theme_notifier.dart';
-import 'package:first_priority_app/widgets/loading_dialog.dart';
 import 'package:first_priority_app/widgets/policy_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,12 +40,12 @@ class MoreScreen extends StatelessWidget {
       MoreItem(
         name: "Switch Club",
         icon: Icon(Icons.swap_horiz),
-        action: (_) {
+        action: (_) async {
           final schoolController = Get.find<SchoolController>();
           final mainDashboardController = Get.find<MainDashboardController>();
 
-          schoolController.school.value = null;
           mainDashboardController.currentIndex.value = 0;
+          await schoolController.setSchool(null);
         },
       ),
     MoreItem(
@@ -70,14 +69,9 @@ class MoreScreen extends StatelessWidget {
         final accountController = Get.find<AccountController>();
         final mainDashboardController = Get.find<MainDashboardController>();
 
-        LoadingDialog.show(
-          context: context,
-          future: () async {
-            await accountController.logout();
-            Provider.of<ThemeNotifier>(context, listen: false).setTheme(null);
-            mainDashboardController.currentIndex.value = 0;
-          },
-        );
+        Provider.of<ThemeNotifier>(context, listen: false).setTheme(null);
+        mainDashboardController.currentIndex.value = 0;
+        await accountController.logout();
       },
     ),
   ];

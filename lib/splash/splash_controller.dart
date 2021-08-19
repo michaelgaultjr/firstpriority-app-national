@@ -73,9 +73,11 @@ class SplashController extends GetxController {
             notification.body,
             NotificationDetails(
               android: AndroidNotificationDetails(
-                channel.id, channel.name, channel.description,
+                channel.id,
+                channel.name,
+                channel.description,
                 icon: "ic_stat_first_priority_full_icon_white",
-                // other properties...
+                styleInformation: BigTextStyleInformation(''),
               ),
             ),
           );

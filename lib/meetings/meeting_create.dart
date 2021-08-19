@@ -1,6 +1,8 @@
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/models/cycle.dart';
+import 'package:first_priority_app/models/meeting.dart';
+import 'package:first_priority_app/models/meeting_role.dart';
 import 'package:first_priority_app/models/user_profile.dart';
 import 'package:first_priority_app/models/week.dart';
 import 'package:first_priority_app/validators.dart';
@@ -14,7 +16,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class MeetingCreate extends StatefulWidget {
-  const MeetingCreate({Key key}) : super(key: key);
+  final Meeting meeting;
+
+  const MeetingCreate({Key key, this.meeting}) : super(key: key);
 
   @override
   _MeetingCreateState createState() => _MeetingCreateState();
@@ -32,30 +36,33 @@ class _MeetingCreateState extends State<MeetingCreate> {
   Week _week;
   Cycle _cycle;
   DateTime _meetingTime;
+  bool isEditing = false;
 
-  final Map<String, ValueNotifier<List<UserProfile>>> roles = {
-    'Greeters': ValueNotifier([]),
-    'Prayer': ValueNotifier([]),
-    'Game Coordinators': ValueNotifier([]),
-    'Promotions': ValueNotifier([]),
-    'Audio Visual': ValueNotifier([]),
-    'Food Order': ValueNotifier([]),
-    'Discussion Leaders': ValueNotifier([]),
-    'Setup & Teardown': ValueNotifier([]),
-    'Reporting': ValueNotifier([]),
-  };
+  Map<String, ValueNotifier<List<UserProfile>>> roles;
 
   @override
   void initState() {
     super.initState();
-    _roomController.text = _schoolController.school.value.room;
+    _roomController.text =
+        widget.meeting?.room ?? _schoolController.school.value.room;
+
+    _setTime(widget.meeting?.time);
+    isEditing = widget.meeting != null;
+
+    roles = {
+      for (final roleId in MeetingRole.roles.keys) roleId: getRole(roleId)
+    };
+  }
+
+  ValueNotifier<List<UserProfile>> getRole(String key) {
+    return ValueNotifier((widget.meeting?.roles ?? {})[key] ?? []);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BackAppBar(
-        title: "New Meeting",
+        title: isEditing ? "Edit Meeting" : "New Meeting",
       ),
       body: SingleChildScrollView(
         child: FutureBuilder(
@@ -72,8 +79,15 @@ class _MeetingCreateState extends State<MeetingCreate> {
             final weeks = snapshot.data[0] as List<Week>;
             final cycles = snapshot.data[1] as List<Cycle>;
 
-            if (_week == null) _week = weeks.first;
-            if (_cycle == null) _cycle = cycles.first;
+            if (_week == null)
+              _week = isEditing
+                  ? weeks.firstWhere((x) => x.name == widget.meeting.week)
+                  : weeks.first;
+
+            if (_cycle == null)
+              _cycle = isEditing
+                  ? cycles.firstWhere((x) => x.name == widget.meeting.cycle)
+                  : cycles.first;
 
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -102,7 +116,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
                       controller: _timeController,
                       readOnly: true,
                       onTap: () async {
-                        var date = await showDatePicker(
+                        final date = await showDatePicker(
                           context: context,
                           initialDate: DateTime.now(),
                           firstDate: DateTime.now(),
@@ -113,24 +127,20 @@ class _MeetingCreateState extends State<MeetingCreate> {
 
                         if (date == null) return;
 
-                        var time = await showTimePicker(
+                        final time = await showTimePicker(
                           context: context,
                           initialTime: TimeOfDay.now(),
                         );
 
                         if (time == null) return;
 
-                        _meetingTime = DateTime(
+                        _setTime(DateTime(
                           date.year,
                           date.month,
                           date.day,
                           time.hour,
                           time.minute,
-                        );
-
-                        _timeController.text = DateFormat(
-                          'MMMM d @ h:mma',
-                        ).format(_meetingTime);
+                        ));
                       },
                     ),
                     DropdownButtonFormField<Week>(
@@ -177,11 +187,13 @@ class _MeetingCreateState extends State<MeetingCreate> {
                       children: List.generate(
                         roles.length,
                         (index) {
-                          final key = roles.keys.elementAt(index);
+                          final roleId =
+                              MeetingRole.roles.keys.elementAt(index);
+                          final users = roles[roleId];
                           return GenericList<UserProfile>(
-                            controller: roles[key],
+                            controller: users,
                             title: Text(
-                              key,
+                              MeetingRole.roles[roleId].name,
                               style: Theme.of(context)
                                   .inputDecorationTheme
                                   .labelStyle
@@ -222,26 +234,39 @@ class _MeetingCreateState extends State<MeetingCreate> {
                           LoadingDialog.show(
                             context: context,
                             future: () async {
-                              await _controller.create(
-                                schoolId: _schoolController.school.value.id,
-                                room: _roomController.text,
-                                time: _meetingTime,
-                                week: _week.name,
-                                cycleId: _cycle.id,
-                                roles: roles.map(
-                                  (key, value) => MapEntry(
-                                    key,
-                                    value.value.map((e) => e.id).toList(),
-                                  ),
+                              final rolesMap = roles.map(
+                                (roleId, users) => MapEntry(
+                                  roleId,
+                                  users.value.map((e) => e.id).toList(),
                                 ),
                               );
+
+                              if (isEditing) {
+                                await _controller.edit(
+                                  meetingId: widget.meeting.id,
+                                  room: _roomController.text,
+                                  time: _meetingTime,
+                                  week: _week.name,
+                                  cycleId: _cycle.id,
+                                  roles: rolesMap,
+                                );
+                              } else {
+                                await _controller.create(
+                                  schoolId: _schoolController.school.value.id,
+                                  room: _roomController.text,
+                                  time: _meetingTime,
+                                  week: _week.name,
+                                  cycleId: _cycle.id,
+                                  roles: rolesMap,
+                                );
+                              }
 
                               Get.back();
                             },
                           );
                         }
                       },
-                      child: Text('Schedule Meeting'),
+                      child: Text(isEditing ? "Save" : "Schedule"),
                     ),
                   ],
                 ),
@@ -251,5 +276,14 @@ class _MeetingCreateState extends State<MeetingCreate> {
         ),
       ),
     );
+  }
+
+  void _setTime(DateTime time) {
+    if (time == null) return;
+
+    _meetingTime = time;
+    _timeController.text = DateFormat(
+      'MMMM d @ h:mma',
+    ).format(_meetingTime);
   }
 }

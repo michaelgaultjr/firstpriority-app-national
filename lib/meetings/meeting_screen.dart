@@ -22,7 +22,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
             policy: Policy.manageMeetings,
             builder: (context, valid) {
               if (!valid) {
-                return null;
+                return Container();
               }
 
               return FloatingActionButton(

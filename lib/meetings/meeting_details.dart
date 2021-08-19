@@ -1,6 +1,9 @@
+import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:first_priority_app/controllers/message.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
+import 'package:first_priority_app/meetings/meeting_create.dart';
 import 'package:first_priority_app/models/meeting.dart';
+import 'package:first_priority_app/models/meeting_role.dart';
 import 'package:first_priority_app/report/report_screen.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/dialogs/select_dialog.dart';
@@ -28,6 +31,19 @@ class _MeetingDetailsState extends State<MeetingDetails> {
   final MeetingController _meetingController = Get.find<MeetingController>();
   final MessageController _messageController = Get.find<MessageController>();
 
+  List<String> orderedMeetingRoleIds = [];
+
+  @override
+  void initState() {
+    super.initState();
+    orderedMeetingRoleIds = widget.meeting.roles.keys.toList()
+      ..sort(
+        (a, b) =>
+            MeetingRole.roles[a]?.order ??
+            999.compareTo(MeetingRole.roles[b]?.order ?? 999),
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
     final Meeting meeting = widget.meeting;
@@ -40,89 +56,95 @@ class _MeetingDetailsState extends State<MeetingDetails> {
         policy: Policy.manageMeetings,
         builder: (context, valid) {
           if (!valid) return Container();
-          if (meeting.time.toUtc().isBefore(DateTime.now().toUtc()))
+          if (meeting.time.toLocal().isBefore(DateTime.now()))
             return Container();
 
           return _buildSpeedDial(context);
         },
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PolicyBuilder(
-              policy: Policy.manageMeetings,
-              builder: (context, valid) {
-                if (!valid) return Container();
-                if (meeting.time.toUtc().isAfter(DateTime.now().toUtc()))
-                  return Container();
+      body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PolicyBuilder(
+                policy: Policy.manageMeetings,
+                builder: (context, valid) {
+                  if (!valid) return Container();
+                  if (meeting.time.toUtc().isAfter(DateTime.now().toUtc()))
+                    return Container();
 
-                return _buildReportPrompt();
-              },
-            ),
-            TitleText("${widget.meeting.week} Week"),
-            SizedBox(
-              height: 8,
-            ),
-            SubtitleText(
-              Jiffy(widget.meeting.time).format("EEEE, MMMM do"),
-            ),
-            SubtitleText(
-              '${Jiffy(widget.meeting.time).format("h:mma")} • ${widget.meeting.room}',
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 5),
-              child: ElevatedButton(
-                onPressed: () async {
-                  await launch(meeting.videoUrl);
+                  return _buildReportPrompt();
                 },
-                child: Text("Video Summary"),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 5),
-              child: ElevatedButton(
-                onPressed: () async {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return SfPdfViewer.network(meeting.pdfUrl);
-                    },
-                  );
-                },
-                child: Text("Discussion Guide"),
+              TitleText("${widget.meeting.week} Week"),
+              SizedBox(
+                height: 8,
               ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              child: Divider(),
-            ),
-            TitleText("Roles"),
-            if (meeting.roles.isNotEmpty)
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: meeting.roles.keys.length,
-                itemBuilder: (context, index) {
-                  var key = meeting.roles.keys.toList()[index];
-                  return ListTile(
-                    title: Text(key),
-                    subtitle: Text(meeting.roles[key].join(', ')),
-                  );
-                },
-                separatorBuilder: (contxt, _) => const Divider(),
+              SubtitleText(
+                Jiffy(widget.meeting.time).format("EEEE, MMMM do"),
               ),
-            if (meeting.roles.isEmpty)
+              SubtitleText(
+                '${Jiffy(widget.meeting.time).format("h:mma")} • ${widget.meeting.room}',
+              ),
               Container(
-                margin: EdgeInsets.only(top: 50),
-                child: Center(
-                  child: SubtitleText(
-                    "No Meeting Roles",
-                    fontSize: 24,
-                  ),
+                margin: EdgeInsets.only(top: 5),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await launch(meeting.videoUrl);
+                  },
+                  child: Text("Video Summary"),
                 ),
-              )
-          ],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 5),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SfPdfViewer.network(meeting.pdfUrl);
+                      },
+                    );
+                  },
+                  child: Text("Discussion Guide"),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: Divider(),
+              ),
+              TitleText("Roles"),
+              if (meeting.roles.isNotEmpty)
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: orderedMeetingRoleIds.length,
+                  itemBuilder: (context, index) {
+                    var key = orderedMeetingRoleIds[index];
+                    return ListTile(
+                      title: Text(MeetingRole.roles[key].name),
+                      subtitle: Text(
+                        meeting.roles[key].map((e) => e.name).join(', '),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (contxt, _) => const Divider(),
+                ),
+              if (meeting.roles.isEmpty)
+                Container(
+                  margin: EdgeInsets.only(top: 50),
+                  child: Center(
+                    child: SubtitleText(
+                      "No Meeting Roles",
+                      fontSize: 24,
+                    ),
+                  ),
+                )
+            ],
+          ),
         ),
       ),
     );
@@ -142,11 +164,22 @@ class _MeetingDetailsState extends State<MeetingDetails> {
       tooltip: 'Options',
       heroTag: 'options-hero-tag',
       children: [
-        // SpeedDialChild(
-        //   child: Icon(Icons.edit),
-        //   backgroundColor: Theme.of(context).colorScheme.secondary,
-        //   onTap: () => print('FIRST CHILD'),
-        // ),
+        SpeedDialChild(
+          child: Icon(Icons.edit),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          onTap: () {
+            Get.to(
+              () => MeetingCreate(
+                meeting: widget.meeting,
+              ),
+            );
+          },
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.cancel),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          onTap: _buildSpeedDialCancelDialog,
+        ),
         SpeedDialChild(
           child: Icon(Icons.notifications_active),
           backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -154,6 +187,24 @@ class _MeetingDetailsState extends State<MeetingDetails> {
         ),
       ],
     );
+  }
+
+  Future<void> _buildSpeedDialCancelDialog() async {
+    if (await confirm(
+      context,
+      title: Text('Are you sure?'),
+      content: Text('Would you like to cancel this meeting?'),
+      textOK: Text('Yes'),
+      textCancel: Text('No'),
+    )) {
+      LoadingDialog.show(
+        context: context,
+        future: () async {
+          await _meetingController.cancel(widget.meeting);
+        },
+      );
+      Navigator.of(context).pop();
+    }
   }
 
   Future<void> _buildSpeedDialNotificationsDialog() async {

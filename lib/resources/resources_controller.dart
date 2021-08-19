@@ -5,7 +5,7 @@ import 'package:get/get.dart' as getx;
 class ResourcesController extends getx.GetxController {
   Future<List<Resource>> get() async {
     final api = getx.Get.find<Api>();
-    final res = await api.client.get('/api/links');
+    final res = await api.client.get('/api/resources');
 
     return List.from(res.data).map((e) => Resource.fromMap(e)).toList();
   }

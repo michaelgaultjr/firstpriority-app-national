@@ -1,3 +1,4 @@
+import 'package:first_priority_app/models/user_profile.dart';
 import 'package:flutter/widgets.dart';
 
 class Meeting {
@@ -9,7 +10,7 @@ class Meeting {
   final String week;
   final String videoUrl;
   final String pdfUrl;
-  final Map<String, List<String>> roles;
+  final Map<String, List<UserProfile>> roles;
 
   Meeting({
     @required this.week,
@@ -33,9 +34,9 @@ class Meeting {
         videoUrl = map['videoUrl'],
         pdfUrl = map['pdfUrl'],
         roles = Map.from(map['roles']).map(
-          (key, value) => MapEntry<String, List<String>>(
+          (key, value) => MapEntry<String, List<UserProfile>>(
             key,
-            List<String>.from(value),
+            List.from(value).map((e) => UserProfile.fromMap(e)).toList(),
           ),
         );
 }

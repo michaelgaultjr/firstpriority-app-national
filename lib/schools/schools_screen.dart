@@ -105,8 +105,8 @@ class _SchoolsScreenState extends State<SchoolsScreen> {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(snapshot.data[index].name),
-                onTap: () {
-                  _schoolController.school(snapshot.data[index]);
+                onTap: () async {
+                  await _schoolController.setSchool(snapshot.data[index]);
                 },
               );
             },

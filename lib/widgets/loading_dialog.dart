@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingDialog extends StatelessWidget {
-  static Future<void> show({
+  static Future<void> show<T>({
     @required BuildContext context,
     Future<dynamic> Function() future,
   }) async {
@@ -12,7 +14,13 @@ class LoadingDialog extends StatelessWidget {
     );
 
     if (future != null) {
-      await future().whenComplete(() => Navigator.of(context).pop());
+      await future().whenComplete(
+        () {
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
+        },
+      );
     }
   }
 
