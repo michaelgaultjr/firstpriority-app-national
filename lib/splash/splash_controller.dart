@@ -7,6 +7,7 @@ import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/message.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
+import 'package:first_priority_app/meetings/controller/order_controller.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +27,7 @@ class SplashController extends GetxController {
     Get.put(SchoolController());
     await Get.put(AccountController()).authenticate();
     Get.put(MeetingController());
+    Get.put(OrderController());
 
     // Non-essential Controllers
     Get.lazyPut(() => MessageController(), fenix: true);

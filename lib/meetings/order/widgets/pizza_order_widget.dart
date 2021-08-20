@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:first_priority_app/async_search_delegate.dart';
-import 'package:first_priority_app/controllers/api.dart';
-import 'package:first_priority_app/controllers/school.dart';
+import 'package:first_priority_app/meetings/controller/order_controller.dart';
+import 'package:first_priority_app/models/location.dart';
 import 'package:first_priority_app/validators.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,33 +13,21 @@ import 'package:jiffy/jiffy.dart';
 class PizzaOrderWidget extends StatefulWidget {
   final DateTime meetingTime;
   final RxInt expectedStudents;
-  final void Function(Map<String, dynamic>) onChanged;
+  final void Function(Map<String, dynamic>) onData;
 
   PizzaOrderWidget({
     Key key,
     this.meetingTime,
     this.expectedStudents,
-    this.onChanged,
+    this.onData,
   }) : super(key: key);
 
   @override
   _PizzaOrderWidgetState createState() => _PizzaOrderWidgetState();
 }
 
-class Location {
-  final String id;
-  final String name;
-  final String vendor;
-
-  Location.fromMap(Map<String, dynamic> map)
-      : id = map['id'],
-        name = map['name'],
-        vendor = map['vendor'];
-}
-
 class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
-  final Api _api = Get.find<Api>();
-  final SchoolController _schoolController = Get.find<SchoolController>();
+  final OrderController _orderController = Get.find<OrderController>();
 
   final TextEditingController _cheeseController =
       TextEditingController(text: "0");
@@ -49,9 +39,12 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
 
   final TextEditingController _timeController = TextEditingController();
 
+  static const String component = "Pizza";
+
   DateTime pickupTime;
   int totalPizzas;
   Location location;
+  StreamSubscription<int> studentsListener;
 
   @override
   void initState() {
@@ -62,12 +55,18 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
     _timeController.text = Jiffy(pickupTime).format("h:mm a");
 
     calculatePizzas(widget.expectedStudents.value);
-    widget.expectedStudents.listen((newValue) {
+    studentsListener = widget.expectedStudents.listen((newValue) {
       setState(() {
         calculatePizzas(newValue);
       });
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    studentsListener.cancel();
+    super.dispose();
   }
 
   void calculatePizzas(int students) {
@@ -84,12 +83,14 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
     _pepperoniController.text =
         (totalPizzas / 2 + totalPizzas % 2).floor().toString();
 
-    getLocation();
+    _orderController
+        .getLocation(total: totalPizzas, type: component)
+        .then((location) => setLocation(location));
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.onChanged(getOrderDetails());
+    widget.onData(getOrderDetails());
     return Column(
       children: [
         _buildNumberTextField(
@@ -142,7 +143,9 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
             showSearch(
               context: context,
               delegate: AsyncSearchDelegate<Location>(
-                future: getLocations,
+                future: (value) async {
+                  return _orderController.getLocations(value, component);
+                },
                 builder: (context, item) {
                   return ListTile(
                     title: Text(item.name),
@@ -166,28 +169,6 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
       this.location = location;
       _locationController.text = location.name;
     });
-  }
-
-  Future<void> getLocation() async {
-    final res = await _api.client.get(
-      "/api/order/${_schoolController.school.value.id}/location",
-      queryParameters: {
-        "total": totalPizzas,
-      },
-    );
-
-    setLocation(Location.fromMap(res.data));
-  }
-
-  Future<List<Location>> getLocations(String value) async {
-    final res = await _api.client.get(
-      "/api/order/${_schoolController.school.value.id}/locations",
-      queryParameters: {
-        "query": value,
-      },
-    );
-
-    return List.from(res.data).map((e) => Location.fromMap(e)).toList();
   }
 
   Widget _buildNumberTextField(String title, TextEditingController controller) {

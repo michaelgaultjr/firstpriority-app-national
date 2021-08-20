@@ -5,6 +5,7 @@ class School {
   final String id;
   final String name;
   final String room;
+  final TimeOfDay meetTime;
   final Color primary;
   final Color secondary;
 
@@ -12,6 +13,10 @@ class School {
       : id = map['id'],
         name = map['name'],
         room = map['room'],
+        meetTime = TimeOfDay(
+          hour: map['meetTime']['hours'],
+          minute: map['meetTime']['minutes'],
+        ),
         primary = map['primaryColorHex'] != null
             ? HexColor(map['primaryColorHex'])
             : Colors.red,

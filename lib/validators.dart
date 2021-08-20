@@ -3,6 +3,10 @@ class Validators {
     return value.isEmpty ? "Field cannot be empty" : null;
   }
 
+  static String requiredInt(int value) {
+    return value <= 0 ? "Field cannot be empty" : null;
+  }
+
   static String Function(String) requiredWithMessage(String message) {
     return (String value) {
       return value.isEmpty ? message : null;

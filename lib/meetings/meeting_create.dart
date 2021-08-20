@@ -129,7 +129,7 @@ class _MeetingCreateState extends State<MeetingCreate> {
 
                         final time = await showTimePicker(
                           context: context,
-                          initialTime: TimeOfDay.now(),
+                          initialTime: _schoolController.school.value.meetTime,
                         );
 
                         if (time == null) return;

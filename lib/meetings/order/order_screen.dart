@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/meetings/order/order_contact.dart';
@@ -11,11 +9,10 @@ import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'widgets/donuts_order_widget.dart';
 import 'widgets/pizza_order_widget.dart';
-import 'widgets/storeitems_order_widget.dart';
+import 'widgets/store_items_order_widget.dart';
 
 class OrderScreen extends StatefulWidget {
   final Meeting meeting;
@@ -38,7 +35,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
   static Map<String, String> _typeNames = {
     "Pizza": "Pizza",
-    "Storeitems": "Store Items",
+    "StoreItems": "Store Items",
     "Donuts": "Donuts",
   };
 
@@ -52,12 +49,20 @@ class _OrderScreenState extends State<OrderScreen> {
       "Pizza": PizzaOrderWidget(
         expectedStudents: _expectedStudents,
         meetingTime: widget.meeting.time,
-        onChanged: (data) {
+        onData: (data) {
           orderData = data;
         },
       ),
-      "Storeitems": StoreItemsOrderWidget(),
-      "Donuts": DonutsOrderWidget(),
+      "StoreItems": StoreItemsOrderWidget(
+          expectedStudents: _expectedStudents,
+          onData: (data) {
+            orderData = data;
+          }),
+      "Donuts": DonutsOrderWidget(
+          expectedStudents: _expectedStudents,
+          onData: (data) {
+            orderData = data;
+          }),
     };
 
     _type = _types.keys.first;
