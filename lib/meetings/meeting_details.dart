@@ -1,5 +1,4 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
-import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/message.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/meetings/meeting_create.dart';
@@ -10,6 +9,7 @@ import 'package:first_priority_app/models/meeting_role.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/dialogs/select_dialog.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
+import 'package:first_priority_app/widgets/pdf_viewer_screen.dart';
 import 'package:first_priority_app/widgets/policy_builder.dart';
 import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:first_priority_app/widgets/text/subtitle_text.dart';
@@ -18,7 +18,6 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class MeetingDetails extends StatefulWidget {
   final Meeting meeting;
@@ -32,7 +31,6 @@ class MeetingDetails extends StatefulWidget {
 class _MeetingDetailsState extends State<MeetingDetails> {
   final MeetingController _meetingController = Get.find<MeetingController>();
   final MessageController _messageController = Get.find<MessageController>();
-  final Api _api = Get.find<Api>();
 
   List<String> orderedMeetingRoleIds = [];
 
@@ -126,11 +124,11 @@ class _MeetingDetailsState extends State<MeetingDetails> {
                 margin: EdgeInsets.only(top: 5),
                 child: ElevatedButton(
                   onPressed: () async {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return SfPdfViewer.network(meeting.pdfUrl);
-                      },
+                    Get.to(
+                      () => PdfViewerScreen(
+                        title: "Discussion Guide",
+                        url: meeting.pdfUrl,
+                      ),
                     );
                   },
                   child: Text("Discussion Guide"),
