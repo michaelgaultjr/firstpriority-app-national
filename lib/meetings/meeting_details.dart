@@ -69,17 +69,19 @@ class _MeetingDetailsState extends State<MeetingDetails> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PolicyBuilder(
-                policy: Policy.manageMeetings,
-                builder: (context, valid) {
-                  if (!valid) return Container();
-                  if (meeting.time.toUtc().isAfter(DateTime.now().toUtc()))
-                    return Container();
-
-                  return _buildReportPrompt();
-                },
+              Row(
+                children: [
+                  TitleText("${widget.meeting.week} Week"),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Icon(
+                    DateTime.now().isAfter(meeting.time)
+                        ? Icons.check
+                        : Icons.calendar_today,
+                  )
+                ],
               ),
-              TitleText("${widget.meeting.week} Week"),
               SubtitleText(
                 'Cycle: ${widget.meeting.cycle}',
               ),
@@ -97,20 +99,11 @@ class _MeetingDetailsState extends State<MeetingDetails> {
                 builder: (context, valid) {
                   if (!valid) return Container();
                   if (DateTime.now().isAfter(meeting.time.toLocal()))
-                    return Container();
+                    return _buildReportButton();
 
-                  return Container(
-                    margin: EdgeInsets.only(top: 5),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        Get.to(() => OrderScreen(meeting: meeting));
-                      },
-                      child: Text("Invite Order"),
-                    ),
-                  );
+                  return _buildOrderButton(meeting);
                 },
               ),
-              Divider(),
               Container(
                 margin: EdgeInsets.only(top: 5),
                 child: ElevatedButton(
@@ -172,7 +165,21 @@ class _MeetingDetailsState extends State<MeetingDetails> {
     );
   }
 
+  Container _buildOrderButton(Meeting meeting) {
+    return Container(
+      margin: EdgeInsets.only(top: 5),
+      child: ElevatedButton(
+        onPressed: () async {
+          Get.to(() => OrderScreen(meeting: meeting));
+        },
+        child: Text("Invite Order"),
+      ),
+    );
+  }
+
   Widget _buildSpeedDial(BuildContext context) {
+    print(Theme.of(context).floatingActionButtonTheme.foregroundColor);
+    print(Theme.of(context).floatingActionButtonTheme.backgroundColor);
     return SpeedDial(
       foregroundColor:
           Theme.of(context).floatingActionButtonTheme.foregroundColor,
@@ -207,6 +214,13 @@ class _MeetingDetailsState extends State<MeetingDetails> {
           backgroundColor: Theme.of(context).colorScheme.secondary,
           onTap: _buildSpeedDialCancelDialog,
         ),
+        SpeedDialChild(
+          child: Icon(Icons.receipt),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          onTap: () async {
+            Get.to(() => OrderScreen(meeting: widget.meeting));
+          },
+        ),
       ],
     );
   }
@@ -239,18 +253,45 @@ class _MeetingDetailsState extends State<MeetingDetails> {
           title: "Notifications",
           itemCount: messages.length,
           itemBuilder: (BuildContext context, int index) {
+            final message = messages[index];
             return ListTile(
-              title: Text(messages[index].name),
+              title: Text(message.name),
               onTap: () async {
-                await LoadingDialog.show(
-                  context: context,
-                  future: () async {
-                    _messageController.send(
-                      widget.meeting.id,
-                      messages[index].id,
-                    );
-                  },
-                );
+                if (await confirm(
+                  context,
+                  title: Text("Are you sure?"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: message.title == null || message.body == null
+                        ? [
+                            Text(
+                                "Are you sure you want to send this notifcation?")
+                          ]
+                        : [
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Preview",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Text("${message.title}\n${message.body}")
+                          ],
+                  ),
+                  textOK: Text("Send"),
+                  textCancel: Text("Cancel"),
+                )) {
+                  await LoadingDialog.show(
+                    context: context,
+                    future: () async {
+                      _messageController.send(
+                        widget.meeting.id,
+                        messages[index].id,
+                      );
+                    },
+                  );
+                }
                 Navigator.of(context).pop();
               },
             );
@@ -260,7 +301,7 @@ class _MeetingDetailsState extends State<MeetingDetails> {
     );
   }
 
-  Widget _buildReportPrompt() {
+  Widget _buildReportButton() {
     return FutureBuilder<bool>(
       future: _meetingController.hasReport(widget.meeting.time),
       builder: (context, snapshot) {
@@ -272,26 +313,16 @@ class _MeetingDetailsState extends State<MeetingDetails> {
           return Container();
         }
 
-        return Column(
-          children: [
-            TitleText("Meeting Ended"),
-            SizedBox(
-              height: 8,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Get.to(
-                  () => ReportScreen(
-                    meeting: widget.meeting,
-                  ),
-                );
-              },
-              child: Text("Submit Report"),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-          ],
+        return Container(
+          margin: EdgeInsets.only(top: 5),
+          child: ElevatedButton(
+            onPressed: () {
+              Get.to(
+                () => ReportScreen(meeting: widget.meeting),
+              );
+            },
+            child: Text("Submit Report"),
+          ),
         );
       },
     );

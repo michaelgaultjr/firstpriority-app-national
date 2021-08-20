@@ -29,6 +29,11 @@ class MeetingPreview extends StatelessWidget {
           '${meeting.school}: ${meeting.room}',
           style: Theme.of(context).textTheme.headline4,
         ),
+        trailing: Icon(
+          DateTime.now().isAfter(meeting.time)
+              ? Icons.check
+              : Icons.calendar_today,
+        ),
         leading: InkWell(
           child: Container(
             // margin: EdgeInsets.only(left: 10),
