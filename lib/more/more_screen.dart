@@ -7,6 +7,7 @@ import 'package:first_priority_app/notifiers/theme_notifier.dart';
 import 'package:first_priority_app/widgets/policy_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -79,18 +80,38 @@ class MoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.separated(
-        itemCount: _screens.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: _screens[index].icon,
-            title: Text(_screens[index].name),
-            onTap: () async {
-              _screens[index].action(context);
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            itemCount: _screens.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: _screens[index].icon,
+                title: Text(_screens[index].name),
+                onTap: () async {
+                  _screens[index].action(context);
+                },
+              );
             },
-          );
-        },
-        separatorBuilder: (context, index) => const Divider(),
+            separatorBuilder: (context, index) => const Divider(),
+          ),
+          Container(
+            margin: EdgeInsets.all(8),
+            child: FutureBuilder<PackageInfo>(
+              future: PackageInfo.fromPlatform(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Text("Loading...");
+                }
+
+                return Text("v${snapshot.data.version}");
+              },
+            ),
+          )
+        ],
       ),
     );
   }

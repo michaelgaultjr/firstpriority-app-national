@@ -2,6 +2,7 @@ import 'package:first_priority_app/notifiers/theme_notifier.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/dialogs/select_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -18,16 +19,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: BackAppBar(
         title: "Settings",
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ListView(
-          children: ListTile.divideTiles(
-            context: context,
-            tiles: [
-              _themeSettingTile(),
-            ],
-          ).toList(),
-        ),
+      body: ListView(
+        children: ListTile.divideTiles(
+          context: context,
+          tiles: [
+            _themeSettingTile(),
+          ],
+        ).toList(),
       ),
     );
   }
