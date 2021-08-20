@@ -154,6 +154,7 @@ ThemeData buildTheme({
         TextSelectionThemeData(cursorColor: colorScheme.secondaryVariant),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: colorScheme.primary,
+      foregroundColor: colorScheme.onPrimary,
     ),
     canvasColor: colorScheme.surface,
     dividerColor: dividerColor,
