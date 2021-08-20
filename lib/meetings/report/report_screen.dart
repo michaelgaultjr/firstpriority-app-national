@@ -59,7 +59,7 @@ class _ReportScreenState extends State<ReportScreen> {
                     if (values["story"] ?? false)
                       TextFormField(
                         decoration: InputDecoration(
-                          labelText: "Tell the story!!",
+                          labelText: "Tell the story!",
                           hintText: "Enter story here...",
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                         ),
@@ -69,11 +69,17 @@ class _ReportScreenState extends State<ReportScreen> {
                       ),
                     const Divider(),
                     _buildNumberTextField(
-                        "Attendance", "attendance", _attendanceTextController),
+                      "Attendance",
+                      _attendanceTextController,
+                    ),
                     _buildNumberTextField(
-                        "Decisions", "decisions", _decisionsTextController),
-                    _buildNumberTextField("Church Connect", "connections",
-                        _connectionsTextController),
+                      "Decisions",
+                      _decisionsTextController,
+                    ),
+                    _buildNumberTextField(
+                      "Church Connect",
+                      _connectionsTextController,
+                    ),
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: "Notes",
@@ -152,8 +158,7 @@ class _ReportScreenState extends State<ReportScreen> {
     );
   }
 
-  Widget _buildNumberTextField(
-      String title, String key, TextEditingController controller) {
+  Widget _buildNumberTextField(String title, TextEditingController controller) {
     return TextFormField(
       decoration: InputDecoration(
         labelText: title,

@@ -1,10 +1,12 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
+import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/message.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/meetings/meeting_create.dart';
+import 'package:first_priority_app/meetings/order/order_screen.dart';
+import 'package:first_priority_app/meetings/report/report_screen.dart';
 import 'package:first_priority_app/models/meeting.dart';
 import 'package:first_priority_app/models/meeting_role.dart';
-import 'package:first_priority_app/report/report_screen.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/dialogs/select_dialog.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
@@ -30,6 +32,7 @@ class MeetingDetails extends StatefulWidget {
 class _MeetingDetailsState extends State<MeetingDetails> {
   final MeetingController _meetingController = Get.find<MeetingController>();
   final MessageController _messageController = Get.find<MessageController>();
+  final Api _api = Get.find<Api>();
 
   List<String> orderedMeetingRoleIds = [];
 
@@ -91,6 +94,25 @@ class _MeetingDetailsState extends State<MeetingDetails> {
               SubtitleText(
                 '${Jiffy(widget.meeting.time).format("h:mma")} • ${widget.meeting.room}',
               ),
+              PolicyBuilder(
+                policy: Policy.manageMeetings,
+                builder: (context, valid) {
+                  if (!valid) return Container();
+                  if (DateTime.now().isAfter(meeting.time.toLocal()))
+                    return Container();
+
+                  return Container(
+                    margin: EdgeInsets.only(top: 5),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Get.to(() => OrderScreen(meeting: meeting));
+                      },
+                      child: Text("Invite Order"),
+                    ),
+                  );
+                },
+              ),
+              Divider(),
               Container(
                 margin: EdgeInsets.only(top: 5),
                 child: ElevatedButton(
