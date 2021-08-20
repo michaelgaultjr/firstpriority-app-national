@@ -144,6 +144,29 @@ class _OrderScreenState extends State<OrderScreen> {
           },
         );
 
+        if (widget.meeting.time.difference(DateTime.now()).inDays < 1) {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(
+                  "Warning",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                actions: [
+                  TextButton(
+                    child: Text("Ok"),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ],
+                content: Text(
+                  "Because this order was placed less than 24 hours before the meeting, please contact your First Priority Representative to expedite the order.",
+                ),
+              );
+            },
+          );
+        }
+
         Get.back();
       },
     );
