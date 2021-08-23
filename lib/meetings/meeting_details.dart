@@ -101,7 +101,10 @@ class _MeetingDetailsState extends State<MeetingDetails> {
                   if (DateTime.now().isAfter(meeting.time.toLocal()))
                     return _buildReportButton();
 
-                  return _buildOrderButton(meeting);
+                  if (meeting.week == "Invite")
+                    return _buildOrderButton(meeting);
+
+                  return Container();
                 },
               ),
               Container(
@@ -178,8 +181,6 @@ class _MeetingDetailsState extends State<MeetingDetails> {
   }
 
   Widget _buildSpeedDial(BuildContext context) {
-    print(Theme.of(context).floatingActionButtonTheme.foregroundColor);
-    print(Theme.of(context).floatingActionButtonTheme.backgroundColor);
     return SpeedDial(
       foregroundColor:
           Theme.of(context).floatingActionButtonTheme.foregroundColor,
@@ -266,7 +267,8 @@ class _MeetingDetailsState extends State<MeetingDetails> {
                     children: message.title == null || message.body == null
                         ? [
                             Text(
-                                "Are you sure you want to send this notifcation?")
+                              "Are you sure you want to send this notifcation?",
+                            )
                           ]
                         : [
                             Container(
