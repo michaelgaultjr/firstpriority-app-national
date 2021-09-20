@@ -180,6 +180,7 @@ class _MeetingDetailsState extends State<MeetingDetails> {
     );
   }
 
+  static const labelStyle = TextStyle(color: Colors.white);
   Widget _buildSpeedDial(BuildContext context) {
     return SpeedDial(
       foregroundColor:
@@ -195,11 +196,15 @@ class _MeetingDetailsState extends State<MeetingDetails> {
       heroTag: 'options-hero-tag',
       children: [
         SpeedDialChild(
+          label: "Notifications",
+          labelStyle: labelStyle,
           child: Icon(Icons.notifications_active),
           backgroundColor: Theme.of(context).colorScheme.secondary,
           onTap: _buildSpeedDialNotificationsDialog,
         ),
         SpeedDialChild(
+          label: "Edit",
+          labelStyle: labelStyle,
           child: Icon(Icons.edit),
           backgroundColor: Theme.of(context).colorScheme.secondary,
           onTap: () {
@@ -211,11 +216,15 @@ class _MeetingDetailsState extends State<MeetingDetails> {
           },
         ),
         SpeedDialChild(
+          label: "Cancel",
+          labelStyle: labelStyle,
           child: Icon(Icons.cancel),
           backgroundColor: Theme.of(context).colorScheme.secondary,
           onTap: _buildSpeedDialCancelDialog,
         ),
         SpeedDialChild(
+          label: "Order",
+          labelStyle: labelStyle,
           child: Icon(Icons.receipt),
           backgroundColor: Theme.of(context).colorScheme.secondary,
           onTap: () async {

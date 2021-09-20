@@ -125,8 +125,8 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
                 pickupTime.year,
                 pickupTime.month,
                 pickupTime.day,
-                time.minute,
                 time.hour,
+                time.minute,
               );
 
               _timeController.text = Jiffy(pickupTime).format("h:mm a");

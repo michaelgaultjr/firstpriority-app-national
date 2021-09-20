@@ -18,7 +18,6 @@ class ThemeNotifier with ChangeNotifier {
       onBackground: Colors.white,
       onError: Colors.white,
     ),
-    accentColor: colorSelectedBottom,
     surfaceBright: Colors.white12,
     bodyText1: TextStyle(color: Colors.white, fontSize: 16),
     headline1: getCustomTextProperties(Colors.white, 30, fontSchylerRegular, 1),
@@ -49,7 +48,6 @@ class ThemeNotifier with ChangeNotifier {
       onBackground: Colors.black,
       onError: Colors.white,
     ),
-    accentColor: colorSelectedBottom,
     surfaceBright: Colors.black12,
     headline1: getCustomTextProperties(Colors.black, 30, fontSchylerRegular, 1),
     defaultText: TextStyle(
@@ -115,7 +113,6 @@ ThemeData buildTheme({
   TextStyle subtitle2,
   TextStyle bodyText1,
   TextStyle bodyText2,
-  Color accentColor,
   Color navBackgroundColor,
   Color navUnselectedColor,
   Color dividerColor,
@@ -124,7 +121,6 @@ ThemeData buildTheme({
     fontFamily: 'Schyler',
     backgroundColor: colorScheme.background,
     scaffoldBackgroundColor: colorScheme.background,
-    accentColor: accentColor,
     secondaryHeaderColor: surfaceBright,
     colorScheme: colorScheme,
     textTheme: TextTheme(
