@@ -29,7 +29,7 @@ dependencies:
   provider: ^5.0.0
   shared_preferences: ^0.5.12+4
   mask_text_input_formatter: ^2.0.0
-  hexcolor: ^2.0.4
+  hexcolor: ^2.0.6
   flutter_speed_dial: ^3.0.5
   flutter_local_notifications: ^4.0.1+2
   syncfusion_flutter_pdfviewer: 18.4.49-beta
