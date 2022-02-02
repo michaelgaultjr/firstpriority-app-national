@@ -35,15 +35,16 @@ class ResourcesScreen extends StatelessWidget {
   GestureDetector resourceWidget(Resource resource) {
     return GestureDetector(
       child: Card(
+        elevation: 2,
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Image(
           image: CachedNetworkImageProvider(resource.imageUrl),
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
-        margin: EdgeInsets.all(8),
+        margin: EdgeInsets.all(4),
       ),
       onTap: () => launch(resource.url),
     );
