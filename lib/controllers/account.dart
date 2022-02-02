@@ -34,8 +34,8 @@ class AccountController extends getx.GetxController {
     await api.client.get('/api/account/logout');
 
     FirebaseMessaging.instance
-        .unsubscribeFromTopic("region_${_user.value.regionId}");
-    FirebaseMessaging.instance.unsubscribeFromTopic("user_${_user.value.id}");
+      ..unsubscribeFromTopic("region_${_user.value.regionId}")
+      ..unsubscribeFromTopic("user_${_user.value.id}");
 
     _user.value = null;
 
@@ -80,8 +80,8 @@ class AccountController extends getx.GetxController {
       await _schoolController.setSchool(result.school);
 
       FirebaseMessaging.instance
-          .subscribeToTopic("region_${result.user.regionId}");
-      FirebaseMessaging.instance.subscribeToTopic("user_${result.user.id}");
+        ..subscribeToTopic("region_${result.user.regionId}")
+        ..subscribeToTopic("user_${result.user.id}");
     }
 
     return result;

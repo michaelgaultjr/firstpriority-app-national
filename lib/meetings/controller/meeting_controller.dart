@@ -122,5 +122,5 @@ class MeetingController extends GetxController {
     final res = await api.client.get('/api/cycles');
 
     return List.from(res.data).map((e) => Cycle.fromMap(e)).toList();
-  }
+  } 
 }
