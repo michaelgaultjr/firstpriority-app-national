@@ -1,3 +1,4 @@
+import 'package:first_priority_app/confirm_role_screen.dart';
 import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/dashboard/MainDashboard.dart';
@@ -15,6 +16,13 @@ class Authenticate extends StatelessWidget {
     return Obx(() {
       if (_accountController.user.value == null) {
         return LoginScreen();
+      }
+
+      if (!_accountController.user.value.isRoleConfirmed &&
+          _accountController.user.value.hasRoles(
+            ["Student", "Leader", "Sponsor", "Mentor", "WaitingMentor"],
+          )) {
+        return ConfirmRoleScreen();
       }
 
       if (_schoolController.school.value == null) {

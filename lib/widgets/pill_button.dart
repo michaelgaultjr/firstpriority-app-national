@@ -1,6 +1,5 @@
 import 'package:first_priority_app/Constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class PillButton extends StatelessWidget {
   final Widget child;
@@ -18,7 +17,7 @@ class PillButton extends StatelessWidget {
       child: Material(
         elevation: 2,
         borderRadius: BorderRadius.circular(20),
-        color: colorLightGray,
+        color: Theme.of(context).dividerColor,
         child: InkWell(
           child: Center(
             child: DefaultTextStyle(

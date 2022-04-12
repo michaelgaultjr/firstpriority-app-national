@@ -1,3 +1,4 @@
+import 'package:first_priority_app/home/homeScreen/components/notifications_card.dart';
 import 'package:first_priority_app/home/homeScreen/components/upcoming_event_card.dart';
 import 'package:first_priority_app/home/homeScreen/components/devotional_card.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             DevotionalCard(),
             UpcomingEventCard(),
+            NotificationsCard(),
           ],
         ),
       ),

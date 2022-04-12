@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 class ThemeNotifier with ChangeNotifier {
   static final ThemeData darkTheme = buildTheme(
     colorScheme: ColorScheme.dark(
-      primary: Color.fromARGB(255, 0, 33, 91),
-      primaryVariant: Colors.pink,
-      secondary: Color.fromARGB(255, 178, 8, 56),
-      secondaryVariant: Color.fromARGB(255, 157, 7, 49),
+      // primary: Color.fromARGB(255, 0, 33, 91),
+      // primaryVariant: Colors.pink,
+      // secondary: Color.fromARGB(255, 178, 8, 56),
+      // secondaryVariant: Color.fromARGB(255, 157, 7, 49),
+      primary: Color.fromARGB(255, 178, 8, 56),
+      primaryVariant: Color.fromARGB(255, 157, 7, 49),
+      secondary: Color.fromARGB(255, 0, 33, 91),
+      secondaryVariant: Color.fromARGB(255, 0, 22, 61),
       surface: Color.fromARGB(255, 40, 40, 40),
       background: Color.fromARGB(255, 25, 25, 25),
       error: Colors.red,
@@ -30,7 +34,7 @@ class ThemeNotifier with ChangeNotifier {
     bodyText2: TextStyle(color: Colors.white70),
     navBackgroundColor: Color.fromARGB(255, 27, 27, 27),
     navUnselectedColor: Colors.white54,
-    dividerColor: Colors.white24,
+    dividerColor: Color.fromARGB(255, 61, 61, 61),
   );
 
   static final ThemeData lightTheme = buildTheme(
@@ -61,6 +65,7 @@ class ThemeNotifier with ChangeNotifier {
     headline3: getCustomTextProperties(Colors.black, 16, fontSchylerRegular, 1),
     navBackgroundColor: Colors.white,
     navUnselectedColor: Colors.black12,
+    dividerColor: colorLightGray,
   );
 
   static final _themes = {
@@ -172,7 +177,7 @@ ThemeData buildTheme({
       elevation: 2,
       backgroundColor: colorScheme.background,
       unselectedItemColor: navUnselectedColor,
-      selectedItemColor: colorScheme.secondary,
+      selectedItemColor: colorScheme.primary,
     ),
     appBarTheme: AppBarTheme(
       foregroundColor: colorScheme.onBackground,

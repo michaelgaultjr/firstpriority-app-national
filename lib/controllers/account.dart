@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/models/authentication_result.dart';
+import 'package:first_priority_app/models/school.dart';
 import 'package:first_priority_app/models/user.dart';
 import 'package:first_priority_app/storage_manager.dart';
 import 'package:get/get.dart' as getx;
@@ -69,6 +70,27 @@ class AccountController extends getx.GetxController {
       return usr;
     });
 
+    return _user.value;
+  }
+
+  Future roleConfirmation({
+    ConfirmationRole role,
+    School school,
+    DateTime graduationYear,
+  }) async {
+    await api.client.post('/api/account/confirm-role', data: {
+      "role": role.index,
+      "schoolId": school?.id,
+      "graduationYear": graduationYear,
+    });
+
+    _user.update((usr) {
+      if (graduationYear != null) usr.graduationYear = graduationYear;
+      usr.isRoleConfirmed = true;
+      return usr;
+    });
+
+    _schoolController.setSchool(school);
     return _user.value;
   }
 

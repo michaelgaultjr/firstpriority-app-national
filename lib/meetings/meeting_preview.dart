@@ -1,7 +1,6 @@
 import 'package:first_priority_app/meetings/meeting_details.dart';
 import 'package:first_priority_app/models/meeting.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 

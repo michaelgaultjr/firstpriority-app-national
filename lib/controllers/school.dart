@@ -24,6 +24,17 @@ class SchoolController extends getx.GetxController {
     return List.from(res.data).map((e) => UserProfile.fromMap(e)).toList();
   }
 
+  Future<List<School>> searchSchools(String query) async {
+    final res = await api.client.get(
+      '/api/schools/details',
+      queryParameters: {
+        'query': query,
+      },
+    );
+
+    return List.from(res.data).map((e) => School.fromMap(e)).toList();
+  }
+
   Future<List<School>> getSchools() async {
     final res = await api.client.get('/api/schools/details');
 

@@ -6,7 +6,7 @@ class HeaderAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String subtitle;
   @override
-  Size get preferredSize => const Size.fromHeight(90);
+  Size get preferredSize => const Size.fromHeight(80);
 
   HeaderAppBar({Key key, this.title, this.subtitle}) : super(key: key);
 
@@ -14,7 +14,7 @@ class HeaderAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        margin: EdgeInsets.only(left: 10, top: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

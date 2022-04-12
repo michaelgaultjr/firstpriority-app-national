@@ -22,7 +22,6 @@ class MainDashBoard extends StatelessWidget {
     MoreScreen(),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     final _items = buildItems(context);

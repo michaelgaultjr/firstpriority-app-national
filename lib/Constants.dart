@@ -226,14 +226,15 @@ getCustomTextProperties(Color color, double fontSize, String fontName, int i) {
     // set the font size
     decoration: TextDecoration.none,
   );
-
 }
 
 var textButtonUpdateRouteStyle = TextButton.styleFrom(
   backgroundColor: colorDarkBlue,
   shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.only(topLeft: Radius.circular(5),topRight: Radius.circular(5),bottomLeft: Radius.circular(5),bottomRight: Radius.circular(5)
-    ),
+    borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(5),
+        topRight: Radius.circular(5),
+        bottomLeft: Radius.circular(5),
+        bottomRight: Radius.circular(5)),
   ),
 );
-

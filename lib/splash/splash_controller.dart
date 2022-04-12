@@ -5,11 +5,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/controllers/api.dart';
 import 'package:first_priority_app/controllers/message.dart';
+import 'package:first_priority_app/controllers/notification.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/meetings/controller/meeting_controller.dart';
 import 'package:first_priority_app/meetings/controller/order_controller.dart';
+import 'package:first_priority_app/models/notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:sembast/timestamp.dart';
 
 class SplashController extends GetxController {
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -28,6 +31,7 @@ class SplashController extends GetxController {
     await Get.put(AccountController()).authenticate();
     Get.put(MeetingController());
     Get.put(OrderController());
+    await Get.putAsync(() => NotificationStore.createInstance());
 
     // Non-essential Controllers
     Get.lazyPut(() => MessageController(), fenix: true);
@@ -61,8 +65,8 @@ class SplashController extends GetxController {
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
 
-    if (Platform.isAndroid) {
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (Platform.isAndroid) {
         RemoteNotification notification = message.notification;
         AndroidNotification android = message.notification?.android;
 
@@ -84,8 +88,18 @@ class SplashController extends GetxController {
             ),
           );
         }
-      });
-    }
+      }
+
+      final controller = Get.find<NotificationStore>();
+      controller.add(
+        Notification(
+          id: message.messageId,
+          title: message.notification.title,
+          body: message.notification.body,
+          time: Timestamp.now(),
+        ),
+      );
+    });
   }
 }
 
@@ -93,6 +107,16 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
+  final store = await NotificationStore.createInstance();
+
+  await store.add(
+    Notification(
+      id: message.messageId,
+      title: message.notification.title,
+      body: message.notification.body,
+      time: Timestamp.now(),
+    ),
+  );
 
   print("Handling a background message: ${message.messageId}");
 }

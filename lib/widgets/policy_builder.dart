@@ -41,7 +41,7 @@ class Policy {
   static validate(Policy policy) {
     final accountController = Get.find<AccountController>();
 
-    final isValid = accountController.user.value.hasRole(policy.roles);
+    final isValid = accountController.user.value.hasRoles(policy.roles);
 
     return isValid;
   }

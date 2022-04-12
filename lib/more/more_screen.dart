@@ -2,6 +2,7 @@ import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/controllers/school.dart';
 import 'package:first_priority_app/dashboard/controller/MainDashboardController.dart';
 import 'package:first_priority_app/more/account/account_screen.dart';
+import 'package:first_priority_app/more/notifications_screen.dart';
 import 'package:first_priority_app/more/settings/settings_screen.dart';
 import 'package:first_priority_app/notifiers/theme_notifier.dart';
 import 'package:first_priority_app/widgets/policy_builder.dart';
@@ -27,6 +28,11 @@ class MoreScreen extends StatelessWidget {
   MoreScreen({Key key}) : super(key: key);
 
   final _screens = [
+    MoreItem(
+      name: "Notifications",
+      icon: Icon(Icons.notifications),
+      action: (_) => Get.to(() => NotificationsScreen()),
+    ),
     MoreItem(
       name: "Settings",
       icon: Icon(Icons.settings),

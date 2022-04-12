@@ -11,7 +11,6 @@ import 'package:first_priority_app/widgets/generic_list.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
 import 'package:first_priority_app/widgets/text/title_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 

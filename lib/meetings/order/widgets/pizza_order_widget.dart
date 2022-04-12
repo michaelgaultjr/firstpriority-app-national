@@ -4,7 +4,6 @@ import 'package:first_priority_app/async_search_delegate.dart';
 import 'package:first_priority_app/meetings/controller/order_controller.dart';
 import 'package:first_priority_app/models/location.dart';
 import 'package:first_priority_app/validators.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
