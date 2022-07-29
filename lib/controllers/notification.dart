@@ -40,6 +40,8 @@ class NotificationStore {
       ),
     );
 
+    if (record == null) return null;
+
     return Notification.fromMap(record.value);
   }
 

@@ -59,39 +59,7 @@ class LoginScreen extends StatelessWidget {
                     child: ElevatedButton(
                       child: Text("Sign In"),
                       onPressed: () async {
-                        if (!_formKey.currentState.validate()) return;
-
-                        final result = await _controller.login(
-                          _emailController.text,
-                          _passwordController.text,
-                        );
-
-                        if (result.authenticated) return;
-
-                        String errorMessage = "Invalid email or password.";
-
-                        if (result.isLockedOut) {
-                          errorMessage =
-                              "Locked out. Too many invalid login attempts.";
-                        } else if (result.isNotAllowed) {
-                          errorMessage = "Login disabled for this account.";
-                        }
-
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Error'),
-                              content: Text(errorMessage),
-                              actions: [
-                                TextButton(
-                                  onPressed: Navigator.of(context).pop,
-                                  child: Text("Close"),
-                                ),
-                              ],
-                            );
-                          },
-                        );
+                        await loginAsync(context);
                       },
                     ),
                   ),
@@ -139,6 +107,72 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> loginAsync(BuildContext context, {String code}) async {
+    if (!_formKey.currentState.validate()) return;
+
+    final result = await _controller
+        .login(_emailController.text, _passwordController.text, code: code);
+
+    if (result.authenticated) return;
+
+    if (result.requiresTwoFactor) {
+      final twoFaCodeController = TextEditingController();
+      await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('2FA Signin'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: twoFaCodeController,
+                  decoration: InputDecoration(hintText: "Enter 2FA Code"),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                ElevatedButton(
+                  child: Text("Sign In"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ),
+          );
+        },
+      );
+
+      await loginAsync(context, code: twoFaCodeController.text);
+      return;
+    }
+
+    String errorMessage = "Invalid email, password, or 2fa code.";
+
+    if (result.isLockedOut) {
+      errorMessage = "Locked out. Too many invalid login attempts.";
+    } else if (result.isNotAllowed) {
+      errorMessage = "Login disabled for this account.";
+    }
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(errorMessage),
+          actions: [
+            TextButton(
+              onPressed: Navigator.of(context).pop,
+              child: Text("Close"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -11,12 +11,14 @@ import 'package:jiffy/jiffy.dart';
 
 class PizzaOrderWidget extends StatefulWidget {
   final DateTime meetingTime;
+  final bool allowDelivery;
   final RxInt expectedStudents;
   final void Function(Map<String, dynamic>) onData;
 
   PizzaOrderWidget({
     Key key,
     this.meetingTime,
+    this.allowDelivery,
     this.expectedStudents,
     this.onData,
   }) : super(key: key);
@@ -37,6 +39,8 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
   final TextEditingController _locationController = TextEditingController();
 
   final TextEditingController _timeController = TextEditingController();
+
+  bool _delivery = false;
 
   static const String component = "Pizza";
 
@@ -158,7 +162,21 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
               ),
             );
           },
-        )
+        ),
+        if (widget.allowDelivery)
+          CheckboxListTile(
+            title: Text(
+              "Delivery",
+              style: TextStyle(fontSize: 20),
+            ),
+            value: _delivery,
+            onChanged: (newValue) {
+              setState(() {
+                _delivery = newValue;
+              });
+            },
+            controlAffinity: ListTileControlAffinity.leading,
+          )
       ],
     );
   }
@@ -190,6 +208,7 @@ class _PizzaOrderWidgetState extends State<PizzaOrderWidget> {
       "pepperoni": int.parse(_pepperoniController.text),
       "time": pickupTime.toIso8601String(),
       "locationId": location?.id,
+      "delivery": _delivery,
     };
   }
 }

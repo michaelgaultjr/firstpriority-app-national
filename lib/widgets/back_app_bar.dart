@@ -3,10 +3,17 @@ import 'package:flutter/material.dart';
 
 class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final IconData actionIcon;
+  final void Function() onActionPressed;
   @override
   Size get preferredSize => const Size.fromHeight(75);
 
-  BackAppBar({Key key, this.title}) : super(key: key);
+  BackAppBar({
+    Key key,
+    @required this.title,
+    this.actionIcon,
+    this.onActionPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +42,17 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
                   fontSize: 24,
                 ),
               ),
+              if (actionIcon != null && onActionPressed != null)
+                Align(
+                  alignment: Alignment(0.9, 0),
+                  child: IconButton(
+                    constraints: BoxConstraints(maxHeight: 28, maxWidth: 28),
+                    padding: EdgeInsets.all(0.0),
+                    icon: Icon(actionIcon),
+                    iconSize: 28,
+                    onPressed: onActionPressed,
+                  ),
+                ),
             ],
           ),
         ),

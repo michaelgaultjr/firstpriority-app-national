@@ -49,20 +49,23 @@ class _OrderScreenState extends State<OrderScreen> {
       "Pizza": PizzaOrderWidget(
         expectedStudents: _expectedStudents,
         meetingTime: widget.meeting.time,
+        allowDelivery: _schoolController.school.value.allowDelivery,
         onData: (data) {
           orderData = data;
         },
       ),
       "StoreItems": StoreItemsOrderWidget(
-          expectedStudents: _expectedStudents,
-          onData: (data) {
-            orderData = data;
-          }),
+        expectedStudents: _expectedStudents,
+        onData: (data) {
+          orderData = data;
+        },
+      ),
       "Donuts": DonutsOrderWidget(
-          expectedStudents: _expectedStudents,
-          onData: (data) {
-            orderData = data;
-          }),
+        expectedStudents: _expectedStudents,
+        onData: (data) {
+          orderData = data;
+        },
+      ),
     };
 
     _type = _types.keys.first;

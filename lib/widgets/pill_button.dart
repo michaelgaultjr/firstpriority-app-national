@@ -1,4 +1,3 @@
-import 'package:first_priority_app/Constants.dart';
 import 'package:flutter/material.dart';
 
 class PillButton extends StatelessWidget {

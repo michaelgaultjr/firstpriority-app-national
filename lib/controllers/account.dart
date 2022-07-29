@@ -15,7 +15,8 @@ class AccountController extends getx.GetxController {
   getx.Rx<User> get user => _user;
   getx.Rx<User> _user = getx.Rx<User>(null);
 
-  Future<AuthenticationResult> login(String email, String password) async {
+  Future<AuthenticationResult> login(String email, String password,
+      {String code}) async {
     final schoolId = await StorageManager.read<String>("currentSchoolId");
     final res = await api.client.post(
       '/api/account/login',
@@ -25,6 +26,7 @@ class AccountController extends getx.GetxController {
       data: FormData.fromMap({
         "email": email,
         "password": password,
+        "code": code,
       }),
     );
 

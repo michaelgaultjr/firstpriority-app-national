@@ -40,6 +40,7 @@ class _ConfirmRoleScreenState extends State<ConfirmRoleScreen> {
   School _school;
   bool _formOpened = false;
   bool _isStudentLeader = false;
+  bool _agreed = false;
 
   @override
   void initState() {
@@ -76,7 +77,7 @@ class _ConfirmRoleScreenState extends State<ConfirmRoleScreen> {
     final formUrl = commitmentForms[_confirmationRole];
     return Scaffold(
       appBar: HeaderAppBar(
-        title: "Commitment",
+        title: "Expectations/Commitment",
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8),
@@ -153,17 +154,19 @@ class _ConfirmRoleScreenState extends State<ConfirmRoleScreen> {
               Container(
                 margin: EdgeInsets.only(bottom: 4),
                 child: Text(
-                  'Fill out the Commitment Form and then press the "Done" button to finish your yearly commitment.',
+                  'Please review the Expectations/Commitment details and fill out the required forms if any in order to complete your yearly Expectations/Commitment agreement.',
                   textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
+            SizedBox(height: 8),
             if (formUrl != null)
               ElevatedButton(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      child: Text("Commitment Form"),
+                      child: Text("Expectations/Commitment Details"),
                       margin: EdgeInsets.symmetric(horizontal: 4),
                     ),
                     Icon(Icons.open_in_browser),
@@ -180,39 +183,50 @@ class _ConfirmRoleScreenState extends State<ConfirmRoleScreen> {
                   });
                 },
               ),
-            SizedBox(height: 8),
-            ElevatedButton(
-              child: Text("Done"),
-              onPressed: () {
-                if (!_formOpened &&
-                    _confirmationRole != ConfirmationRole.student) {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text("Commitment Form"),
-                          content: Text(
-                              "Please open and fill out the Commitment Form before continuing."),
-                          actions: [
-                            TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: Text("Ok"))
-                          ],
-                        );
-                      });
-                } else {
-                  LoadingDialog.show(
-                      context: context,
-                      future: () async {
-                        await _accountController.roleConfirmation(
-                          role: _confirmationRole,
-                          school: _school,
-                          graduationYear: _graduationYear,
-                        );
-                      });
-                }
+            CheckboxListTile(
+              title: Text("I agree to the Expectations/Commitment"),
+              value: _agreed,
+              onChanged: (bool newValue) {
+                setState(() {
+                  _agreed = newValue;
+                });
               },
-            )
+            ),
+            if ((_formOpened && _agreed) ||
+                _confirmationRole == ConfirmationRole.student)
+              ElevatedButton(
+                child: Text("Done"),
+                onPressed: () {
+                  if (!_formOpened &&
+                      !_agreed &&
+                      _confirmationRole != ConfirmationRole.student) {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Notice"),
+                            content: Text(
+                                "You must open and review the Expectation/Commitment details and agree to them before continuing."),
+                            actions: [
+                              TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text("Ok"))
+                            ],
+                          );
+                        });
+                  } else {
+                    LoadingDialog.show(
+                        context: context,
+                        future: () async {
+                          await _accountController.roleConfirmation(
+                            role: _confirmationRole,
+                            school: _school,
+                            graduationYear: _graduationYear,
+                          );
+                        });
+                  }
+                },
+              )
           ],
         ),
       ),
