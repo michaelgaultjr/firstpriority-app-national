@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Api extends GetxController {
-  static const String API_URL = "https://core.firstpriority.cc";
+  static const String API_URL = "https://core.firstpriority.app";
 
   final Dio client;
 

@@ -10,9 +10,9 @@ class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   static const resetPasswordUrl =
-      "https://core.firstpriority.cc/Identity/Account/ForgotPassword";
+      "https://core.firstpriority.app/Identity/Account/ForgotPassword";
 
-  static const createAccountUrl = "https://core.firstpriority.cc/register";
+  static const createAccountUrl = "https://core.firstpriority.app/register";
 
   final AccountController _controller = Get.find<AccountController>();
 
