@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
       return;
     }
 
-    String errorMessage = "Invalid email, password, or 2fa code.";
+    String errorMessage = "Invalid email, password, or 2FA code.";
 
     if (result.isLockedOut) {
       errorMessage = "Locked out. Too many invalid login attempts.";
