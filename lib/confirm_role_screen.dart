@@ -7,6 +7,7 @@ import 'package:first_priority_app/validators.dart';
 import 'package:first_priority_app/widgets/header_app_bar.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
@@ -19,14 +20,11 @@ class ConfirmRoleScreen extends StatefulWidget {
 
 class _ConfirmRoleScreenState extends State<ConfirmRoleScreen> {
   static const FORMAT = "MMMM yyyy";
-  static const commitmentForms = {
+  static final commitmentForms = {
     ConfirmationRole.student: null,
-    ConfirmationRole.studentLeader:
-        "https://core.firstpriority.cc/cms/student-leader-commitment",
-    ConfirmationRole.teacherSponsor:
-        "https://core.firstpriority.cc/cms/teacher-sponsor-commitment",
-    ConfirmationRole.mentor:
-        "https://core.firstpriority.cc/cms/mentor-commitment"
+    ConfirmationRole.studentLeader: dotenv.env['COMMITMENT_STUDENT_LEADER'],
+    ConfirmationRole.teacherSponsor: dotenv.env['COMMITMENT_TEACHER_SPONSOR'],
+    ConfirmationRole.mentor: dotenv.env['COMMITMENT_MENTOR']
   };
 
   final AccountController _accountController = Get.find<AccountController>();
