@@ -2,6 +2,7 @@ import 'package:first_priority_app/controllers/account.dart';
 import 'package:first_priority_app/login/components/TopSignInPart.dart';
 import 'package:first_priority_app/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Constants.dart';
@@ -9,10 +10,8 @@ import '../Constants.dart';
 class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
-  static const resetPasswordUrl =
-      "https://core.firstpriority.app/Identity/Account/ForgotPassword";
-
-  static const createAccountUrl = "https://core.firstpriority.app/register";
+  static final resetPasswordUrl = dotenv.env['ACCOUNT_FORGOT_PASSWORD_URL'];
+  static final createAccountUrl = dotenv.env['ACCOUNT_REGISTER_URL'];
 
   final AccountController _controller = Get.find<AccountController>();
 
@@ -151,7 +150,7 @@ class LoginScreen extends StatelessWidget {
       return;
     }
 
-    String errorMessage = "Invalid email, password, or 2fa code.";
+    String errorMessage = "Invalid email, password, or 2FA code.";
 
     if (result.isLockedOut) {
       errorMessage = "Locked out. Too many invalid login attempts.";

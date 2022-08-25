@@ -83,7 +83,7 @@ class AccountController extends getx.GetxController {
     await api.client.post('/api/account/confirm-role', data: {
       "role": role.index,
       "schoolId": school?.id,
-      "graduationYear": graduationYear,
+      "graduationYear": graduationYear.toIso8601String(),
     });
 
     _user.update((usr) {

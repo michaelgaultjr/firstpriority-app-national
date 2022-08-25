@@ -7,6 +7,7 @@ import 'package:first_priority_app/more/settings/settings_screen.dart';
 import 'package:first_priority_app/notifiers/theme_notifier.dart';
 import 'package:first_priority_app/widgets/policy_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +60,7 @@ class MoreScreen extends StatelessWidget {
       name: "Website",
       icon: Icon(Icons.public),
       action: (context) async {
-        final url = "https://firstpriority.cc";
+        final url = dotenv.env['WEBSITE_URL'];
         await canLaunch(url)
             ? await launch(url)
             : ScaffoldMessenger.of(context).showSnackBar(
