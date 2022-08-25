@@ -3,7 +3,9 @@ import 'package:first_priority_app/validators.dart';
 import 'package:first_priority_app/widgets/back_app_bar.dart';
 import 'package:first_priority_app/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AccountScreen extends StatefulWidget {
   AccountScreen({Key key}) : super(key: key);
@@ -97,7 +99,34 @@ class _AccountScreenState extends State<AccountScreen> {
                     );
                   }
                 },
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Text("Manage Account"),
+                      margin: EdgeInsets.symmetric(horizontal: 4),
+                    ),
+                    Icon(Icons.open_in_browser),
+                  ],
+                ),
+                onPressed: () async {
+                  final url = dotenv.env['ACCOUNT_MANAGE_URL'];
+                  await canLaunch(url)
+                      ? await launch(url)
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "Unable to open account management URL",
+                            ),
+                          ),
+                        );
+                },
+              ),
             ],
           ),
         ),
